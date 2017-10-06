@@ -6,7 +6,7 @@
     Title="Kategorier">
 
     <StackLayout>
-        <SearchBar></SearchBar>
+        <SearchBar Placeholder="Søg..."></SearchBar>
 
         <ListView x:Name="listViewCategories" ItemSelected="listItemClicked">
 

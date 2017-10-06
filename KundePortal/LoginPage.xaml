@@ -9,8 +9,8 @@
     <StackLayout Padding="50" VerticalOptions="End">
         <Image Source=""></Image>
         
-        <Entry Text="Email" HorizontalTextAlignment="Center"/>
-        <Entry Text="Password" HorizontalTextAlignment="Center"/>
+        <Entry Placeholder="Email..." HorizontalTextAlignment="Center" Keyboard="Email"/>
+        <Entry Placeholder="Password..." HorizontalTextAlignment="Center" IsPassword="True"/>
         <Button Text="Login" Clicked="LoginBtnClicked" />
 
     </StackLayout>

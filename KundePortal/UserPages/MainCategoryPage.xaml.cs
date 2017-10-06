@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace KundePortal.UserPages
@@ -10,20 +12,22 @@ namespace KundePortal.UserPages
             InitializeComponent();
             listViewCategories.ItemsSource = PopulateListview(parentCategory);
         }
-
-		ObservableCollection<string> PopulateListview(string parentCategory){
+        // Jeg tror umiddelbart ikke at de behøver være observablecollections, da brugeren ikke skal slette eller tilføje nyt indhold
+        ObservableCollection<string> PopulateListview(string parentCategory)
+        {
 
             ObservableCollection<string> listItems = new ObservableCollection<string>();
 
-            switch (parentCategory){
+            switch (parentCategory)
+            {
                 case "Main":
-					listItems = new ObservableCollection<string>{
-				        "Vand",
-				        "Varme",
-				        "El",
-				        "Afløb",
+                    listItems = new ObservableCollection<string>{
+                        "Vand",
+                        "Varme",
+                        "El",
+                        "Afløb",
                         "Andet"
-			         };
+                     };
                     break;
                 case "Vand":
                     listItems = new ObservableCollection<string>{
@@ -32,14 +36,15 @@ namespace KundePortal.UserPages
                     };
                     break;
             }
-
             return listItems;
         }
 
 
-        void listItemClicked(object sender, SelectedItemChangedEventArgs e)
+
+        async void listItemClicked(object sender, SelectedItemChangedEventArgs e)
         {
-            Navigation.PushAsync(new MainCategoryPage(e.SelectedItem.ToString()));
+           await Navigation.PushAsync(new MainCategoryPage(Title = e.SelectedItem.ToString()));
+
         }
     }
 }
