@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:KundePortal" 
+    x:Class="KundePortal.LoginPage"
+    Title="Login">
+
+    <StackLayout Padding="50" VerticalOptions="End">
+        <Image Source=""></Image>
+        
+        <Entry Text="Email" HorizontalTextAlignment="Center"/>
+        <Entry Text="Password" HorizontalTextAlignment="Center"/>
+        <Button Text="Login" Clicked="LoginBtnClicked" />
+
+    </StackLayout>
+
+</ContentPage>
