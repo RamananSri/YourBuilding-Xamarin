@@ -8,7 +8,7 @@
     <StackLayout>
         <SearchBar></SearchBar>
 
-        <ListView x:Name="listViewCategories">
+        <ListView x:Name="listViewCategories" ItemSelected="listItemClicked">
 
         </ListView>
         
