@@ -43,7 +43,16 @@ namespace KundePortal.UserPages
 
         async void listItemClicked(object sender, SelectedItemChangedEventArgs e)
         {
-           await Navigation.PushAsync(new MainCategoryPage(Title = e.SelectedItem.ToString()));
+            var selectedCategory = e.SelectedItem.ToString();
+
+            if(selectedCategory == "Varmt" || selectedCategory == "Koldt"){
+                await Navigation.PushAsync(new NewQuestionPage(selectedCategory));
+            }
+            else{
+                await Navigation.PushAsync(new MainCategoryPage(Title = selectedCategory));
+            }
+
+           
 
         }
     }

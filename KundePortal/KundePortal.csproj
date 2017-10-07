@@ -33,6 +33,9 @@
     <EmbeddedResource Include="UserPages\MainCategoryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserPages\NewQuestionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -46,6 +49,9 @@
     <Compile Include="Models\Business.cs" />
     <Compile Include="UserPages\MainCategoryPage.xaml.cs">
       <DependentUpon>MainCategoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\NewQuestionPage.xaml.cs">
+      <DependentUpon>NewQuestionPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
