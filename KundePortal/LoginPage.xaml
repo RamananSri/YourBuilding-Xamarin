@@ -6,6 +6,10 @@
     x:Class="KundePortal.LoginPage"
     Title="Login">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="OpretItem" Text="Opret" Activated="OpretItem_Activated"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <StackLayout Padding="50" VerticalOptions="End">
         <Image Source=""></Image>
         

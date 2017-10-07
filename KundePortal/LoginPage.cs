@@ -21,5 +21,10 @@ namespace KundePortal
 
             // Business user
         }
+
+        async void OpretItem_Activated(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CreateUserPage());
+        }
     }
 }

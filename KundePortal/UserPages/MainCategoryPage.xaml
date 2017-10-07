@@ -5,6 +5,10 @@
     x:Class="KundePortal.UserPages.MainCategoryPage"
     Title="Kategorier">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="KontoItem" Text="Konto" Activated="KontoItem_Activated"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <StackLayout>
         <SearchBar Placeholder="Søg..."></SearchBar>
 

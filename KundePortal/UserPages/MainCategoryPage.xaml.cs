@@ -55,5 +55,10 @@ namespace KundePortal.UserPages
            
 
         }
+
+        async void KontoItem_Activated(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new ViewUserPage());
+        }
     }
 }
