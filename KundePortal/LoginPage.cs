@@ -15,7 +15,16 @@ namespace KundePortal
         {
             // insert REST login login
 
-            Navigation.PushAsync(new MainCategoryPage());
+
+            // Private user 
+            Navigation.PushAsync(new MainCategoryPage("Main"));
+
+            // Business user
+        }
+
+        async void OpretItem_Activated(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CreateUserPage());
         }
     }
 }
