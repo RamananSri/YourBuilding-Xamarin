@@ -8,9 +8,10 @@ namespace KundePortal.UserPages
     public partial class MainCategoryPage : ContentPage
     {
         public MainCategoryPage(string parentCategory)
-        {
+        {           
             InitializeComponent();
             listViewCategories.ItemsSource = PopulateListview(parentCategory);
+            Title = parentCategory;
         }
         // Jeg tror umiddelbart ikke at de behøver være observablecollections, da brugeren ikke skal slette eller tilføje nyt indhold
         ObservableCollection<string> PopulateListview(string parentCategory)
@@ -49,9 +50,9 @@ namespace KundePortal.UserPages
                 await Navigation.PushAsync(new NewQuestionPage(selectedCategory));
             }
             else{
-                await Navigation.PushAsync(new MainCategoryPage(Title = selectedCategory));
+                await Navigation.PushAsync(new MainCategoryPage(selectedCategory));
             }
-
+            
            
 
         }
