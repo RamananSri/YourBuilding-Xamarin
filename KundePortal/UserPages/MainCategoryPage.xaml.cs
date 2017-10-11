@@ -14,15 +14,15 @@ namespace KundePortal.UserPages
             Title = parentCategory;
         }
         // Jeg tror umiddelbart ikke at de behøver være observablecollections, da brugeren ikke skal slette eller tilføje nyt indhold
-        ObservableCollection<string> PopulateListview(string parentCategory)
+        List<string> PopulateListview(string parentCategory)
         {
 
-            ObservableCollection<string> listItems = new ObservableCollection<string>();
+            List<string> listItems = new List<string>();
 
             switch (parentCategory)
             {
                 case "Main":
-                    listItems = new ObservableCollection<string>{
+                    listItems = new List<string>{
                         "Vand",
                         "Varme",
                         "El",
@@ -31,7 +31,7 @@ namespace KundePortal.UserPages
                      };
                     break;
                 case "Vand":
-                    listItems = new ObservableCollection<string>{
+                    listItems = new List<string>{
                         "Varmt",
                         "Koldt"
                     };
@@ -39,8 +39,6 @@ namespace KundePortal.UserPages
             }
             return listItems;
         }
-
-
 
         async void listItemClicked(object sender, SelectedItemChangedEventArgs e)
         {
@@ -52,9 +50,6 @@ namespace KundePortal.UserPages
             else{
                 await Navigation.PushAsync(new MainCategoryPage(selectedCategory));
             }
-            
-           
-
         }
 
         async void KontoItem_Activated(object sender, System.EventArgs e)

@@ -1,10 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KundePortal.UserPages.ViewUserPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
-        </StackLayout>
+    <StackLayout>
+            <TableView>
+    <TableView.Root>
+        <TableSection>
+            <EntryCell x:Name="idEntry" Label="Id" Placeholder="Indtast id.." Keyboard="Telephone"></EntryCell>
+            <EntryCell x:Name="nameEntry" Label="Navn:" Placeholder="Indtast navn..." Keyboard="Text"></EntryCell>
+            <EntryCell x:Name="emailEntry" Label="Email:" Placeholder="Indtast email..." Keyboard="Email"></EntryCell>
+            <EntryCell x:Name="phoneEntry" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
+            <EntryCell x:Name="addressEntry" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
+        </TableSection>
+    </TableView.Root>
+    </TableView>
+    <Button Clicked="updateUserBtn_clickedAsync" Text="Opdatér"></Button>
+    </StackLayout>
     </ContentPage.Content>
 </ContentPage>
