@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:KundePortal" 
+    x:Class="KundePortal.LoginPage"
+    Title="Login">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="OpretItem" Text="Opret" Activated="OpretItem_Activated"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Padding="50" VerticalOptions="End">
+        <Image Source=""></Image>
+        
+        <Entry Placeholder="Email..." HorizontalTextAlignment="Center" Keyboard="Email"/>
+        <Entry Placeholder="Password..." HorizontalTextAlignment="Center" IsPassword="True"/>
+        <Button Text="Login" Clicked="LoginBtnClicked" />
+
+    </StackLayout>
+
+</ContentPage>
