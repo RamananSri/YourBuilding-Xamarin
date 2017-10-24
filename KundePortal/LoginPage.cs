@@ -10,8 +10,9 @@ namespace KundePortal
     public partial class LoginPage : ContentPage
     {
         HttpClient client;
-        string url = "http://10.31.142.171/login";
+        string url = "http://10.0.2.2/";
         HttpResponseMessage apiMessage;
+        bool test = false;
 
         public LoginPage()
         {
@@ -19,13 +20,18 @@ namespace KundePortal
             client = new HttpClient();
         }
 
-        void LoginBtnClicked(object sender, EventArgs e)
+        async void LoginBtnClicked(object sender, EventArgs e)
         {
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            var result = await response.Content.ReadAsStringAsync();
             var loginForm = new LoginForm { password = passEntry.Text, email = emailEntry.Text };
-            Login(loginForm);
+            //Login(loginForm);
             //LoginAsync(loginForm);
-
-            Navigation.PushAsync(new MainCategoryPage("Main"));
+            if (test)
+            {
+                Navigation.PushAsync(new MainCategoryPage("Main"));
+            }
+            //Navigation.PushAsync(new MainCategoryPage("Main"));
 
 
             // insert REST login login
@@ -43,6 +49,7 @@ namespace KundePortal
             apiMessage = await client.PostAsync(url, new StringContent(content, Encoding.UTF8, "text/json"));
             var apiMessage2 = await apiMessage.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject(apiMessage2);
+            test = true;
         }
 
 
