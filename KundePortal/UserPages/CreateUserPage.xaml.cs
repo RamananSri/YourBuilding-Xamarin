@@ -13,7 +13,7 @@ namespace KundePortal.UserPages
     public partial class CreateUserPage : ContentPage
     {
         HttpClient client;
-        const string url = "http://localhost:3000/users/";
+        const string url = "http://localhost:3000/create";
 
         public CreateUserPage()
         {
@@ -27,13 +27,15 @@ namespace KundePortal.UserPages
             var address = addressEntry.Text;
             var phone = phoneEntry.Text;
             var email = emailEntry.Text;
+            var password = passwordEntry.Text;
 
             if (!String.IsNullOrEmpty(name) &&
                !String.IsNullOrEmpty(address) &&
                !String.IsNullOrEmpty(phone) &&
-               !String.IsNullOrEmpty(email))
+               !String.IsNullOrEmpty(email) &&
+                !String.IsNullOrEmpty(password))
             {
-                User user = new User { Name = name, Address = address, Phone = phone, Email = email };
+                User user = new User { name = name, address = address, phone = phone, email = email, password = password };
                 var userSerial = JsonConvert.SerializeObject(user);
                 await client.PostAsync(url, new StringContent(userSerial, Encoding.UTF8, "application/json"));
             }

@@ -59,6 +59,7 @@
     <Compile Include="UserPages\ViewUserPage.xaml.cs">
       <DependentUpon>ViewUserPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\JsonResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

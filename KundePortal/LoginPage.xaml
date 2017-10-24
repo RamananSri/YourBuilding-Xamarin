@@ -12,10 +12,10 @@
 
     <StackLayout Padding="50" VerticalOptions="End">
         <Image Source=""></Image>
-        
+        <Label x:Name="errorLbl"></Label>
         <Entry x:Name="emailEntry" Placeholder="Email..." HorizontalTextAlignment="Center" Keyboard="Email"/>
         <Entry x:Name="passEntry" Placeholder="Password..." HorizontalTextAlignment="Center" IsPassword="True"/>
-        <Button Text="Login" Clicked="LoginBtnClicked" />
+        <Button Text="Login" Clicked="LoginBtn_Clicked" />
 
     </StackLayout>
 

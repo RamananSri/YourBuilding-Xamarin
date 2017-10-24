@@ -7,12 +7,15 @@ namespace KundePortal.UserPages
 {
     public partial class MainCategoryPage : ContentPage
     {
+
         public MainCategoryPage(string parentCategory)
         {           
             InitializeComponent();
             listViewCategories.ItemsSource = PopulateListview(parentCategory);
             Title = parentCategory;
+            tokenLbl.Text = LoginPage.loggedIn.token;
         }
+
         // Jeg tror umiddelbart ikke at de behøver være observablecollections, da brugeren ikke skal slette eller tilføje nyt indhold
         List<string> PopulateListview(string parentCategory)
         {

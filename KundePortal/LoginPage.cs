@@ -4,6 +4,7 @@ using System;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
+using KundePortal.Models;
 
 namespace KundePortal
 {
@@ -12,7 +13,8 @@ namespace KundePortal
         HttpClient client;
         string url = "http://localhost:3000/login";
         HttpResponseMessage apiMessage;
-        bool test = false;
+
+        public static JsonResponse loggedIn;
 
         public LoginPage()
         {
@@ -20,36 +22,28 @@ namespace KundePortal
             client = new HttpClient();
         }
 
-        async void LoginBtnClicked(object sender, EventArgs e)
+        async void LoginBtn_Clicked(object sender, System.EventArgs e)
         {
-            HttpResponseMessage response = client.GetAsync(url).Result;
-            var result = await response.Content.ReadAsStringAsync();
-            var loginForm = new LoginForm { password = passEntry.Text, email = emailEntry.Text };
-            //Login(loginForm);
-            //LoginAsync(loginForm);
-            if (test)
-            {
-                Navigation.PushAsync(new MainCategoryPage("Main"));
+            LoginForm login = new LoginForm { password = passEntry.Text, email = emailEntry.Text };
+
+            var content = JsonConvert.SerializeObject(login);
+
+            StringContent st = new StringContent(content, Encoding.UTF8, "application/json");
+
+            apiMessage = await client.PostAsync(url, st);
+
+            var result = await apiMessage.Content.ReadAsStringAsync();
+
+            loggedIn = JsonConvert.DeserializeObject<JsonResponse>(result);
+
+            if(loggedIn.token != null){
+                await Navigation.PushAsync(new MainCategoryPage("Main"));
             }
-            //Navigation.PushAsync(new MainCategoryPage("Main"));
+            else{
+                errorLbl.Text = "Forkert brugernavn eller kodeord";
+                errorLbl.TextColor = Color.Red;
+            }
 
-
-            // insert REST login login
-
-
-            // Private user 
-
-
-            // Business user
-        }
-
-        async void Login(LoginForm lf)
-        {
-            var content = JsonConvert.SerializeObject(lf);
-            apiMessage = await client.PostAsync(url, new StringContent(content, Encoding.UTF8, "text/json"));
-            var apiMessage2 = await apiMessage.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject(apiMessage2);
-            test = true;
         }
 
 
