@@ -3,13 +3,14 @@ using KundePortal.UserPages;
 using System;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.Text;
 
 namespace KundePortal
 {
     public partial class LoginPage : ContentPage
     {
         HttpClient client;
-        string url = "http://localhost:3000/api/";
+        string url = "http://10.31.142.171/login";
         HttpResponseMessage apiMessage;
 
         public LoginPage()
@@ -18,20 +19,13 @@ namespace KundePortal
             client = new HttpClient();
         }
 
-        async void LoginBtnClicked(object sender, EventArgs e)
+        void LoginBtnClicked(object sender, EventArgs e)
         {
             var loginForm = new LoginForm { password = passEntry.Text, email = emailEntry.Text };
-
-            var content = JsonConvert.SerializeObject(loginForm);
-            apiMessage = await client.PostAsync(url, new StringContent(content));
-
+            Login(loginForm);
             //LoginAsync(loginForm);
 
-            if(true){
-                apiMessage.Content.ToString();
-
-                //Navigation.PushAsync(new MainCategoryPage("Main"));
-            }
+            Navigation.PushAsync(new MainCategoryPage("Main"));
 
 
             // insert REST login login
@@ -41,6 +35,14 @@ namespace KundePortal
 
 
             // Business user
+        }
+
+        async void Login(LoginForm lf)
+        {
+            var content = JsonConvert.SerializeObject(lf);
+            apiMessage = await client.PostAsync(url, new StringContent(content, Encoding.UTF8, "text/json"));
+            var apiMessage2 = await apiMessage.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject(apiMessage2);
         }
 
 
