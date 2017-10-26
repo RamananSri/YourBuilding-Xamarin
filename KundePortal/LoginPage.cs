@@ -12,7 +12,7 @@ namespace KundePortal
     public partial class LoginPage : ContentPage
     {
         HttpClient client;
-        string url = "http://10.0.2.2:3000/login";
+        string url;
         HttpResponseMessage apiMessage;
 
         public static JsonResponse loggedIn;
@@ -20,10 +20,11 @@ namespace KundePortal
         public LoginPage()
         {
             InitializeComponent();
+            url = ConnectionAPI.Instance.url + "login";
             client = new HttpClient();
         }
 
-        async void LoginBtn_Clicked(object sender, System.EventArgs e)
+        async void LoginBtn_Clicked(object sender, EventArgs e)
         {
             LoginForm login = new LoginForm { password = passEntry.Text, email = emailEntry.Text };
 
