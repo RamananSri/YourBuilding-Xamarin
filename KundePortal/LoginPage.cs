@@ -8,10 +8,11 @@ using KundePortal.Models;
 
 namespace KundePortal
 {
+	//test
     public partial class LoginPage : ContentPage
     {
         HttpClient client;
-        string url = "http://localhost:3000/login";
+        string url = "http://10.0.2.2:3000/login";
         HttpResponseMessage apiMessage;
 
         public static JsonResponse loggedIn;
@@ -40,7 +41,7 @@ namespace KundePortal
                 await Navigation.PushAsync(new MainCategoryPage("Main"));
             }
             else{
-                errorLbl.Text = "Forkert brugernavn eller kodeord";
+                errorLbl.Text = "Forkert brugernavn eller kodeord.";
                 errorLbl.TextColor = Color.Red;
             }
 
