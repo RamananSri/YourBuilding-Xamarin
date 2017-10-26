@@ -12,7 +12,7 @@ namespace KundePortal
     public partial class LoginPage : ContentPage
     {
         HttpClient client;
-        string url = "http://localhost:3000/login";
+        string url = "http://10.0.2.2:3000/login";
         HttpResponseMessage apiMessage;
 
         public static JsonResponse loggedIn;
