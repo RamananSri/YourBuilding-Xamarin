@@ -41,7 +41,7 @@ namespace KundePortal
                 await Navigation.PushAsync(new MainCategoryPage("Main"));
             }
             else{
-                errorLbl.Text = "Forkert brugernavn eller kodeord";
+                errorLbl.Text = "Forkert brugernavn eller kodeord.";
                 errorLbl.TextColor = Color.Red;
             }
 
