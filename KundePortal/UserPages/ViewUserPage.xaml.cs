@@ -35,7 +35,7 @@ namespace KundePortal.UserPages
         async Task updateUserBtn_clickedAsync(object sender, System.EventArgs e)
         {
 
-            var name = nameEntry.Text;
+            var name = nameEntry.Text ;
             var address = addressEntry.Text;
             var phone = phoneEntry.Text;
             var email = emailEntry.Text;
