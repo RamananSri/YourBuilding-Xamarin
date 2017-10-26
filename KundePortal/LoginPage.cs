@@ -8,6 +8,7 @@ using KundePortal.Models;
 
 namespace KundePortal
 {
+	//test
     public partial class LoginPage : ContentPage
     {
         HttpClient client;

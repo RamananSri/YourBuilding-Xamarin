@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Droid",
+    "\\Droid\\Assets",
+    "\\Droid\\obj",
+    "\\Droid\\Properties",
+    "\\Droid\\Resources"
   ],
   "PreviewInSolutionExplorer": false
 }
