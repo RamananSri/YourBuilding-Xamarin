@@ -7,11 +7,12 @@
             <TableView>
     <TableView.Root>
         <TableSection>
-            <EntryCell x:Name="idEntry" Label="Id" Placeholder="Indtast id.." Keyboard="Telephone"></EntryCell>
             <EntryCell x:Name="nameEntry" Label="Navn:" Placeholder="Indtast navn..." Keyboard="Text"></EntryCell>
             <EntryCell x:Name="emailEntry" Label="Email:" Placeholder="Indtast email..." Keyboard="Email"></EntryCell>
             <EntryCell x:Name="phoneEntry" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
             <EntryCell x:Name="addressEntry" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
+            <EntryCell x:Name="passwordEntry" Label="Password:" Placeholder="Indtast password..." Keyboard="Text"></EntryCell>
+
         </TableSection>
     </TableView.Root>
     </TableView>

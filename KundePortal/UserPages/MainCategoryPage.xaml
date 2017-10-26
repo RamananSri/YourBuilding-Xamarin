@@ -15,7 +15,7 @@
         <ListView x:Name="listViewCategories" ItemSelected="listItemClicked">
 
         </ListView>
-        
+        <Label x:Name="tokenLbl"></Label>
     </StackLayout>
     
 </ContentPage>
