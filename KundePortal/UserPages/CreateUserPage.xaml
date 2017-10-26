@@ -16,6 +16,18 @@
         </TableSection>
     </TableView.Root>
     </TableView>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Erhverv:"></Label>
+            <Switch></Switch>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="CVR:"></Label>
+            <Entry Placeholder="Indtast cvr.."></Entry>
+        </StackLayout>
+
+        
     <Button Clicked="createUserBtn_clickedAsync" Text="Opret"></Button>
     </StackLayout>
 </ContentPage>
