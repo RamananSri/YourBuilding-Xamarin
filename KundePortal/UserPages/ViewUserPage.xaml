@@ -12,7 +12,10 @@
             <EntryCell x:Name="phoneEntry" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
             <EntryCell x:Name="addressEntry" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
             <EntryCell x:Name="passwordEntry" Label="Password:" Placeholder="Indtast password..." Keyboard="Text"></EntryCell>
-
+                        <SwitchCell Text="test" On="True"></SwitchCell>
+        </TableSection>
+        <TableSection>
+            <EntryCell x:Name="test" Label="tester..."></EntryCell>
         </TableSection>
     </TableView.Root>
     </TableView>

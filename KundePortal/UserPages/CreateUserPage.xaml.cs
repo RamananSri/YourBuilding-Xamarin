@@ -13,11 +13,12 @@ namespace KundePortal.UserPages
     public partial class CreateUserPage : ContentPage
     {
         HttpClient client;
-        const string url = "http://localhost:3000/create";
+        string url;
 
         public CreateUserPage()
         {
             client = new HttpClient();
+            url = ConnectionAPI.Instance.url + "create";
             InitializeComponent();
         }
 
