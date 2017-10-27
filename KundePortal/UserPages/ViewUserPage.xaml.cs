@@ -53,5 +53,12 @@ namespace KundePortal.UserPages
                 var res = await client.PutAsync(url, new StringContent(userSerial));
             }
         }
+
+        void logOutBtn_clicked(object sender, System.EventArgs e)
+        {
+            LoginPage.loggedIn = null;
+            Navigation.PopToRootAsync();
+
+        }
     }
 }

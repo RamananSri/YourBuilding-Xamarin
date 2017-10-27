@@ -7,8 +7,8 @@ namespace KundePortal.Models
     {
         private static ConnectionAPI instance;
 
-        string webUrl = "http://10.0.2.2:3000/"; //Til android bruger
-        //string webUrl = "http://localhost:3000/"; //Til mac bruger
+        //string webUrl = "http://10.0.2.2:3000/"; //Til android bruger
+        string webUrl = "http://localhost:3000/"; //Til mac bruger
 
 
 
