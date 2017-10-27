@@ -3,11 +3,6 @@ namespace KundePortal.Models
 {
     public class User
     {
-        //public int Id           // test
-        //{
-        //    get;
-        //    set;
-        //}
 
         public string name
         {

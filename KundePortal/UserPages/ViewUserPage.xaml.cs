@@ -1,13 +1,12 @@
 ﻿using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using KundePortal.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace KundePortal.UserPages
 {
@@ -16,7 +15,7 @@ namespace KundePortal.UserPages
     {
 
         HttpClient client;
-        string url = "http://localhost:3000/users/";
+        string url;
         JsonResponse loggedIn;
 
         public ViewUserPage()
@@ -24,6 +23,7 @@ namespace KundePortal.UserPages
             client = new HttpClient();
             InitializeComponent();
 
+            url = ConnectionAPI.Instance.url + "api/users";
             loggedIn = LoginPage.loggedIn;
 
             nameEntry.Text = loggedIn.user.name;
@@ -50,7 +50,8 @@ namespace KundePortal.UserPages
 
                 User user = new User {name = name, address = address, phone = phone, email = email, password = password };
                 var userSerial = JsonConvert.SerializeObject(user);
-                var res = await client.PutAsync(url, new StringContent(userSerial));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", LoginPage.loggedIn.token);
+                var res = await client.PutAsync(url, new StringContent(userSerial, Encoding.UTF8, "application/json"));
             }
         }
 
