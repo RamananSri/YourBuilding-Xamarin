@@ -17,6 +17,7 @@
                 </TableView.Root>
             </TableView>
             <Button Clicked="updateUserBtn_clickedAsync" Text="Opdatér"></Button>
+            <Button Clicked="logOutBtn_clicked" Text="Log ud" BackgroundColor="Red"></Button>
     </StackLayout>
     </ContentPage.Content>
 </ContentPage>
