@@ -6,16 +6,25 @@
     <StackLayout>
             <TableView>
                 <TableView.Root>
-                    <TableSection>
+                    <TableSection Title="test">
                         <EntryCell x:Name="nameEntry" Label="Navn:" Placeholder="Indtast navn..." Keyboard="Text"></EntryCell>
                         <EntryCell x:Name="emailEntry" Label="Email:" Placeholder="Indtast email..." Keyboard="Email"></EntryCell>
                         <EntryCell x:Name="phoneEntry" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
                         <EntryCell x:Name="addressEntry" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
-                        <EntryCell x:Name="passwordEntry" Label="Password:" Placeholder="Indtast password..." Keyboard="Text"></EntryCell>
-                        <SwitchCell Text="test" On="True"></SwitchCell>
+                        <SwitchCell x:Name="switch" On="false" Text="Skift password"></SwitchCell>
                     </TableSection>
                 </TableView.Root>
             </TableView>
+            <TableView BindingContext="{x:Reference switch}" IsVisible="{Binding On}">
+                <TableView.Root>
+                    <TableSection>
+                        <EntryCell x:Name="passwordEntry" Placeholder="Nuværende password..."></EntryCell>
+                        <EntryCell Placeholder="Nyt password..."></EntryCell>
+                        <EntryCell Placeholder="Gentag nyt password..."></EntryCell>
+                    </TableSection>
+                </TableView.Root>
+            </TableView>
+
             <Button Clicked="updateUserBtn_clickedAsync" Text="Opdatér"></Button>
             <Button Clicked="logOutBtn_clicked" Text="Log ud" BackgroundColor="Red"></Button>
     </StackLayout>
