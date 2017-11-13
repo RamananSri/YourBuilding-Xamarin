@@ -30,6 +30,7 @@ namespace KundePortal.UserPages
             addressEntry.Text = loggedIn.user.address;
             phoneEntry.Text = loggedIn.user.phone;
             emailEntry.Text = loggedIn.user.email;
+            tableSectionUser.Title = "Du er logget ind som " + loggedIn.user.name;
         }
 
         async Task updateUserBtn_clickedAsync(object sender, System.EventArgs e)

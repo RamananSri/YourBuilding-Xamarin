@@ -39,6 +39,7 @@ namespace KundePortal.UserPages
                 User user = new User { name = name, address = address, phone = phone, email = email, password = password };
                 var userSerial = JsonConvert.SerializeObject(user);
                 await client.PostAsync(url, new StringContent(userSerial, Encoding.UTF8, "application/json"));
+                await Navigation.PopAsync();
             }
         }
     }

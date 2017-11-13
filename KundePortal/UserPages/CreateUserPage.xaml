@@ -3,29 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KundePortal.UserPages.CreateUserPage">
 
-    <!--Det er grimt lige nu, men det var mere for at have noget på alle sider for at skabe overblik-->
     <StackLayout>
-            <TableView>
-    <TableView.Root>
-        <TableSection>
-            <EntryCell x:Name="nameEntry" Label="Navn:" Placeholder="Indtast navn..." Keyboard="Text"></EntryCell>
-            <EntryCell x:Name="emailEntry" Label="Email:" Placeholder="Indtast email..." Keyboard="Email"></EntryCell>
-            <EntryCell x:Name="phoneEntry" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
-            <EntryCell x:Name="addressEntry" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
-            <EntryCell x:Name="passwordEntry" Label="Password:" Placeholder="Indtast password..." Keyboard="Text"></EntryCell>
-        </TableSection>
-    </TableView.Root>
+    <TableView>
+        <TableView.Root>
+            <TableSection Title="Opret ny bruger">
+                <EntryCell x:Name="nameEntry" Label="Navn:" Placeholder="Indtast navn..." Keyboard="Text"></EntryCell>
+                <EntryCell x:Name="emailEntry" Label="Email:" Placeholder="Indtast email..." Keyboard="Email"></EntryCell>
+                <EntryCell x:Name="phoneEntry" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
+                <EntryCell x:Name="addressEntry" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
+                <EntryCell x:Name="passwordEntry" Label="Password:" Placeholder="Indtast password..." Keyboard="Text"></EntryCell>
+            </TableSection>
+            <TableSection>
+                <SwitchCell Text="Erhverv" On="False" x:Name="erhvervSwitch"></SwitchCell>
+            </TableSection>
+            </TableView.Root>
     </TableView>
 
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Erhverv:"></Label>
-            <Switch></Switch>
-        </StackLayout>
+        <TableView Margin="0, 20, 0 ,0" BindingContext="{x:Reference erhvervSwitch}" IsVisible="{Binding On}">
+        <TableView.Root>
+            
+            <TableSection Title="CVR">
+                <EntryCell Placeholder="Indtast cvr..."></EntryCell>
+            </TableSection>
+            
+            </TableView.Root>
+    </TableView>
 
-        <StackLayout Orientation="Horizontal">
+
+
+
+        <!--<StackLayout Orientation="Horizontal" BackgroundColor="Yellow">
+            <Label Text="Erhverv:"></Label>
+            <Switch IsToggled="False" x:Name="erhvervSwitch"></Switch>
+        </StackLayout>-->
+
+        <!--<StackLayout BackgroundColor="Green" Orientation="Horizontal" BindingContext="{x:Reference erhvervSwitch}" IsVisible="{Binding IsToggled}">
             <Label Text="CVR:"></Label>
             <Entry Placeholder="Indtast cvr.."></Entry>
-        </StackLayout>
+        </StackLayout>-->
 
         
     <Button Clicked="createUserBtn_clickedAsync" Text="Opret"></Button>
