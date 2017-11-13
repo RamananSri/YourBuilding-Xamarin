@@ -27,9 +27,7 @@ namespace KundePortal
         async void LoginBtn_Clicked(object sender, EventArgs e)
         {
             LoginForm login = new LoginForm { password = passEntry.Text, email = emailEntry.Text };
-
             var content = JsonConvert.SerializeObject(login);
-
             StringContent st = new StringContent(content, Encoding.UTF8, "application/json");
 
             apiMessage = await client.PostAsync(url, st);
@@ -39,6 +37,7 @@ namespace KundePortal
             loggedIn = JsonConvert.DeserializeObject<JsonResponse>(result);
 
             if(loggedIn.token != null){
+
                 await Navigation.PushAsync(new MainCategoryPage("Main"));
             }
             else{
