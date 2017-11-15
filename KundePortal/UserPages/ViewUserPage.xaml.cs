@@ -20,11 +20,11 @@ namespace KundePortal.UserPages
 
         public ViewUserPage()
         {
-
-            client = new HttpClient();
             InitializeComponent();
 
+            client = new HttpClient();
             url = ConnectionAPI.Instance.url + "api/users";
+
             loggedIn = LoginPage.loggedIn;
 
             nameEntry.Text = loggedIn.user.name;
@@ -34,7 +34,7 @@ namespace KundePortal.UserPages
             tableSectionUser.Title = "Du er logget ind som " + loggedIn.user.name;
         }
 
-        async Task updateUserBtn_clickedAsync(object sender, System.EventArgs e)
+        async void updateUserBtn_clickedAsync(object sender, System.EventArgs e)
         {
 
             var name = nameEntry.Text ;
@@ -60,7 +60,9 @@ namespace KundePortal.UserPages
                 var userSerial = JsonConvert.SerializeObject(loggedIn);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", LoginPage.loggedIn.token);
                 var res = await client.PutAsync(url, new StringContent(userSerial, Encoding.UTF8, "application/json"));
-                JsonResponse response = JsonConvert.DeserializeObject<JsonResponse>(res.ToString());
+                var content = await res.Content.ReadAsStringAsync();
+                JsonResponse response = JsonConvert.DeserializeObject<JsonResponse>(content);
+
                 if(response.success == true)
                 {
                     LoginPage.loggedIn = null;
