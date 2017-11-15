@@ -33,6 +33,7 @@ namespace KundePortal.UserPages
                         "Andet"
                      };
                     break;
+
                 case "Vand":
                     listItems = new List<string>{
                         "Varmt",

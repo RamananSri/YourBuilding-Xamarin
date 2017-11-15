@@ -19,30 +19,16 @@
             </TableView.Root>
     </TableView>
 
-        <TableView Margin="0, 20, 0 ,0" BindingContext="{x:Reference erhvervSwitch}" IsVisible="{Binding On}">
-        <TableView.Root>
-            
-            <TableSection Title="CVR">
-                <EntryCell Placeholder="Indtast cvr..."></EntryCell>
-            </TableSection>
-            
+        <TableView BindingContext="{x:Reference erhvervSwitch}" IsVisible="{Binding On}">
+            <TableView.Root>
+
+                <TableSection Title="CVR">
+                    <EntryCell x:Name="cvrEntry" Placeholder="Indtast cvr..."></EntryCell>
+                </TableSection>
+
             </TableView.Root>
-    </TableView>
+        </TableView>
 
-
-
-
-        <!--<StackLayout Orientation="Horizontal" BackgroundColor="Yellow">
-            <Label Text="Erhverv:"></Label>
-            <Switch IsToggled="False" x:Name="erhvervSwitch"></Switch>
-        </StackLayout>-->
-
-        <!--<StackLayout BackgroundColor="Green" Orientation="Horizontal" BindingContext="{x:Reference erhvervSwitch}" IsVisible="{Binding IsToggled}">
-            <Label Text="CVR:"></Label>
-            <Entry Placeholder="Indtast cvr.."></Entry>
-        </StackLayout>-->
-
-        
-    <Button Clicked="createUserBtn_clickedAsync" Text="Opret"></Button>
+        <Button Clicked="createUserBtn_clickedAsync" Text="Opret"></Button>
     </StackLayout>
 </ContentPage>
