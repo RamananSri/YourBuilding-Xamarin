@@ -21,6 +21,12 @@ namespace KundePortal.Models
             set;
         }
 
+        public string statusCode
+        {
+            get;
+            set;
+        }
+
         public User user
         {
             get;

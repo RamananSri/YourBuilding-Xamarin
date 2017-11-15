@@ -23,7 +23,7 @@ namespace KundePortal.UserPages
             InitializeComponent();
 
             client = new HttpClient();
-            url = ConnectionAPI.Instance.url + "api/users";
+            url = ConnectionAPI.Instance.url + "api/users/" + LoginPage.loggedIn.user._id;
 
             loggedIn = LoginPage.loggedIn;
 
@@ -41,7 +41,7 @@ namespace KundePortal.UserPages
             var address = addressEntry.Text;
             var phone = phoneEntry.Text;
             var email = emailEntry.Text;
-            var password = passwordEntry.Text;
+            var password = loggedIn.user.password;
             var newPassword = newPasswordEntryAgain.Text;
 
             if (!String.IsNullOrEmpty(name) &&
@@ -51,26 +51,32 @@ namespace KundePortal.UserPages
                 !String.IsNullOrEmpty(password)) 
 
             {
-                User user = new User { name = name, address = address, phone = phone, email = email, password = password, newPassword = newPassword };
+                User user = new User {_id = loggedIn.user._id, name = name, address = address, phone = phone, email = email, password = password, newPassword = newPassword };
                 if (userSwitch.On && !String.IsNullOrEmpty(newPasswordEntry.Text) && !String.IsNullOrEmpty(newPasswordEntryAgain.Text))
                 {
                     user.newPassword = newPassword;
                 }
                                
-                var userSerial = JsonConvert.SerializeObject(loggedIn);
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", LoginPage.loggedIn.token);
+                var userSerial = JsonConvert.SerializeObject(user);
+                client.DefaultRequestHeaders.Add("token", LoginPage.loggedIn.token);
+
                 var res = await client.PutAsync(url, new StringContent(userSerial, Encoding.UTF8, "application/json"));
                 var content = await res.Content.ReadAsStringAsync();
                 JsonResponse response = JsonConvert.DeserializeObject<JsonResponse>(content);
 
-                if(response.success == true)
+                if(response.statusCode == "1"){
+                    passwordEntry.LabelColor = Color.Red;
+                }
+
+
+                if(response.success)
                 {
                     LoginPage.loggedIn = null;
                     await Navigation.PopToRootAsync();
                 }
                 else
                 {
-                    await DisplayAlert("Alert", "You have been alerted", "OK");
+                    await DisplayAlert("Alert", response.message, "OK");
                 }
                 
             }

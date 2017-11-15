@@ -4,6 +4,12 @@ namespace KundePortal.Models
     public class User
     {
 
+        public string _id
+        {
+            get;
+            set;
+        }
+
         public string name
         {
             get;
