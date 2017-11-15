@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
 using KundePortal.Models;
+using KundePortal.BusinessPages;
 
 namespace KundePortal
 {
@@ -52,6 +53,14 @@ namespace KundePortal
         async void OpretItem_Activated(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CreateUserPage());
+        }
+
+
+
+        // test
+        async void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new BusinessMainMenu());
         }
     }
 

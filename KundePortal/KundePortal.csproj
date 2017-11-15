@@ -39,6 +39,9 @@
     <EmbeddedResource Include="BusinessPages\BusinessMainMenu.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="BusinessPages\MyAccountPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -66,6 +69,9 @@
     <Compile Include="Models\ConnectionAPI.cs" />
     <Compile Include="BusinessPages\BusinessMainMenu.xaml.cs">
       <DependentUpon>BusinessMainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessPages\MyAccountPage.xaml.cs">
+      <DependentUpon>MyAccountPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

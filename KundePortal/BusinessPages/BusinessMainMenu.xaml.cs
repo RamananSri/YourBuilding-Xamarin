@@ -15,5 +15,9 @@ namespace KundePortal.BusinessPages
         }
 
 
+        void myAccountToolbarItem_Clicked(object sender, System.EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
