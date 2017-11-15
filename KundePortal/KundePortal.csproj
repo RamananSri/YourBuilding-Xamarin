@@ -56,11 +56,17 @@
     <Compile Include="UserPages\CreateUserPage.xaml.cs">
       <DependentUpon>CreateUserPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserPages\GridPro.xaml.cs">
+      <DependentUpon>GridPro.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserPages\MainCategoryPage.xaml.cs">
       <DependentUpon>MainCategoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserPages\NewQuestionPage.xaml.cs">
       <DependentUpon>NewQuestionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserPages\questionPagePro.xaml.cs">
+      <DependentUpon>questionPagePro.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserPages\ViewUserPage.xaml.cs">
       <DependentUpon>ViewUserPage.xaml</DependentUpon>
@@ -104,7 +110,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BusinessPages\" />
+    <EmbeddedResource Include="UserPages\questionPagePro.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UserPages\CreateUserPage.xaml">
@@ -114,6 +123,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UserPages\ViewUserPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UserPages\GridPro.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

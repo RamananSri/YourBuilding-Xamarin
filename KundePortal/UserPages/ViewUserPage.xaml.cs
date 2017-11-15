@@ -13,13 +13,14 @@ namespace KundePortal.UserPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewUserPage : ContentPage
     {
-
         HttpClient client;
         string url;
         JsonResponse loggedIn;
 
+
         public ViewUserPage()
         {
+
             client = new HttpClient();
             InitializeComponent();
 
@@ -30,6 +31,7 @@ namespace KundePortal.UserPages
             addressEntry.Text = loggedIn.user.address;
             phoneEntry.Text = loggedIn.user.phone;
             emailEntry.Text = loggedIn.user.email;
+            tableSectionUser.Title = "Du er logget ind som " + loggedIn.user.name;
         }
 
         async Task updateUserBtn_clickedAsync(object sender, System.EventArgs e)
@@ -40,18 +42,35 @@ namespace KundePortal.UserPages
             var phone = phoneEntry.Text;
             var email = emailEntry.Text;
             var password = passwordEntry.Text;
+            var newPassword = newPasswordEntryAgain.Text;
 
             if (!String.IsNullOrEmpty(name) &&
                !String.IsNullOrEmpty(address) &&
                !String.IsNullOrEmpty(phone) &&
                 !String.IsNullOrEmpty(email) && 
-                !String.IsNullOrEmpty(password))
-            {
+                !String.IsNullOrEmpty(password)) 
 
-                User user = new User {name = name, address = address, phone = phone, email = email, password = password };
-                var userSerial = JsonConvert.SerializeObject(user);
+            {
+                User user = new User { name = name, address = address, phone = phone, email = email, password = password, newPassword = newPassword };
+                if (userSwitch.On && !String.IsNullOrEmpty(newPasswordEntry.Text) && !String.IsNullOrEmpty(newPasswordEntryAgain.Text))
+                {
+                    user.newPassword = newPassword;
+                }
+                               
+                var userSerial = JsonConvert.SerializeObject(loggedIn);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", LoginPage.loggedIn.token);
                 var res = await client.PutAsync(url, new StringContent(userSerial, Encoding.UTF8, "application/json"));
+                JsonResponse response = JsonConvert.DeserializeObject<JsonResponse>(res.ToString());
+                if(response.success == true)
+                {
+                    LoginPage.loggedIn = null;
+                    await Navigation.PopToRootAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Alert", "You have been alerted", "OK");
+                }
+                
             }
         }
 

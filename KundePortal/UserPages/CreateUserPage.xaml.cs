@@ -14,9 +14,11 @@ namespace KundePortal.UserPages
     {
         HttpClient client;
         string url;
+        User user;
 
         public CreateUserPage()
         {
+            user = new User();
             client = new HttpClient();
             url = ConnectionAPI.Instance.url + "create";
             InitializeComponent();
@@ -24,21 +26,26 @@ namespace KundePortal.UserPages
 
         async Task createUserBtn_clickedAsync(object sender, System.EventArgs e)
         {
-            var name = nameEntry.Text;
-            var address = addressEntry.Text;
-            var phone = phoneEntry.Text;
-            var email = emailEntry.Text;
-            var password = passwordEntry.Text;
+            user.name = nameEntry.Text;
+            user.address = addressEntry.Text;
+            user.phone = phoneEntry.Text;
+            user.email = emailEntry.Text;
+            user.password = passwordEntry.Text;
 
-            if (!String.IsNullOrEmpty(name) &&
-               !String.IsNullOrEmpty(address) &&
-               !String.IsNullOrEmpty(phone) &&
-               !String.IsNullOrEmpty(email) &&
-                !String.IsNullOrEmpty(password))
+            if (!String.IsNullOrEmpty(nameEntry.Text) &&
+               !String.IsNullOrEmpty(addressEntry.Text) &&
+               !String.IsNullOrEmpty(phoneEntry.Text) &&
+               !String.IsNullOrEmpty(emailEntry.Text) &&
+                !String.IsNullOrEmpty(passwordEntry.Text))
             {
-                User user = new User { name = name, address = address, phone = phone, email = email, password = password };
+                if (!string.IsNullOrEmpty(cvrEntry.Text))
+                {
+                    user.cvr = cvrEntry.Text;
+                }
+
                 var userSerial = JsonConvert.SerializeObject(user);
                 await client.PostAsync(url, new StringContent(userSerial, Encoding.UTF8, "application/json"));
+                await Navigation.PopAsync();
             }
         }
     }

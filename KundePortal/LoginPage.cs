@@ -38,8 +38,15 @@ namespace KundePortal
             loggedIn = JsonConvert.DeserializeObject<JsonResponse>(result);
 
             if(loggedIn.token != null){
-
-                await Navigation.PushAsync(new MainCategoryPage("Main"));
+                if(loggedIn.user.cvr != null)
+                {
+                    await Navigation.PushAsync(new GridPro());
+                }
+                else
+                {
+                    await Navigation.PushAsync(new MainCategoryPage("Main"));
+                }
+                
             }
             else{
                 errorLbl.Text = "Forkert brugernavn eller kodeord.";

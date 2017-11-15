@@ -16,7 +16,6 @@ namespace KundePortal.UserPages
             tokenLbl.Text = LoginPage.loggedIn.token;
         }
 
-        // Jeg tror umiddelbart ikke at de behøver være observablecollections, da brugeren ikke skal slette eller tilføje nyt indhold
         List<string> PopulateListview(string parentCategory)
         {
 
@@ -25,6 +24,7 @@ namespace KundePortal.UserPages
             switch (parentCategory)
             {
                 case "Main":
+                    NavigationPage.SetHasBackButton(this, false); // Fjerner tilbage-knappen på startsiden, så det ikke er muligt at tilbage til loginsiden.
                     listItems = new List<string>{
                         "Vand",
                         "Varme",
@@ -33,6 +33,7 @@ namespace KundePortal.UserPages
                         "Andet"
                      };
                     break;
+
                 case "Vand":
                     listItems = new List<string>{
                         "Varmt",

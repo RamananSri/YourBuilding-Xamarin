@@ -33,5 +33,13 @@ namespace KundePortal.Models
             get;
             set;
         }
+
+        public string newPassword
+        {
+            get;
+            set;
+        }
+        public string cvr { get; set; }
+
     }
 }

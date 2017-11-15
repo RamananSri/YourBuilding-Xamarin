@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="KundePortal.UserPages.NewQuestionPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KundePortal.UserPages.NewQuestionPage"
+             Title="Opret spørgsmål">
     <StackLayout>
+        <TableView>
+            <TableView.Root>
+                <TableSection>
+                    
+                </TableSection>
+            </TableView.Root>
+        </TableView>
         <Label x:Name="CategoryLbl"/>
         <Entry x:Name="TopicEntry "/>
         <Editor Text="Den er grå, så vi kan se den, skal ændres senere" x:Name="QuestionEditor" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Gray"></Editor>
