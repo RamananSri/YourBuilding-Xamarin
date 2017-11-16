@@ -41,7 +41,7 @@ namespace KundePortal.UserPages
             var address = addressEntry.Text;
             var phone = phoneEntry.Text;
             var email = emailEntry.Text;
-            var password = loggedIn.user.password;
+            var password = passwordEntry.Text;
             var newPassword = newPasswordEntryAgain.Text;
 
             if (!String.IsNullOrEmpty(name) &&
@@ -64,14 +64,14 @@ namespace KundePortal.UserPages
                 var content = await res.Content.ReadAsStringAsync();
                 JsonResponse response = JsonConvert.DeserializeObject<JsonResponse>(content);
 
-                if(response.statusCode == "1"){
-                    passwordEntry.LabelColor = Color.Red;
-                }
-
+                //if(response.statusCode == "1"){
+                //    passwordEntry.LabelColor = Color.Red;
+                //}
 
                 if(response.success)
                 {
                     LoginPage.loggedIn = null;
+                    await DisplayAlert("Opdateret","Din bruger er opdateret","OK");
                     await Navigation.PopToRootAsync();
                 }
                 else
