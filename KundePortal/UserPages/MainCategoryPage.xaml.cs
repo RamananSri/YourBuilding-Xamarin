@@ -13,7 +13,6 @@ namespace KundePortal.UserPages
             InitializeComponent();
             listViewCategories.ItemsSource = PopulateListview(parentCategory);
             Title = parentCategory;
-            tokenLbl.Text = LoginPage.loggedIn.token;
         }
 
         List<string> PopulateListview(string parentCategory)
