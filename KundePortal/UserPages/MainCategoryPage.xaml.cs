@@ -45,10 +45,10 @@ namespace KundePortal.UserPages
 
         async void listItemClicked(object sender, SelectedItemChangedEventArgs e)
         {
-            var selectedCategory = e.SelectedItem.ToString();
+            string selectedCategory = e.SelectedItem.ToString();
 
             if(selectedCategory == "Varmt" || selectedCategory == "Koldt"){
-                await Navigation.PushAsync(new NewQuestionPage(selectedCategory));
+                await Navigation.PushAsync(new QuestionPage(selectedCategory));
             }
             else{
                 await Navigation.PushAsync(new MainCategoryPage(selectedCategory));
