@@ -2,26 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="KundePortal.UserPages.QuestionPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="CreateQuestion" Text="Opret" Activated="CreateQuestion_clicked">
-        </ToolbarItem>
+        <ToolbarItem Name="CreateQuestion" Text="Opret" Activated="CreateQuestion_clicked"/>
     </ContentPage.ToolbarItems>
 
-    <ListView x:Name="questionList" ItemTapped="Question_ItemTapped">
+    <ListView x:Name="questionList" ItemTapped="Question_ItemTapped" HasUnevenRows="true">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <!--Task cell-->
-                    <StackLayout Orientation="Horizontal" Padding="10,5,10,5">
-                        <StackLayout HorizontalOptions="StartAndExpand">
-                            <Label Text="{Binding title}" FontSize="Medium">
-                            </Label>
-                            <!--                                <Label Text="{Binding project_name}" TextColor="Gray" FontSize="Small">
-                                </Label>-->
+                    <StackLayout Orientation="Horizontal" Padding="10,5,10,5" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding title}" FontSize="Medium"/>
+                            <Label Text="{Binding subCategory}" TextColor="Gray" FontSize="Small"/>
                         </StackLayout>
-                        <!--                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding task_total_hours}" FontSize="Large"/>
-                                <Label Text="Timer" FontSize="Large"/>
-                            </StackLayout>-->
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding likeCounter}" FontSize="Large"/>
+                        </StackLayout>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

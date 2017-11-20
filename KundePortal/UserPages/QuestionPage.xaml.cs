@@ -18,30 +18,33 @@ namespace KundePortal.UserPages
         public QuestionPage(string subCategory)
         {
             this.subCategory = subCategory;
-            URL = ConnectionAPI.Instance.url + "API/question/" + subCategory;
+            URL = ConnectionAPI.Instance.url + "API/questions/" + subCategory;
             _client = new HttpClient();
             questions = new ObservableCollection<Question>();
 
             InitializeComponent();
 
             getQuestions();
-            questionList.ItemsSource = questions;
         }
 
         async void getQuestions(){
+            _client.DefaultRequestHeaders.Add("token", LoginPage.loggedIn.token);
             var content = await _client.GetStringAsync(URL);
-            List<Question> questionList = JsonConvert.DeserializeObject<List<Question>>(content);
-            questions = new ObservableCollection<Question>(questionList);
+            List<Question> quests = JsonConvert.DeserializeObject<List<Question>>(content);
+            questions = new ObservableCollection<Question>(quests);
+            questionList.ItemsSource = questions;
         }
 
-        void CreateQuestion_clicked(object sender, System.EventArgs e)
+        async void CreateQuestion_clicked(object sender, System.EventArgs e)
         {
-            throw new NotImplementedException();
+            await Navigation.PushModalAsync(new NewQuestionPage(subCategory));
         }
 
-        void Question_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        async void Question_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
-            
+            var selected = (ListView)sender;
+
+            await Navigation.PushAsync(new ViewQuestion((Question)selected.SelectedItem));
         }
     }
 }

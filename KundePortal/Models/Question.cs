@@ -35,11 +35,17 @@ namespace KundePortal.Models
             set;
         }
 
-        //public List<Answer> answers
-        //{
-        //    get;
-        //    set;
-        //}
+        public string likeCounter
+        {
+            get;
+            set;
+        }
+
+        public List<Answer> answers
+        {
+            get;
+            set;
+        }
 
         //public Buffer picture
         //{
@@ -48,11 +54,4 @@ namespace KundePortal.Models
         //}
     }
 
-    partial class Answer{
-
-        public Answer()
-        {
-
-        }
-    }
 }
