@@ -16,7 +16,7 @@ namespace KundePortal.UserPages
            
             var question2 = question; 
             questionStack.BindingContext = question;
-            answerList.BindingContext = question.answers;
+            answerList.ItemsSource = question.answers;
         }
     }
 }
