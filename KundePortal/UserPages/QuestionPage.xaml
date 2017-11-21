@@ -5,7 +5,7 @@
         <ToolbarItem Name="CreateQuestion" Text="Opret" Activated="CreateQuestion_clicked"/>
     </ContentPage.ToolbarItems>
 
-    <ListView x:Name="questionList" ItemTapped="Question_ItemTapped" HasUnevenRows="true">
+    <ListView x:Name="questionList" ItemSelected="Question_selected" HasUnevenRows="true">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

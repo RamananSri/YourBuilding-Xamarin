@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 using System;
+using KundePortal.View;
 
 namespace KundePortal
 {
@@ -7,9 +8,12 @@ namespace KundePortal
     {
         public App()
         {
+
+
+
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new LoginView());
         }
 
         protected override void OnStart()

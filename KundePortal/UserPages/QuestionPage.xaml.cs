@@ -35,16 +35,20 @@ namespace KundePortal.UserPages
             questionList.ItemsSource = questions;
         }
 
-        async void CreateQuestion_clicked(object sender, System.EventArgs e)
+        async void CreateQuestion_clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NewQuestionPage(subCategory));
         }
 
-        async void Question_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        async void Question_selected(object sender, SelectedItemChangedEventArgs e)
         {
-            var selected = (ListView)sender;
-
-            await Navigation.PushAsync(new ViewQuestion((Question)selected.SelectedItem));
+            if (e.SelectedItem is Question){
+                Question question = (Question)e.SelectedItem;
+                await Navigation.PushAsync(new ViewQuestion((question)));
+            }
+            else{
+                await DisplayAlert("ERROR","Objekt er ikke et question","OK");
+            }
         }
     }
 }
