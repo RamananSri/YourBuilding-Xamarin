@@ -1,7 +1,8 @@
 ﻿using System;
 namespace KundePortal.Model
 {
-    public class Business
+    public class BusinessModel
+
     {
         public string CVR
         {
