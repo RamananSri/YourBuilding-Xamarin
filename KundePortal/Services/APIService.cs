@@ -55,16 +55,16 @@ namespace KundePortal.Services
 
 
 
-        //public async void Put(string url, object obj)
-        //{
-        //    var address = baseAddress + url;
-        //    var data = Serialize(obj);
+        public async Task<T> Put<T>(string url, T obj)
+        {
+            var address = baseAddress + url;
+            var data = Serialize(obj);
 
-        //    // vil vi komme ud for at put en liste? 
-        //    var response = await client.PutAsync(address, data);
-
-        //    // response handling? 
-        //}
+            // vil vi komme ud for at put en liste? 
+            var response = await client.PutAsync(address, data);
+            T result = await Deserialize(response, obj);
+            return result;
+        }
 
         //public async void Delete(string url, object obj)
         //{
