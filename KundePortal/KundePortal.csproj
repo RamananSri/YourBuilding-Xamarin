@@ -109,6 +109,9 @@
     <Compile Include="Model\ResponseAPI.cs" />
     <Compile Include="Services\QuestionService.cs" />
     <Compile Include="Services\AnswerService.cs" />
+    <Compile Include="Model\AnswerModel.cs" />
+    <Compile Include="Model\QuestionModel.cs" />
+    <Compile Include="Model\BusinessModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

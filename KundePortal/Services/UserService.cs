@@ -7,7 +7,6 @@ namespace KundePortal.Services
     public class UserService
     {
         APIService API;
-        public static UserModel currentUser;
 
         public UserService()
         {
