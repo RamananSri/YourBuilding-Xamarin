@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace KundePortal.BusinessPages
+namespace KundePortal.View
 {
-    public partial class MyAccountPage : ContentPage
+    public partial class CreateUserView : ContentPage
     {
-        public MyAccountPage()
+        public CreateUserView()
         {
             InitializeComponent();
         }

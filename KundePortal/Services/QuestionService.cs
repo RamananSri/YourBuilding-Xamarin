@@ -8,30 +8,42 @@ namespace KundePortal.Services
     public class QuestionService
     {
         APIService API;
+        string baseRoute;
 
         public QuestionService()
         {
+            baseRoute = "api/questions/";
             API = new APIService();
         }
 
-        //async public Task<List<QuestionModel>> GetBySubcategory(string subCat){
-        //    L    
-        //} 
+        // Get questions by subcategory
+        async public Task<List<QuestionModel>> GetBySubcategory(string subCat){
+            List<QuestionModel> questions = await API.Get<List<QuestionModel>>(subCat);
+            return questions;
+        } 
 
-        //async public Task<> Update(){
-            
-        //}
+        // Update question by id
+        async public Task<ResponseAPI> Update(string id, QuestionModel question){
+            ResponseAPI response = await API.Put(baseRoute + id, question);
+            return response;        
+        }
 
-        //async public Task<> GetByUserId(){
-            
-        //}
+        // Get questions by user ID
+        async public Task<List<QuestionModel>> GetByUserId(string id){
+            List<QuestionModel> questions = await API.Get<List<QuestionModel>>(baseRoute + id);
+            return questions;       
+        }
 
-        //async public Task<> Delete(){
-            
-        //}
+        // Delete question by ID
+        async public Task<ResponseAPI> Delete(string id){
+            ResponseAPI response = await API.Delete(baseRoute + id);
+            return response;           
+        }
 
-        //async public Task<> Create(){
-            
-        //}
+        // Create question
+        async public Task<ResponseAPI> Create(QuestionModel question){
+            ResponseAPI response = await API.Put(baseRoute, question);
+            return response;        
+        }
     }
 }

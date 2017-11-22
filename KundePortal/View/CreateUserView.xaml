@@ -1,9 +1,23 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage Title="Opret bruger" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="KundePortal.UserPages.CreateUserPage">
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="KundePortal.View.CreateUserView"
+    xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
+    Title="Ny bruger"
+    BackgroundColor="#26a1e2">
 
-    <StackLayout>
+<!--    Viewmodel instance-->
+    <ContentPage.BindingContext>
+        <viewmodel:CreateUserViewModel></viewmodel:CreateUserViewModel>
+    </ContentPage.BindingContext>
+
+<!--    Content-->
+	<ContentPage.Content>
+	</ContentPage.Content>
+</ContentPage>
+
+<!--<StackLayout>
     <TableView>
         <TableView.Root>
             <TableSection Title="Opret ny bruger">
@@ -30,5 +44,4 @@
         </TableView>
 
         <Button Clicked="createUserBtn_clickedAsync" Text="Opret"></Button>
-    </StackLayout>
-</ContentPage>
+    </StackLayout>-->

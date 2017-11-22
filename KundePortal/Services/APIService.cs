@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using KundePortal.Model;
@@ -10,46 +8,41 @@ namespace KundePortal.Services
 {
     public class APIService
     {
-        string baseAddress = "http://165.227.137.112/";
         public static string token;
         public static UserModel currentUser;
+
+        string baseAddress;
         HttpClient client;
 
         public APIService()
         {
+            baseAddress = "http://165.227.137.112/";
             client = new HttpClient();
             client.DefaultRequestHeaders.Add("token", token);
 
             // consume entity/close connection? 
         }
 
+        // Post 
         public async Task<ResponseAPI> Post(string url, object obj)
         {
             var address = baseAddress + url;
             var data = Serialize(obj);
             var response = await client.PostAsync(address, data);
-            ResponseAPI result = await Deserialize(response, new ResponseAPI());
+            ResponseAPI result = await Deserialize<ResponseAPI>(response);
             return result;
         }
 
-        public async Task<T> GetSingle<T>(string url, T obj)
+        // Get
+        public async Task<T> Get<T>(string url)
         {
             var address = baseAddress + url;
             var response = await client.GetAsync(address);
-            T result = await Deserialize(response, obj);
+            T result = await Deserialize<T>(response);
             return result;
         }
 
-        //public async Task<List<T>> GetList<T>(string url, object obj)
-        //{
-        //    var address = baseAddress + url;
-
-        //    var response = await client.GetStringAsync(address);
-
-
-        //    // response handling?
-        //}
-
+        // Put
         public async Task<ResponseAPI> Put(string url, object obj)
         {
             var address = baseAddress + url;
@@ -57,21 +50,21 @@ namespace KundePortal.Services
 
             // vil vi komme ud for at put en liste? 
             var response = await client.PutAsync(address, data);
-            ResponseAPI result = await Deserialize(response, new ResponseAPI());
+            ResponseAPI result = await Deserialize<ResponseAPI>(response);
             return result;
         }
 
-        public async Task<ResponseAPI> Delete(string url, object obj)
+        // Delete
+        public async Task<ResponseAPI> Delete(string url)
         {
             var address = baseAddress + url;
-            var data = Serialize(obj);
             
-            var response = await client.DeleteAsync(address, data); //cancel token?
-            ResponseAPI result = await Deserialize(response, new ResponseAPI());
+            var response = await client.DeleteAsync(address);
+            ResponseAPI result = await Deserialize<ResponseAPI>(response);
             return result;
         }
 
-
+        // JSON serialize
         StringContent Serialize(object obj)
         {
             var json = JsonConvert.SerializeObject(obj);
@@ -79,24 +72,16 @@ namespace KundePortal.Services
             return stringify;
         }
 
-        async Task<T> Deserialize<T>(object res, T objType ){
-
-            T response = objType;
-
-            if(res is string){
-                response = JsonConvert.DeserializeObject<T>((string)res);
-            }
-            if(res is HttpResponseMessage){
-                HttpResponseMessage mes = (HttpResponseMessage)res;
-                var content = await mes.Content.ReadAsStringAsync();
-                response = JsonConvert.DeserializeObject<T>(content);
+        // JSON deserialize
+        async Task<T> Deserialize<T>(object res){
+            
+            if (res is string){
+                return JsonConvert.DeserializeObject<T>((string)res);
             }
 
-            return response;
+            HttpResponseMessage mes = (HttpResponseMessage)res;
+            var content = await mes.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(content);
         }
-
-
-
-
     }
 }
