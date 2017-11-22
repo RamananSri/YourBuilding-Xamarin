@@ -53,30 +53,26 @@ namespace KundePortal.Services
         //    // response handling?
         //}
 
-
-
-        public async Task<T> Put<T>(string url, T obj)
+        public async Task<ResponseAPI> Put(string url, object obj)
         {
             var address = baseAddress + url;
             var data = Serialize(obj);
 
             // vil vi komme ud for at put en liste? 
             var response = await client.PutAsync(address, data);
-            T result = await Deserialize(response, obj);
+            ResponseAPI result = await Deserialize(response, new ResponseAPI());
             return result;
         }
 
-        //public async void Delete(string url, object obj)
-        //{
-        //    var address = baseAddress + url;
-
-        //    // body??
-
-        //    client
-        //    var response = await client.DeleteAsync(address);
-
-        //    // response handling? 
-        //}
+        public async Task<ResponseAPI> Delete(string url, object obj)
+        {
+            var address = baseAddress + url;
+            var data = Serialize(obj);
+            
+            var response = await client.DeleteAsync(address, data); //cancel token?
+            ResponseAPI result = await Deserialize(response, new ResponseAPI());
+            return result;
+        }
 
 
         StringContent Serialize(object obj)
