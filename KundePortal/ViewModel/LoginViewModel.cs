@@ -13,16 +13,19 @@ namespace KundePortal.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand loginCommand { get; private set; }
         public ICommand createUserCommand { get; private set; }
+        //INavigation nav;
         UserService userService; 
 
         string _username;
         string _password;
+        string _alert;
 
         public LoginViewModel()
         {
+            //nav = Application.Current.MainPage.Navigation;
             userService = new UserService();
             loginCommand = new Command(Login);
-            createUserCommand = new Command(CreateUserPush)
+            createUserCommand = new Command(CreateUserPush);
         }
 
         void PropertyChangedCheck(string prop)
@@ -34,18 +37,15 @@ namespace KundePortal.ViewModel
         }
 
         async void Login(){
-
-            bool result = userService.Login(_username,_password);
-
-            if(result){
-                NavigationPage root = new NavigationPage();
-            await Application.Current.MainPage.Navigation.PushAsync(new MainCategoryPage("Main"));
-                //await this.PushAsync(new MainCategoryPage("Main"));
-
-            //}
+            Alert = "";
+            ResponseAPI result = await userService.Login(_username,_password);
+            if(!result.success){
+                Alert = "Prøv igen";
+            }
         }
 
         async void CreateUserPush(){
+            
             
         }
 
@@ -72,6 +72,16 @@ namespace KundePortal.ViewModel
             {
                 _username = value;
                 PropertyChangedCheck("Username");
+            }
+        }
+        public string Alert
+        {
+            get{
+                return _alert;
+            }
+            set{
+                _alert = value;
+                PropertyChangedCheck("Alert");
             }
         }
     }

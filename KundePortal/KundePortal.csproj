@@ -107,6 +107,8 @@
     <Compile Include="Services\APIService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Model\ResponseAPI.cs" />
+    <Compile Include="Services\QuestionService.cs" />
+    <Compile Include="Services\AnswerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

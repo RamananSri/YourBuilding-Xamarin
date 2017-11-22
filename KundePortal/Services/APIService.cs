@@ -1,70 +1,105 @@
 ﻿using System;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
+using KundePortal.Model;
 using Newtonsoft.Json;
 
 namespace KundePortal.Services
 {
     public class APIService
     {
-        
+
         //string baseAddress = "http://10.0.2.2:3000/"; //Til android bruger
         string baseAddress = "http://localhost:3000/";  //Til mac bruger
 
 
         public static string token;
+        public static UserModel currentUser;
         HttpClient client;
 
         public APIService()
         {
             client = new HttpClient();
+            client.DefaultRequestHeaders.Add("token", token);
 
             // consume entity/close connection? 
         }
 
-        public async void Post(string url, object obj){
+        public async Task<ResponseAPI> Post(string url, object obj)
+        {
             var address = baseAddress + url;
             var data = Serialize(obj);
-
-            // post af lister? 
-            var response = await client.PostAsync(address,data);
-
-            // response handling? 
+            var response = await client.PostAsync(address, data);
+            ResponseAPI result = await Deserialize(response, new ResponseAPI());
+            return result;
         }
 
-        public async void Get(string url, object obj){
+        public async Task<T> GetSingle<T>(string url, T obj)
+        {
             var address = baseAddress + url;
-
-            var response = await client.GetStringAsync(address); 
-
-            // response handling?
+            var response = await client.GetAsync(address);
+            T result = await Deserialize(response, obj);
+            return result;
         }
 
-        public async void Put(string url, object obj){
-            var address = baseAddress + url;
-            var data = Serialize(obj);
+        //public async Task<T> GetList(string url, object obj)
+        //{
+        //    var address = baseAddress + url;
 
-            // vil vi komme ud for at put en liste? 
-            var response = await client.PutAsync(address, data);
-
-            // response handling? 
-        }
-
-        public async void Delete(string url, object obj){
-            var address = baseAddress + url;
-
-            // body??
-
-            var response = await client.DeleteAsync(address);
-
-            // response handling? 
-        }
+        //    var response = await client.GetStringAsync(address);
 
 
-        StringContent Serialize(object obj){
+        //    // response handling?
+        //}
+
+
+
+        //public async void Put(string url, object obj)
+        //{
+        //    var address = baseAddress + url;
+        //    var data = Serialize(obj);
+
+        //    // vil vi komme ud for at put en liste? 
+        //    var response = await client.PutAsync(address, data);
+
+        //    // response handling? 
+        //}
+
+        //public async void Delete(string url, object obj)
+        //{
+        //    var address = baseAddress + url;
+
+        //    // body??
+
+        //    client
+        //    var response = await client.DeleteAsync(address);
+
+        //    // response handling? 
+        //}
+
+
+        StringContent Serialize(object obj)
+        {
             var json = JsonConvert.SerializeObject(obj);
             StringContent stringify = new StringContent(json, Encoding.UTF8, "application/json");
             return stringify;
+        }
+
+        async Task<T> Deserialize<T>(object res, T objType ){
+
+            T response = objType;
+
+            if(res is string){
+                response = JsonConvert.DeserializeObject<T>((string)res);
+            }
+            if(res is HttpResponseMessage){
+                HttpResponseMessage mes = (HttpResponseMessage)res;
+                var content = await mes.Content.ReadAsStringAsync();
+                response = JsonConvert.DeserializeObject<T>(content);
+            }
+
+            return response;
         }
 
 
