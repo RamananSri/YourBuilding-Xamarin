@@ -5,9 +5,7 @@ namespace KundePortal.Model
     {
         public bool success { get; set; }
         public string message { get; set; }
-
-        public ResponseAPI()
-        {
-        }
+        public string token { get; set; }
+        public UserModel user { get; set; }
     }
 }

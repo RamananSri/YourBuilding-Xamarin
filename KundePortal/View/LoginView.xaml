@@ -14,9 +14,8 @@
 
 <!--    Toolbaritem create new account-->
     <ContentPage.ToolbarItems>
-        <ToolbarItem 
-            Text="Opret" 
-            Command="{Binding createUserCommand}"/>
+            <ToolbarItem 
+            Text="Opret"/>
     </ContentPage.ToolbarItems>
 
 <!--    Content-->
@@ -26,10 +25,14 @@
                 Source="yblogo.png"
                 Margin="0,0,0,60"
                 Scale="0.9"/>
+            <Label
+                Text="{Binding Alert}"
+                TextColor="Red"
+                HorizontalTextAlignment="Center"/>
             <Entry 
                 Placeholder="Email" 
                 Text="{Binding Username}" 
-                Keyboard="Email" 
+                Keyboard="Email"
                 HorizontalTextAlignment="Center"/>
             <Entry 
                 Placeholder="Password" 
@@ -41,7 +44,7 @@
                 Text="Login"
                 TextColor="White"
                 FontSize="Large"
-                Command="{Binding changeLabelCommand}"/>
+                Command="{Binding loginCommand}"/>
         </StackLayout>
 	</ContentPage.Content>
     
