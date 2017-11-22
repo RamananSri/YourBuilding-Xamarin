@@ -41,7 +41,7 @@ namespace KundePortal.Model
             set;
         }
 
-        public List<Answer> answers
+        public List<AnswerModel> answers
         {
             get;
             set;

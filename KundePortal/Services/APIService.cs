@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,7 @@ namespace KundePortal.Services
 {
     public class APIService
     {
-
-        //string baseAddress = "http://10.0.2.2:3000/"; //Til android bruger
-        string baseAddress = "http://localhost:3000/";  //Til mac bruger
-
-
+        string baseAddress = "http://165.227.137.112/";
         public static string token;
         public static UserModel currentUser;
         HttpClient client;
@@ -43,7 +40,7 @@ namespace KundePortal.Services
             return result;
         }
 
-        //public async Task<T> GetList(string url, object obj)
+        //public async Task<List<T>> GetList<T>(string url, object obj)
         //{
         //    var address = baseAddress + url;
 
