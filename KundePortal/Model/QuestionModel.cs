@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace KundePortal.Model
 {
-    public class Question
+    public class QuestionModel
     {
         public string title
         {

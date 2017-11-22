@@ -1,7 +1,7 @@
 ﻿using System;
 namespace KundePortal.Model
 {
-    public class Answer
+    public class AnswerModel
     {
         public string likeCounter
         {
