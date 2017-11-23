@@ -18,16 +18,20 @@
             <TableView>
                 <TableView.Root>
                     <TableSection x:Name="tableSectionUser">
-                        <EntryCell x:Name="nameEntry" Label="Navn:" Placeholder="Indtast navn..." Keyboard="Text"></EntryCell>
-                        <EntryCell x:Name="emailEntry" Label="Email:" Placeholder="Indtast email..." Keyboard="Email"></EntryCell>
-                        <EntryCell x:Name="phoneEntry" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
-                        <EntryCell x:Name="addressEntry" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
-                        <EntryCell x:Name="passwordEntry" Label="Kodeord" Placeholder="Nuværende password..."></EntryCell>
-                        <SwitchCell On="{Binding switchCommand}"  Text="Skift password"></SwitchCell>
+                        <EntryCell Text="{Binding User.name}" Label="Navn:" Placeholder="Indtast navn..." Keyboard="Text"></EntryCell>
+                        <EntryCell Text="{Binding User.email}" Label="Email:" Placeholder="Indtast email..." Keyboard="Email"></EntryCell>
+                        <EntryCell Text="{Binding User.phone}" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
+                        <EntryCell Text="{Binding User.address}" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
+                        <EntryCell Text="{Binding User.password}" Label="Kodeord" Placeholder="Nuværende password..."></EntryCell>
+                        <SwitchCell On="{Binding switchCommand}"  Text="Skift password">
+                            <SwitchCell.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding switchCommand}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </SwitchCell.GestureRecognizers>
+                        </SwitchCell>
                     </TableSection>
                 </TableView.Root>
             </TableView>
-            <!--<TableView IsVisible="{Binding On}">
+            <!--<TableView IsVisible="{Binding switchCommand}">
                 <TableView.Root>
                     <TableSection>
                         <EntryCell x:Name="passwordEntry" Placeholder="Nuværende password..."></EntryCell>
