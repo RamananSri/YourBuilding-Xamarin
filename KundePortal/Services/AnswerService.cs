@@ -7,33 +7,30 @@ namespace KundePortal.Services
     public class AnswerService
     {
         APIService API;
+        string baseRoute;
+
         public AnswerService()
         {
+            baseRoute = "api/answers/";
             API = new APIService();
         }
-        async public Task<ResponseAPI> post(string likes, string date, string username, string description, string userId)
-        {
-            AnswerModel answer = new AnswerModel { likeCounter = likes, answerDate = date, userName = username, description = description, userId = userId};
-            ResponseAPI res = await API.Post("/api/answers/id/", answer); //hvor skal id komme fra? lave getSingle først?   
-            if (res.token != null && res.user != null)
-            {
-                APIService.token = res.token;
-                APIService.currentUser = res.user;
-            }
+
+        // Create answer 
+        async public Task<ResponseAPI> Create(AnswerModel answer){
+            ResponseAPI res = await API.Post(baseRoute, answer);  
             return res;
         }
 
-        async public Task<ResponseAPI> put(string likes, string date, string username, string description, string userId)
-        {
-            AnswerModel answer = new AnswerModel { likeCounter = likes, answerDate = date, userName = username, description = description, userId = userId };
-            ResponseAPI res = await API.Put("/api/answers/id/", answer); //hvor skal id komme fra? lave getSingle først?   
-            if (res.token != null && res.user != null)
-            {
-                APIService.token = res.token;
-                APIService.currentUser = res.user;
-            }
+        // Update answer by question/answer id
+        async public Task<ResponseAPI> Update(string qid, AnswerModel answer){
+            ResponseAPI res = await API.Put(baseRoute + qid, answer);
             return res;
         }
 
+        // Delete answer by question/answer id
+        async public Task<ResponseAPI> Delete(string qid, string aid){
+            ResponseAPI res = await API.Delete(baseRoute + qid + "/" + aid);
+            return res;
+        }
     }
 }
