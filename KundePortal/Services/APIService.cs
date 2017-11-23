@@ -24,7 +24,7 @@ namespace KundePortal.Services
         }
 
         // Post 
-        public async Task<ResponseAPI> Post(string url, object obj)
+        public async Task<ResponseAPI> Post<T>(string url, T obj)
         {
             var address = baseAddress + url;
             var data = Serialize(obj);
@@ -43,12 +43,10 @@ namespace KundePortal.Services
         }
 
         // Put
-        public async Task<ResponseAPI> Put(string url, object obj)
+        public async Task<ResponseAPI> Put<T>(string url, T obj)
         {
             var address = baseAddress + url;
             var data = Serialize(obj);
-
-            // vil vi komme ud for at put en liste? 
             var response = await client.PutAsync(address, data);
             ResponseAPI result = await Deserialize<ResponseAPI>(response);
             return result;
@@ -65,7 +63,7 @@ namespace KundePortal.Services
         }
 
         // JSON serialize
-        StringContent Serialize(object obj)
+        StringContent Serialize<T>(T obj)
         {
             var json = JsonConvert.SerializeObject(obj);
             StringContent stringify = new StringContent(json, Encoding.UTF8, "application/json");

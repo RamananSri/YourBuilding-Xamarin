@@ -9,8 +9,7 @@ namespace KundePortal.Services
         APIService API;
         string baseRoute;
 
-        public AnswerService()
-        {
+        public AnswerService(){
             baseRoute = "api/answers/";
             API = new APIService();
         }

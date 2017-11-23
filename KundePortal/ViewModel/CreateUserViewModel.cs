@@ -1,11 +1,54 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Windows.Input;
+using KundePortal.Model;
+using KundePortal.Services;
+using Xamarin.Forms;
+
 namespace KundePortal.ViewModel
 {
-    public class CreateUserViewModel
+    public class CreateUserViewModel : INotifyPropertyChanged
     {
+        UserModel _user;
+        UserService userService; 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ICommand createCommand { get; private set; }
+
+
         public CreateUserViewModel()
         {
+            userService = new UserService();
+            createCommand = new Command(CreateUser);
         }
+
+        void CreateUser(){
+            if()
+            
+        } 
+
+
+        void PropertyChangedCheck(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+        #region
+
+        public UserModel User
+        {
+            get => _user;
+            set
+            {
+                _user = value;
+                PropertyChangedCheck("User");
+            }
+        }
+
+        #endregion
     }
 }
 
