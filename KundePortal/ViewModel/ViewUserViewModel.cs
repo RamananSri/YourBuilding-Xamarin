@@ -1,11 +1,77 @@
-﻿using System;
+﻿using KundePortal.Model;
+using KundePortal.Services;
+using System;
+using System.ComponentModel;
+using System.Windows.Input;
+using Xamarin.Forms;
+
 namespace KundePortal.ViewModel
 {
-    public class ViewUserViewModel
+    public class ViewUserViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ICommand switchCommand { get; private set; }       
+        APIService API;
+
+        UserModel _user;
+        bool _switchValue;
         public ViewUserViewModel()
         {
+            _switchValue = new bool();
+            _user = new UserModel();
+            API = new APIService();
+            
+
+            //_switchValue = false;
+            switchCommand = new Command(setSwitchValue);
+            _user.name = "hej";
+            _user.address = "hej";
+            _user.phone = "hej";
+            _user.email = "hej";
+            _user.password = "hej";
+            APIService.currentUser = _user;
         }
+
+        void PropertyChangedCheck(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+        void setSwitchValue()
+        {
+            SwitchValue = false;
+        }
+
+        #region Properties
+
+        public UserModel User
+        {
+            get
+            {
+                return _user;
+            }
+            set
+            {
+                _user = value;
+                PropertyChangedCheck("User");
+            }
+        }
+
+        public bool SwitchValue
+        {
+            get => _switchValue;
+
+            set
+            {
+                _switchValue = value;
+                PropertyChangedCheck("SwitchValue");
+            }
+        }
+
+        #endregion Properties
     }
 }
 
