@@ -11,26 +11,55 @@ namespace KundePortal.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ICommand switchCommand { get; private set; }       
-        APIService API;
+        public ICommand switchCommand { get; private set; }    
+        public ICommand updateCommand { get; private set; }
+        public ICommand logoutCommand { get; private set; }
 
+        APIService API;
+        UserService userService;
+
+        string _alert;
         UserModel _user;
         bool _switchValue;
         public ViewUserViewModel()
         {
+            logoutCommand = new Command(Logout);
+            updateCommand = new Command(Update);
+            userService = new UserService();
             _switchValue = new bool();
             _user = new UserModel();
             API = new APIService();
             
 
-            //_switchValue = false;
-            switchCommand = new Command(setSwitchValue);
+            //nedenfor skal slettes senere
             _user.name = "hej";
             _user.address = "hej";
             _user.phone = "hej";
-            _user.email = "hej";
-            _user.password = "hej";
+            _user.email = "hej@hej.dk";
+            _user.password = "7";
+            _user._id = "5a0e9329c0c1151ceaa9f490";
             APIService.currentUser = _user;
+            
+        }
+
+        async void Update()
+        {
+            ResponseAPI result = await userService.Update(APIService.currentUser._id, APIService.currentUser);
+            if (result.success)
+            {
+                Alert = result.message;
+            }
+            else
+            {
+                Alert = result.message;
+            }
+        }
+
+        async void Logout()
+        {
+            userService.Logout();
+            INavigation nav = Application.Current.MainPage.Navigation;
+            await nav.PopToRootAsync();
         }
 
         void PropertyChangedCheck(string prop)
@@ -40,12 +69,6 @@ namespace KundePortal.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
-
-        void setSwitchValue()
-        {
-            SwitchValue = false;
-        }
-
         #region Properties
 
         public UserModel User
@@ -69,6 +92,18 @@ namespace KundePortal.ViewModel
             {
                 _switchValue = value;
                 PropertyChangedCheck("SwitchValue");
+            }
+        }
+        public string Alert
+        {
+            get
+            {
+                return _alert;
+            }
+            set
+            {
+                _alert = value;
+                PropertyChangedCheck("Alert");
             }
         }
 

@@ -23,11 +23,11 @@
                         <EntryCell Text="{Binding User.phone}" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
                         <EntryCell Text="{Binding User.address}" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
                         <EntryCell Text="{Binding User.password}" Label="Kodeord" Placeholder="Nuværende password..."></EntryCell>
-                        <SwitchCell Text="Skift password" OnChanged="{Binding switchCommand}"/>
+                        <SwitchCell On="{Binding SwitchValue}"  Text="Skift password"></SwitchCell>
                     </TableSection>
                 </TableView.Root>
             </TableView>
-            <!--<TableView IsVisible="{Binding switchCommand}">
+            <TableView IsVisible="{Binding SwitchValue}">
                 <TableView.Root>
                     <TableSection>
                         <EntryCell x:Name="passwordEntry" Placeholder="Nuværende password..."></EntryCell>
@@ -35,10 +35,11 @@
                         <EntryCell x:Name="newPasswordEntryAgain" Placeholder="Gentag nyt password..."></EntryCell>
                     </TableSection>
                 </TableView.Root>
-            </TableView>-->
+            </TableView>
+            <Label Text="{Binding Alert}" TextColor="Red"></Label>
 
-            <!--<Button Clicked="updateUserBtn_clickedAsync" Text="Opdatér"></Button>
-            <Button Clicked="logOutBtn_clicked" Text="Log ud" BackgroundColor="Red"></Button>-->
+            <Button Command="{Binding updateCommand}" Text="Opdatér"></Button>
+            <Button Command="{Binding logoutCommand}" Text="Log ud" BackgroundColor="Red"></Button>
     </StackLayout>
 
     </ContentPage.Content>
