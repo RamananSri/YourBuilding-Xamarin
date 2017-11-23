@@ -1,15 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+
 namespace KundePortal.Extensions
 {
-    public class ContentCheck
+    public static class ContentCheck
     {
-        public ContentCheck()
-        {
-        }
+        
+        public static bool NullEmptyCheck(this object obj){
 
-        public static bool NullCheck(){
+            foreach (PropertyInfo prop in obj.GetType().GetRuntimeProperties()){
+                if(prop.PropertyType == typeof(string)){
+                    
+                    //string.IsNullOrEmpty(prop);
+                }
 
-            return true;
+                if (prop.PropertyType == typeof(List<>)){
+
+                }
+
+
+                
+            }
+
+            return false;
+
+            //foreach (PropertyInfo pi in myObject.GetType().GetProperties())
+            //{
+            //    if (pi.PropertyType == typeof(string))
+            //    {
+            //        string value = (string)pi.GetValue(myObject);
+            //        if (string.IsNullOrEmpty(value))
+            //        {
+            //            return true;
+            //        }
+            //    }
+            //}
             
         } 
     }

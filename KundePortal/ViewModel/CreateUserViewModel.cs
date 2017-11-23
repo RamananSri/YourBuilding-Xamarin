@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using KundePortal.Model;
 using KundePortal.Services;
+using KundePortal.Extensions;
 using Xamarin.Forms;
 
 namespace KundePortal.ViewModel
@@ -18,14 +19,20 @@ namespace KundePortal.ViewModel
 
         public CreateUserViewModel()
         {
+
+            UserModel user = new UserModel();
+
+            bool check = user.NullEmptyCheck(); 
+
+
             userService = new UserService();
-            createCommand = new Command(CreateUser);
+            //createCommand = new Command(CreateUser);
         }
 
-        void CreateUser(){
-            if()
+        //void CreateUser(){
+        //    if()
             
-        } 
+        //} 
 
 
         void PropertyChangedCheck(string prop)

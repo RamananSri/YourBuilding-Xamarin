@@ -10,6 +10,7 @@ namespace KundePortal.ViewModel
     public class ViewUserViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         public ICommand switchCommand { get; private set; }       
         APIService API;
 

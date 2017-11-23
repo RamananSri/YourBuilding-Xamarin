@@ -23,11 +23,7 @@
                         <EntryCell Text="{Binding User.phone}" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
                         <EntryCell Text="{Binding User.address}" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
                         <EntryCell Text="{Binding User.password}" Label="Kodeord" Placeholder="Nuværende password..."></EntryCell>
-                        <SwitchCell On="{Binding switchCommand}"  Text="Skift password">
-                            <SwitchCell.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding switchCommand}" NumberOfTapsRequired="1"></TapGestureRecognizer>
-                            </SwitchCell.GestureRecognizers>
-                        </SwitchCell>
+                        <SwitchCell Text="Skift password" OnChanged="{Binding switchCommand}"/>
                     </TableSection>
                 </TableView.Root>
             </TableView>
