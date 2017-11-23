@@ -1,10 +1,18 @@
 ﻿using System;
+using Xamarin.Forms;
+
 namespace KundePortal.ViewModel
 {
-    public class ViewUserViewModel
+    public class ViewUserViewModel : INotifyPropertyChanged
     {
+        public ICommand switchCommand { get; private set; }
         public ViewUserViewModel()
         {
+            switchCommand = new Command(changeSwitch);
+        }
+        async void changeSwitch()
+        {
+
         }
     }
 }
