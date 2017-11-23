@@ -7,8 +7,6 @@ namespace KundePortal.Services
     public class AnswerService
     {
         APIService API;
-
-
         public AnswerService()
         {
             API = new APIService();
