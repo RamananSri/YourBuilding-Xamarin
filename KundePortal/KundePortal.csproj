@@ -29,28 +29,27 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="LoginPage.xaml" />
-    <EmbeddedResource Include="UserPages\MainCategoryPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserPages\NewQuestionPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BusinessPages\BusinessMainMenu.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BusinessPages\MyAccountPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserPages\QuestionPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserPages\ViewQuestion.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CreateUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\QuestionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ViewUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProMenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -59,46 +58,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginPage.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\Business.cs" />
-    <Compile Include="UserPages\CreateUserPage.xaml.cs">
-      <DependentUpon>CreateUserPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserPages\GridPro.xaml.cs">
-      <DependentUpon>GridPro.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserPages\MainCategoryPage.xaml.cs">
-      <DependentUpon>MainCategoryPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserPages\NewQuestionPage.xaml.cs">
-      <DependentUpon>NewQuestionPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserPages\questionPagePro.xaml.cs">
-      <DependentUpon>questionPagePro.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserPages\ViewUserPage.xaml.cs">
-      <DependentUpon>ViewUserPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Models\JsonResponse.cs" />
-    <Compile Include="Models\ConnectionAPI.cs" />
-    <Compile Include="BusinessPages\BusinessMainMenu.xaml.cs">
-      <DependentUpon>BusinessMainMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BusinessPages\MyAccountPage.xaml.cs">
-      <DependentUpon>MyAccountPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserPages\QuestionPage.xaml.cs">
-      <DependentUpon>QuestionPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Question.cs" />
-    <Compile Include="UserPages\ViewQuestion.xaml.cs">
-      <DependentUpon>ViewQuestion.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Answer.cs" />
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -112,6 +72,26 @@
     <Compile Include="Model\AnswerModel.cs" />
     <Compile Include="Model\QuestionModel.cs" />
     <Compile Include="Model\BusinessModel.cs" />
+    <Compile Include="View\CreateUserView.xaml.cs">
+      <DependentUpon>CreateUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\CreateUserViewModel.cs" />
+    <Compile Include="View\QuestionsView.xaml.cs">
+      <DependentUpon>QuestionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\QuestionsViewModel.cs" />
+    <Compile Include="View\ViewUserView.xaml.cs">
+      <DependentUpon>ViewUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ViewUserViewModel.cs" />
+    <Compile Include="View\CategoryView.xaml.cs">
+      <DependentUpon>CategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\CategoryViewModel.cs" />
+    <Compile Include="View\ProMenuView.xaml.cs">
+      <DependentUpon>ProMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ProMenuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -141,30 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="UserPages\questionPagePro.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="UserPages\CreateUserPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="UserPages\ViewUserPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="UserPages\GridPro.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\" />

@@ -1,9 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="KundePortal.UserPages.GridPro">
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="KundePortal.View.ProMenuView">
+	<ContentPage.Content>
+	</ContentPage.Content>
+</ContentPage>
 
-    <Grid ColumnSpacing="5">
+<!--    <Grid ColumnSpacing="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
@@ -30,6 +31,4 @@
         <Image Source="plusminus.png" Grid.Row="2" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="Center"></Image>
         
           
-    </Grid>
-    
-</ContentPage>
+    </Grid>-->

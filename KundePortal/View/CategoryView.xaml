@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="KundePortal.UserPages.MainCategoryPage"
-    Title="Kategorier">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="KundePortal.View.CategoryView">
+	<ContentPage.Content>
+	</ContentPage.Content>
+</ContentPage>
 
-    <ContentPage.ToolbarItems>
+<!--    <ContentPage.ToolbarItems>
         <ToolbarItem Name="KontoItem" Text="Konto" Activated="KontoItem_Activated"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
@@ -15,6 +14,4 @@
         <ListView x:Name="listViewCategories" ItemSelected="listItemClicked">
 
         </ListView>
-    </StackLayout>
-    
-</ContentPage>
+    </StackLayout>-->

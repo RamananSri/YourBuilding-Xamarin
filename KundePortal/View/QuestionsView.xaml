@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="KundePortal.UserPages.QuestionPage">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="KundePortal.View.QuestionsView">
+    
+	<ContentPage.Content>
+	</ContentPage.Content>
+    
+</ContentPage>
 
-    <ContentPage.ToolbarItems>
+
+<!--    <ContentPage.ToolbarItems>
         <ToolbarItem Name="CreateQuestion" Text="Opret" Activated="CreateQuestion_clicked"/>
     </ContentPage.ToolbarItems>
 
@@ -9,7 +18,7 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <!--Task cell-->
+                    
                     <StackLayout Orientation="Horizontal" Padding="10,5,10,5" HorizontalOptions="FillAndExpand">
                         <StackLayout Orientation="Vertical">
                             <Label Text="{Binding title}" FontSize="Medium"/>
@@ -22,5 +31,4 @@
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>
-</ContentPage>
+    </ListView>-->

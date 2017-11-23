@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using KundePortal.Model;
 using KundePortal.Services;
-using KundePortal.UserPages;
+using KundePortal.View;
 using Xamarin.Forms;
 
 namespace KundePortal.ViewModel
@@ -13,8 +12,7 @@ namespace KundePortal.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand loginCommand { get; private set; }
         public ICommand createUserCommand { get; private set; }
-        //INavigation nav;
-        UserService userService; 
+        UserService userService;
 
         string _username;
         string _password;
@@ -22,7 +20,6 @@ namespace KundePortal.ViewModel
 
         public LoginViewModel()
         {
-            //nav = Application.Current.MainPage.Navigation;
             userService = new UserService();
             loginCommand = new Command(Login);
             createUserCommand = new Command(CreateUserPush);
@@ -36,18 +33,38 @@ namespace KundePortal.ViewModel
             }
         }
 
-        async void Login(){
+        async void Login()
+        {
             Alert = "";
-            ResponseAPI result = await userService.Login(_username,_password);
-            if(!result.success){
+            ResponseAPI result = await userService.Login(_username, _password);
+
+            if (result.success && APIService.token != null)
+            {
+                if (APIService.currentUser.cvr != null)
+                {
+                    INavigation nav = Application.Current.MainPage.Navigation;
+                    await nav.PushAsync(new LoginView());
+
+                    // pro page
+                }
+                else
+                {
+                    // user page
+                }
+            }
+            else
+            {
                 Alert = "Prøv igen";
             }
         }
 
-        async void CreateUserPush(){
-            
-            
+        void CreateUserPush()
+        {
+            // create page    
+
         }
+
+        #region Properties
 
         public string Password
         {
@@ -76,13 +93,17 @@ namespace KundePortal.ViewModel
         }
         public string Alert
         {
-            get{
+            get
+            {
                 return _alert;
             }
-            set{
+            set
+            {
                 _alert = value;
                 PropertyChangedCheck("Alert");
             }
         }
+
+        #endregion
     }
 }
