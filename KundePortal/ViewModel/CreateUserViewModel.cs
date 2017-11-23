@@ -19,13 +19,13 @@ namespace KundePortal.ViewModel
         public CreateUserViewModel()
         {
             userService = new UserService();
-            createCommand = new Command(CreateUser);
+            //createCommand = new Command(CreateUser);
         }
 
-        void CreateUser(){
-            if()
+        //void CreateUser(){
+        //    if()
             
-        } 
+        //} 
 
 
         void PropertyChangedCheck(string prop)
