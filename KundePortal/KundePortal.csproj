@@ -61,11 +61,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ProMyCategoriesView.xaml">
+    <EmbeddedResource Include="View\ProNotificationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ProNotificationsView.xaml">
+    <EmbeddedResource Include="View\ProMyCategoriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -116,12 +116,13 @@
     <Compile Include="View\ProGPSView.xaml.cs">
       <DependentUpon>ProGPSView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProMyCategoriesView.xaml.cs">
-      <DependentUpon>ProMyCategoriesView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ProNotificationsView.xaml.cs">
       <DependentUpon>ProNotificationsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ProMyCategoriesView.xaml.cs">
+      <DependentUpon>ProMyCategoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ProMyCategoriesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
