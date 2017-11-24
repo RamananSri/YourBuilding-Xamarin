@@ -53,6 +53,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\CreateQuestionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProGPSView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProMyCategoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProNotificationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -93,6 +109,19 @@
     </Compile>
     <Compile Include="ViewModel\ProMenuViewModel.cs" />
     <Compile Include="Extensions\ContentCheck.cs" />
+    <Compile Include="View\CreateQuestionView.xaml.cs">
+      <DependentUpon>CreateQuestionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewQuestionView.cs" />
+    <Compile Include="View\ProGPSView.xaml.cs">
+      <DependentUpon>ProGPSView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProMyCategoriesView.xaml.cs">
+      <DependentUpon>ProMyCategoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProNotificationsView.xaml.cs">
+      <DependentUpon>ProNotificationsView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
