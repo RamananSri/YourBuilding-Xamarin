@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace KundePortal.View
 {
-    public partial class ProNotifications : ContentPage
+    public partial class ProNotificationsView : ContentPage
     {
-        public ProNotifications()
+        public ProNotificationsView()
         {
             InitializeComponent();
         }
