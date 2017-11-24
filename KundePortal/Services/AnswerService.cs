@@ -1,17 +1,27 @@
 ﻿using KundePortal.Model;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace KundePortal.Services
 {
     public class AnswerService
     {
+        List<string> testList;
         APIService API;
         string baseRoute;
 
         public AnswerService(){
             baseRoute = "api/answers/";
             API = new APIService();
+            testList = new List<string>();
+        }
+
+        public List<string> getSubCategories()
+        {
+            testList.Add("Koldt");
+            testList.Add("Varmt");
+            return testList;
         }
 
         // Create answer 

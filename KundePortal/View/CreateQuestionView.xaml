@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="KundePortal.View.CreateQuestionView">
-	<ContentPage.Content>
-	</ContentPage.Content>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="KundePortal.View.CreateQuestionView">
+    <StackLayout>
+        <Entry Text="{Binding Title}"
+               Placeholder="Overskrift" />
+        <Label Text="Dit spørgsmål:" />
+        <Editor HeightRequest="300" >
+            <Editor Text="{Binding Question}" />
+        </Editor>
+        <Picker Title="Vælg en kategori" ItemsSource="{Binding Category}" ItemDisplayBinding="{Binding CategoryName}">
+            
+        </Picker>
+        <Picker Title="Vælg en underkategori" ItemsSource="{Binding SubCategory}" ItemDisplayBinding="{Binding SubCategoryName}">
+
+        </Picker>
+        <Button Text="Opret" />
+    </StackLayout>
 </ContentPage>
