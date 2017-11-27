@@ -131,6 +131,7 @@
     </Compile>
     <Compile Include="ViewModel\AllCategoriesViewModel.cs" />
     <Compile Include="ViewModel\CreateQuestionViewModel.cs" />
+    <Compile Include="ViewModel\ProGPSViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

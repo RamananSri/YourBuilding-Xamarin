@@ -2,10 +2,18 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="KundePortal.View.ProGPSView">
+    x:Class="KundePortal.View.ProGPSView"
+    xmlns:viewmodel="clr-namespace:KundePortal.ViewModel">
 
+<!--    Viewmodel instance-->
+    <ContentPage.BindingContext>
+        <viewmodel:ProGPSViewModel></viewmodel:ProGPSViewModel>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
-
-        
+        <StackLayout>
+            <Label Text="{Binding longi}"></Label>
+            <Label Text="{Binding lat}"></Label>
+        </StackLayout>
 	</ContentPage.Content>
 </ContentPage>
