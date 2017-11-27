@@ -73,6 +73,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\AnswerQuestionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -132,6 +136,10 @@
     <Compile Include="ViewModel\AllCategoriesViewModel.cs" />
     <Compile Include="ViewModel\CreateQuestionViewModel.cs" />
     <Compile Include="ViewModel\ProGPSViewModel.cs" />
+    <Compile Include="View\AnswerQuestionView.xaml.cs">
+      <DependentUpon>AnswerQuestionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AnswerQuestionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
