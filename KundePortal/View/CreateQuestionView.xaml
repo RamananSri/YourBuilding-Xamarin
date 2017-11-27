@@ -1,20 +1,29 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Opret spørgsmål"
+             xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
              x:Class="KundePortal.View.CreateQuestionView">
+
+    <ContentPage.BindingContext>
+        <viewmodel:CreateQuestionViewModel></viewmodel:CreateQuestionViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
     <StackLayout>
-        <Entry Text="{Binding Title}"
+        
+        <Entry Text="{Binding Question.title}"
                Placeholder="Overskrift" />
         <Label Text="Dit spørgsmål:" />
-        <Editor HeightRequest="300" >
-            <Editor Text="{Binding Question}" />
-        </Editor>
-        <Picker Title="Vælg en kategori" ItemsSource="{Binding Category}" ItemDisplayBinding="{Binding CategoryName}">
+            <Editor HeightRequest="300" Text="{Binding Question.description}"></Editor>
+            <Picker Title="Vælg en kategori" ItemsSource="{Binding CategoryList}" SelectedItem="{Binding CategoryPicker}" >            
+        </Picker>
+        
+        <Picker Title="Vælg en underkategori" ItemsSource="{Binding SubCategoryList}" SelectedItem="{Binding SubCategoryPicker}">
+        </Picker>
+            <Label Text="{Binding Alert}" TextColor="Red"></Label>
+            <Button Text="Opret" Command="{Binding createQuestionCommand}" />
             
-        </Picker>
-        <Picker Title="Vælg en underkategori" ItemsSource="{Binding SubCategory}" ItemDisplayBinding="{Binding SubCategoryName}">
-
-        </Picker>
-        <Button Text="Opret" />
     </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

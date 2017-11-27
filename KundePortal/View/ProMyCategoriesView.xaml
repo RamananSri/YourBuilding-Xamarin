@@ -9,25 +9,37 @@
     <ContentPage.BindingContext>
         <viewmodel:ProMyCategoriesViewModel></viewmodel:ProMyCategoriesViewModel>
     </ContentPage.BindingContext>
-    
+
+<!--    Toolbaritem add category-->
+    <ContentView.ToolbarItems>
+        <ToolbarItem 
+            Text="Tilføj"
+            Command="{Binding AddCategoryCommand}"/>
+    </ContentView.ToolbarItems>
+
+<!--    Content-->
 	<ContentPage.Content>
-        <ListView ItemsSource="{Binding MyCategories}">
+        <ListView ItemsSource="{Binding MyCategories}" HasUnevenRows="true">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <!--Swipe gesture-->
+                        
+<!--                        Swipe gesture-->
                         <ViewCell.ContextActions>
-                                <MenuItem Text="Delete" Command="{Binding DeleteCategoryCommand}" ></MenuItem>
+                                <MenuItem 
+                                    Text="Delete"
+                                    IsDestructive="true"
+                                    Command="{Binding DeleteCategoryCommand}"/>
                         </ViewCell.ContextActions>
-
-                        <StackLayout>
+                        
+<!--                        ViewCell content-->
+                        <StackLayout Padding="20">
                             <Label Text="{Binding }"></Label>
                         </StackLayout>
-
+        
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
         </ListView>
 	</ContentPage.Content>
 </ContentPage>

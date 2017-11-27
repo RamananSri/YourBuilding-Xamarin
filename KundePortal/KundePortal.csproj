@@ -69,6 +69,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\AllCategoriesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -112,7 +116,6 @@
     <Compile Include="View\CreateQuestionView.xaml.cs">
       <DependentUpon>CreateQuestionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ViewQuestionView.cs" />
     <Compile Include="View\ProGPSView.xaml.cs">
       <DependentUpon>ProGPSView.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,11 @@
       <DependentUpon>ProMyCategoriesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ProMyCategoriesViewModel.cs" />
+    <Compile Include="View\AllCategoriesView.xaml.cs">
+      <DependentUpon>AllCategoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AllCategoriesViewModel.cs" />
+    <Compile Include="ViewModel\CreateQuestionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -148,6 +156,12 @@
     </Reference>
     <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8+wpa81\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Geolocator.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.4.1.3\lib\netstandard1.0\Plugin.Geolocator.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Geolocator">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.4.1.3\lib\netstandard1.0\Plugin.Geolocator.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

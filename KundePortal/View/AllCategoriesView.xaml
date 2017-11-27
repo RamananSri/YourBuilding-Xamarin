@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="KundePortal.View.AllCategoriesView"
+    xmlns:viewmodel="clr-namespace:KundePortal.ViewModel">
+
+ <!--    Viewmodel instance-->
+    <ContentPage.BindingContext>
+        <viewmodel:AllCategoriesViewModel></viewmodel:AllCategoriesViewModel>
+    </ContentPage.BindingContext>
+
+<!--    Content-->
+	<ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding AllCategories}" HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+<!--                            Viewcell content-->
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <StackLayout HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding Item}"></Label>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="EndAndExpand">
+                                    <Switch IsToggled="{Binding IsSelected}"></Switch>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+<!--            Save btn-->
+            <Button Text="Gem" Command="{Binding SaveSelectedCommand}"></Button>
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

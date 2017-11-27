@@ -8,12 +8,9 @@ namespace KundePortal
     {
         public App()
         {
-
-
-
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ProMyCategoriesView());
+            MainPage = new NavigationPage(new CreateQuestionView());
         }
 
         protected override void OnStart()

@@ -15,7 +15,7 @@
 <!--    Toolbaritem create new account-->
     <ContentPage.ToolbarItems>
             <ToolbarItem 
-            Text="Opret"/>
+                Text="Opret"/>
     </ContentPage.ToolbarItems>
 
 <!--    Content-->
