@@ -20,7 +20,34 @@ namespace KundePortal.Services
         async public Task<List<QuestionModel>> GetBySubcategory(string subCat){
             List<QuestionModel> questions = await API.Get<List<QuestionModel>>(subCat);
             return questions;
-        } 
+        }
+
+        public List<string> GetMainCategories()
+        {
+            List<string> MainCategories = new List<string>();
+            MainCategories.Add("Vand");
+            MainCategories.Add("Varme");
+            return MainCategories;
+        }
+
+        public List<string> GetSubCategories(string mainCategory)
+        {
+            List<string> subCategories = new List<string>();
+            switch (mainCategory)
+            {
+                case "Vand":
+                    subCategories.Add("Koldt");
+                    subCategories.Add("Varmt");
+                    break;
+                case "Varme":
+                    subCategories.Add("Fjernvarme");
+                    subCategories.Add("Pillefyr");
+                    break;
+                default:
+                    break;
+            }
+            return subCategories;
+        }
 
         // Update question by id
         async public Task<ResponseAPI> Update(string id, QuestionModel question){

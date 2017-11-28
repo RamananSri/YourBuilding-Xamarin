@@ -1,10 +1,82 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using KundePortal.Services;
+using System.Windows.Input;
+using KundePortal.View;
+using Xamarin.Forms;
+using System.Collections.Generic;
+
 namespace KundePortal.ViewModel
 {
     public class CategoryViewModel
     {
+        static string parentCategory;
+
+        string _selectedCategory;
+        QuestionService qs;
+        ObservableCollection<string> _allCategories;
+
         public CategoryViewModel()
         {
+            qs = new QuestionService();
+
+            if (CategoryViewModel.parentCategory != null)
+            {
+                GetSubCategories();
+            }
+            else {
+                GetMainCategories();
+            }
+        }
+
+        public CategoryViewModel(ObservableCollection<string> categories)
+        {
+            qs = new QuestionService();
+            _allCategories = categories;
+        }
+
+        void GetMainCategories()
+        {
+            List<string> Categories = qs.GetMainCategories();
+            _allCategories = new ObservableCollection<string>(Categories);
+        }
+
+        void GetSubCategories()
+        {
+            List<string> Categories = qs.GetSubCategories(parentCategory);
+            _allCategories = new ObservableCollection<string>(Categories);
+        }
+
+        async void Navigate()
+        {
+            INavigation nav = Application.Current.MainPage.Navigation;
+            await nav.PushAsync(new CategoryView());
+        }
+
+
+        public string MainCategory
+        {
+            get
+            {
+                return parentCategory;
+            }
+            set
+            {
+                parentCategory = value;
+                Navigate();
+            }
+        }
+
+        public ObservableCollection<string> AllCategories
+        {
+            get
+            {
+                return _allCategories;
+            }
+            set
+            {
+                _allCategories = value;
+            }
         }
     }
 }
