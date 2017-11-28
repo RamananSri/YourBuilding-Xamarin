@@ -5,16 +5,16 @@
              xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
              x:Class="KundePortal.View.ProNotificationsView">
 
-    <ContentPage.BindingContext>
+<!--    <ContentPage.BindingContext>
         <viewmodel:ProNotificationsViewModel></viewmodel:ProNotificationsViewModel>
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
     <ContentPage.Content>
         <StackLayout>
             <Picker Title="Vælg spørgsmål" ItemsSource="{Binding CategoryList}" SelectedItem="{Binding pickerValue}">
 
             </Picker>
-            <ListView ItemsSource="{Binding QuestionList}" BackgroundColor="Red">
+            <ListView ItemsSource="{Binding QuestionList}">
 
             </ListView>
         </StackLayout>

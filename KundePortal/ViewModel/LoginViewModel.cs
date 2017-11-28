@@ -7,11 +7,16 @@ using Xamarin.Forms;
 
 namespace KundePortal.ViewModel
 {
+
+    // nedarver fra INotifyPropertyChanged - håndterer ændringer fra viewmodel -> view
     public class LoginViewModel : INotifyPropertyChanged
     {
+        // INotifyPropertyChanged event som raises ved ændringer. 
+        // Alle bindings i view der binder på den ændrede property får besked
         public event PropertyChangedEventHandler PropertyChanged;
+
         public ICommand loginCommand { get; private set; }
-        public ICommand createUserCommand { get; private set; }
+        public ICommand CreateUserCommand { get; private set; }
         UserService userService;
 
         string _username;
@@ -22,9 +27,10 @@ namespace KundePortal.ViewModel
         {
             userService = new UserService();
             loginCommand = new Command(Login);
-            createUserCommand = new Command(CreateUserPush);
+            CreateUserCommand = new Command(CreateUserPush);
         }
 
+        // INotifyPropertyChanged check. Er der en ikke-null ændring? 
         void PropertyChangedCheck(string prop)
         {
             if (PropertyChanged != null)
@@ -33,6 +39,7 @@ namespace KundePortal.ViewModel
             }
         }
 
+        // Login - call API, check if success and determine if pro or not pro
         async void Login()
         {
             Alert = "";
@@ -40,16 +47,19 @@ namespace KundePortal.ViewModel
 
             if (result.success && APIService.token != null)
             {
+                APIService.currentUser = result.user;
+                APIService.token = result.token;
+
+                INavigation nav = Application.Current.MainPage.Navigation;
+                //CategoryView view = new CategoryView{HasBackButton=false};
+
                 if (APIService.currentUser.cvr != null)
                 {
-                    INavigation nav = Application.Current.MainPage.Navigation;
-                    await nav.PushAsync(new LoginView());
-
-                    // pro page
+                    //await nav.PushAsync(new ProMenuView());
                 }
                 else
                 {
-                    // user page
+                    await nav.PushAsync(new CategoryView ());
                 }
             }
             else
@@ -58,10 +68,10 @@ namespace KundePortal.ViewModel
             }
         }
 
-        void CreateUserPush()
-        {
-            // create page    
-
+        // Push createUserView command
+        async void CreateUserPush(){
+            INavigation nav = Application.Current.MainPage.Navigation;
+            await nav.PushAsync(new CreateUserView());   
         }
 
         #region Properties
@@ -75,7 +85,7 @@ namespace KundePortal.ViewModel
             set
             {
                 _password = value;
-                PropertyChangedCheck("Password");
+                PropertyChangedCheck("Password");   // Raise event om at "Password" er ændret
             }
         }
 
@@ -88,7 +98,7 @@ namespace KundePortal.ViewModel
             set
             {
                 _username = value;
-                PropertyChangedCheck("Username");
+                PropertyChangedCheck("Username");   // Raise event om at "Username" er ændret 
             }
         }
         public string Alert

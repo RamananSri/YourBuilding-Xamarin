@@ -10,31 +10,47 @@ namespace KundePortal.ViewModel
 {
     public class CreateUserViewModel : INotifyPropertyChanged
     {
-        UserModel _user;
-        UserService userService; 
-
         public event PropertyChangedEventHandler PropertyChanged;
-        public ICommand createCommand { get; private set; }
 
+        UserModel _user;        
+        string _repeatPass;
+        string _error;
+        UserService userService; 
 
         public CreateUserViewModel()
         {
-
-            UserModel user = new UserModel();
-
-            bool check = user.NullEmptyCheck(); 
-
-
+            //bool check = user.NullEmptyCheck(); 
+            User = new UserModel();
             userService = new UserService();
-            //createCommand = new Command(CreateUser);
+            CreateUserCommand = new Command(CreateUser);
+            Error = "";
         }
 
-        //void CreateUser(){
-        //    if()
-            
-        //} 
+        // Create user - API call
+        async void CreateUser(){
 
+            // check if password matches
+            if(User.password != RepeatPass){
+                Error = "Kodeord matcher ikke";
+                return;
+            }
 
+            // Get response from API
+            ResponseAPI res = await userService.Create(User);
+
+            // If success pop back to login
+            if(res.success){
+                INavigation nav = Application.Current.MainPage.Navigation;
+                await nav.PopAsync();
+
+            }
+            // Else print error message from API response
+            else{
+                Error = res.message;
+            }
+        } 
+
+        // Property changed null check
         void PropertyChangedCheck(string prop)
         {
             if (PropertyChanged != null)
@@ -43,7 +59,7 @@ namespace KundePortal.ViewModel
             }
         }
 
-        #region
+        #region Properties
 
         public UserModel User
         {
@@ -55,43 +71,33 @@ namespace KundePortal.ViewModel
             }
         }
 
+        public string RepeatPass 
+        { 
+            get{
+                return _repeatPass;
+            } 
+            set{
+                _repeatPass = value;
+            } 
+        }
+
+        public string Error 
+        {
+            get{
+                return _error;
+            } 
+            set{
+                _error = value;
+                PropertyChangedCheck("Error");
+            } 
+        }
+
+        public ICommand CreateUserCommand 
+        { 
+            get; 
+            private set; 
+        }
+
         #endregion
     }
 }
-
-//HttpClient client;
-//string url;
-//User user;
-
-//public CreateUserPage()
-//{
-//    user = new User();
-//    client = new HttpClient();
-//    url = ConnectionAPI.Instance.url + "create";
-//    InitializeComponent();
-//}
-
-//async Task createUserBtn_clickedAsync(object sender, System.EventArgs e)
-//{
-//    user.name = nameEntry.Text;
-//    user.address = addressEntry.Text;
-//    user.phone = phoneEntry.Text;
-//    user.email = emailEntry.Text;
-//    user.password = passwordEntry.Text;
-
-//    if (!String.IsNullOrEmpty(nameEntry.Text) &&
-//       !String.IsNullOrEmpty(addressEntry.Text) &&
-//       !String.IsNullOrEmpty(phoneEntry.Text) &&
-//       !String.IsNullOrEmpty(emailEntry.Text) &&
-//        !String.IsNullOrEmpty(passwordEntry.Text))
-//    {
-//        if (!string.IsNullOrEmpty(cvrEntry.Text))
-//        {
-//            user.cvr = cvrEntry.Text;
-//        }
-
-//        var userSerial = JsonConvert.SerializeObject(user);
-//        await client.PostAsync(url, new StringContent(userSerial, Encoding.UTF8, "application/json"));
-//        await Navigation.PopAsync();
-//    }
-//}

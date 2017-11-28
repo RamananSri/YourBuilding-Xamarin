@@ -18,9 +18,6 @@ namespace KundePortal.Extensions
                 if (prop.PropertyType == typeof(List<>)){
 
                 }
-
-
-                
             }
 
             return false;

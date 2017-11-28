@@ -17,7 +17,7 @@ namespace KundePortal.Services
 
         // Create user
         async public Task<ResponseAPI> Create(UserModel user){
-            ResponseAPI res = await API.Post(baseRoute, user);
+            ResponseAPI res = await API.Post("create", user);
             return res;
         }
 

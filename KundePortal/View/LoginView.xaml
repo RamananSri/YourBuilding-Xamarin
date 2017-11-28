@@ -15,7 +15,8 @@
 <!--    Toolbaritem create new account-->
     <ContentPage.ToolbarItems>
             <ToolbarItem 
-                Text="Opret"/>
+                Text="Opret"
+                Command = "{Binding CreateUserCommand}"/>
     </ContentPage.ToolbarItems>
 
 <!--    Content-->
@@ -36,7 +37,7 @@
                 HorizontalTextAlignment="Center"/>
             <Entry 
                 Placeholder="Password" 
-                Text="{Binding Password}" 
+                Text="{Binding Password}"  
                 IsPassword="true" 
                 Keyboard="Email" 
                 HorizontalTextAlignment="Center"/>
