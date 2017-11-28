@@ -10,7 +10,7 @@ namespace KundePortal
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ProGPSView());
+            MainPage = new NavigationPage(new AnswerQuestionView());
         }
 
         protected override void OnStart()
