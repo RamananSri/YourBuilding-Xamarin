@@ -1,34 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="KundePortal.View.QuestionsView">
-    
-	<ContentPage.Content>
-	</ContentPage.Content>
-    
-</ContentPage>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Spørgsmåls info"
+             xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
+             x:Class="KundePortal.View.QuestionView">
 
+    <ContentPage.BindingContext>
+        <viewmodel:QuestionViewModel></viewmodel:QuestionViewModel>
+    </ContentPage.BindingContext>
 
-<!--    <ContentPage.ToolbarItems>
-        <ToolbarItem Name="CreateQuestion" Text="Opret" Activated="CreateQuestion_clicked"/>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="answer" Command="{Binding openAnswerQuestionCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <ListView x:Name="questionList" ItemSelected="Question_selected" HasUnevenRows="true">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    
-                    <StackLayout Orientation="Horizontal" Padding="10,5,10,5" HorizontalOptions="FillAndExpand">
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding title}" FontSize="Medium"/>
-                            <Label Text="{Binding subCategory}" TextColor="Gray" FontSize="Small"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding likeCounter}" FontSize="Large"/>
-                        </StackLayout>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>-->
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Image Margin="5,0,5,0" Source="{Binding Question.picture}" Grid.Row="0" Grid.Column="0"></Image>
+            <Image Margin="5,0,5,0" Source="{Binding Question.picture}" Grid.Row="0" Grid.Column="1"></Image>
+            <Image Margin="5,0,5,0" Source="{Binding Question.picture}" Grid.Row="0" Grid.Column="2"></Image>
+            <Label Text="Spørgsmål:" Grid.Row="1" Grid.ColumnSpan="3"></Label>
+            <Label Text="{Binding Question.description}" Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="Yellow"></Label>
+            <Label Text="Svar på spørgsmål:" Grid.Row="3" Grid.ColumnSpan="3"></Label>
+            <ListView ItemsSource="{Binding AnswerList}" Grid.Row="4" Grid.ColumnSpan="3" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding description}"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

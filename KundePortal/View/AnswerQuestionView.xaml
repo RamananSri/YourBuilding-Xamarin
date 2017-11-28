@@ -8,26 +8,14 @@
     <ContentPage.BindingContext>
         <viewmodel:AnswerQuestionViewModel></viewmodel:AnswerQuestionViewModel>
     </ContentPage.BindingContext>
+    
 
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <Image Source="message.png" Grid.Row="0" Grid.Column="0" BackgroundColor="Red"></Image>
-            <Image Source="message.png" Grid.Row="0" Grid.Column="1" BackgroundColor="Red"></Image>
-            <Image Source="message.png" Grid.Row="0" Grid.Column="2" BackgroundColor="Red"></Image>
-            <Label Text="test" Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="Yellow"></Label>
-            <Label Text="test" Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="Green"></Label>
-            
-        </Grid>
+        <StackLayout>
+            <Label Text="{Binding Question.description}"></Label>
+            <Editor Text="{Binding Answer.description}" HeightRequest="300"></Editor>
+            <Label Text="{Binding Alert}"></Label>
+            <Button Command="{Binding answerQuestionCommand}" Text="Svar"></Button>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

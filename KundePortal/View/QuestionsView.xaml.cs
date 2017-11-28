@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace KundePortal.View
 {
-    public partial class QuestionsView : ContentPage
+    public partial class QuestionView : ContentPage
     {
-        public QuestionsView()
+        public QuestionView()
         {
             InitializeComponent();
         }

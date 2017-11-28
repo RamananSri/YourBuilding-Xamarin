@@ -140,6 +140,7 @@
       <DependentUpon>AnswerQuestionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AnswerQuestionViewModel.cs" />
+    <Compile Include="ViewModel\QuestionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

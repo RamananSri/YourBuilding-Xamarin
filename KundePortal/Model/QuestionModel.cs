@@ -47,10 +47,10 @@ namespace KundePortal.Model
             set;
         }
 
-        //public Buffer picture
-        //{
-        //    get;
-        //    set;
-        //}
+        public string picture
+        {
+            get;
+            set;
+        }
     }
 }
