@@ -10,6 +10,14 @@
         <viewmodel:CategoryViewModel></viewmodel:CategoryViewModel>
     </ContentPage.BindingContext>
 
+    <!--    Toolbaritem create new account-->
+    <ContentPage.ToolbarItems>
+            <ToolbarItem 
+                Text="Konto"
+                Command = "{Binding AccountCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+
     <ContentPage.Content>
         <ListView SelectedItem="{Binding MainCategory}" ItemsSource="{Binding AllCategories}" HasUnevenRows="true">
         </ListView>

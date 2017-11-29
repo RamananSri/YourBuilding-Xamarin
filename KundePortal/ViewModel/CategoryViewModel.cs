@@ -5,16 +5,18 @@ using System.Windows.Input;
 using KundePortal.View;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace KundePortal.ViewModel
 {
-    public class CategoryViewModel
+    public class CategoryViewModel : INotifyPropertyChanged
     {
         static string parentCategory;
-
         string _selectedCategory;
         QuestionService qs;
         ObservableCollection<string> _allCategories;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public CategoryViewModel()
         {
@@ -27,12 +29,15 @@ namespace KundePortal.ViewModel
             else {
                 GetMainCategories();
             }
+
+            AccountCommand = new Command(NavigateAccount);
         }
 
         public CategoryViewModel(ObservableCollection<string> categories)
         {
             qs = new QuestionService();
             _allCategories = categories;
+            AccountCommand = new Command(NavigateAccount);
         }
 
         void GetMainCategories()
@@ -53,17 +58,21 @@ namespace KundePortal.ViewModel
             await nav.PushAsync(new CategoryView());
         }
 
+        async void NavigateAccount(){
+            INavigation nav = Application.Current.MainPage.Navigation;
+            await nav.PushAsync(new ViewUserView());
+        }
 
         public string MainCategory
         {
             get
-            {
+            {   
                 return parentCategory;
             }
             set
             {
                 parentCategory = value;
-                Navigate();
+                //await Navigate();
             }
         }
 
@@ -78,60 +87,7 @@ namespace KundePortal.ViewModel
                 _allCategories = value;
             }
         }
+
+        public ICommand AccountCommand { get; private set; }
     }
 }
-
-
-//public MainCategoryPage(string parentCategory)
-//{
-//    InitializeComponent();
-//    listViewCategories.ItemsSource = PopulateListview(parentCategory);
-//    Title = parentCategory;
-//}
-
-//List<string> PopulateListview(string parentCategory)
-//{
-
-//    List<string> listItems = new List<string>();
-
-//    switch (parentCategory)
-//    {
-//        case "Main":
-//            NavigationPage.SetHasBackButton(this, false); // Fjerner tilbage-knappen på startsiden, så det ikke er muligt at tilbage til loginsiden.
-//            listItems = new List<string>{
-//                        "Vand",
-//                        "Varme",
-//                        "El",
-//                        "Afløb",
-//                        "Andet"
-//                     };
-//            break;
-
-//        case "Vand":
-//            listItems = new List<string>{
-//                        "Varmt",
-//                        "Koldt"
-//                    };
-//            break;
-//    }
-//    return listItems;
-//}
-
-//async void listItemClicked(object sender, SelectedItemChangedEventArgs e)
-//{
-//    string selectedCategory = e.SelectedItem.ToString();
-
-//    if (selectedCategory == "Varmt" || selectedCategory == "Koldt")
-//    {
-//        await Navigation.PushAsync(new QuestionPage(selectedCategory));
-//    }
-//    else
-//    {
-//        await Navigation.PushAsync(new MainCategoryPage(selectedCategory));
-//    }
-//}
-
-//async void KontoItem_Activated(object sender, System.EventArgs e)
-//{
-//    await Navigation.PushAsync(new ViewUserPage());
-//}
