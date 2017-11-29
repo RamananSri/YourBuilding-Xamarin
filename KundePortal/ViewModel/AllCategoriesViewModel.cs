@@ -41,7 +41,7 @@ namespace KundePortal.ViewModel
             // Push list to API 
         }
 
-        #region
+        #region Properties
 
         public ObservableCollection<SelectWrapper> AllCategories 
         { 
