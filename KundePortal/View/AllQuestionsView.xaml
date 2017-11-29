@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
+    x:Class="KundePortal.View.AllQuestionsView">
+
+    <ContentPage.BindingContext>
+        <viewmodel:AllQuestionsViewModel></viewmodel:AllQuestionsViewModel>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <ListView SelectedItem="{Binding SelectedQuestion}" ItemsSource="{Binding QuestionsList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout>
+                                <Label Text="{Binding title}"></Label>
+                                <Label Text="{Binding userId}" FontSize="small"></Label>
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="{Binding likeCounter}"></Label>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+	</ContentPage.Content>
+</ContentPage>

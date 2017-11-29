@@ -11,7 +11,7 @@ namespace KundePortal.ViewModel
 {
     public class CategoryViewModel
     {
-        static string parentCategory;
+        public static string parentCategory;
         string _selectedCategory;
         QuestionService qs;
         bool isSubCategory;
@@ -51,11 +51,11 @@ namespace KundePortal.ViewModel
             INavigation nav = Application.Current.MainPage.Navigation;
 
             if(isSubCategory){
-                await nav.PushAsync(new QuestionView());
+                await nav.PushAsync(new AllQuestionsView());
             }
-            await nav.PushAsync(new CategoryView());
-
-
+            else{
+                await nav.PushAsync(new CategoryView());
+            }
         }
 
         async void NavigateAccount(){

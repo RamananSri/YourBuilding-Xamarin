@@ -18,7 +18,8 @@ namespace KundePortal.Services
 
         // Get questions by subcategory
         async public Task<List<QuestionModel>> GetBySubcategory(string subCat){
-            List<QuestionModel> questions = await API.Get<List<QuestionModel>>(subCat);
+            string url = baseRoute + subCat;
+            List<QuestionModel> questions = await API.Get<List<QuestionModel>>(url);
             return questions;
         }
 
