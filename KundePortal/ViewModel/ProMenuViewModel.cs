@@ -11,13 +11,20 @@ namespace KundePortal.ViewModel
         //public ICommand SearchViewCommand { get; set; }
         public ICommand GPSViewCommand { get; set; }
         public ICommand CategoriesViewCommand { get; set; }
-
+        public ICommand viewUserCommand { get; set; }
         public ProMenuViewModel()
         {
             MessageViewCommand = new Command<string>(Navigate);
             //SearchViewCommand = new Command<string>(Navigate);
             GPSViewCommand = new Command<string>(Navigate);
             CategoriesViewCommand = new Command<string>(Navigate);
+            viewUserCommand = new Command(ViewUser);
+        }
+
+        async void ViewUser()
+        {
+                INavigation nav = Application.Current.MainPage.Navigation;
+                await nav.PushAsync(new ViewUserView());
         }
 
         async void Navigate(string caller)

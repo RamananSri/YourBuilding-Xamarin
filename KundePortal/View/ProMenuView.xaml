@@ -3,14 +3,19 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="KundePortal.View.ProMenuView"
+    NavigationPage.HasBackButton="False"
     xmlns:viewmodel="clr-namespace:KundePortal.ViewModel">
 
 <!--    Viewmodel instance-->
     <ContentPage.BindingContext>
         <viewmodel:ProMenuViewModel></viewmodel:ProMenuViewModel>
     </ContentPage.BindingContext>
-    
-	<ContentPage.Content>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Konto" Command="{Binding viewUserCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
         <Grid ColumnSpacing="5">
             
             <Grid.RowDefinitions>

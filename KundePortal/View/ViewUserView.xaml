@@ -10,14 +10,14 @@
 </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Logud" Text="Logud" Icon="logout"></ToolbarItem>
+        <ToolbarItem Command="{Binding logoutCommand}" Name="Logud" Text="Logud" Icon="logout"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout>
             <TableView>
                 <TableView.Root>
-                    <TableSection x:Name="tableSectionUser">
+                    <TableSection>
                         <EntryCell Text="{Binding User.name}" Label="Navn:" Placeholder="Indtast navn..." Keyboard="Text"></EntryCell>
                         <EntryCell Text="{Binding User.email}" Label="Email:" Placeholder="Indtast email..." Keyboard="Email"></EntryCell>
                         <EntryCell Text="{Binding User.phone}" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
@@ -36,9 +36,9 @@
                 </TableView.Root>
             </TableView>
             <Label Text="{Binding Alert}" TextColor="Red"></Label>
-
+            
             <Button Command="{Binding updateCommand}" Text="Opdatér"></Button>
-            <Button Command="{Binding logoutCommand}" Text="Log ud" BackgroundColor="Red"></Button>
+            <Button Command="{Binding deleteCommand}" Text="Slet bruger" BackgroundColor="Red"></Button>
     </StackLayout>
 
     </ContentPage.Content>

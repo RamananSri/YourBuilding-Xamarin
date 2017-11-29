@@ -10,7 +10,7 @@ namespace KundePortal
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new AnswerQuestionView());
+            MainPage = new NavigationPage(new LoginView());
         }
 
         protected override void OnStart()

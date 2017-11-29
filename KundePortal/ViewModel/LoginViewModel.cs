@@ -55,7 +55,7 @@ namespace KundePortal.ViewModel
 
                 if (APIService.currentUser.cvr != null)
                 {
-                    //await nav.PushAsync(new ProMenuView());
+                    await nav.PushAsync(new ProMenuView());
                 }
                 else
                 {

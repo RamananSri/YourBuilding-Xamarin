@@ -14,6 +14,7 @@ namespace KundePortal.ViewModel
         public ICommand switchCommand { get; private set; }    
         public ICommand updateCommand { get; private set; }
         public ICommand logoutCommand { get; private set; }
+        public ICommand deleteCommand { get; private set; }
 
         APIService API;
         UserService userService;
@@ -25,8 +26,11 @@ namespace KundePortal.ViewModel
         {
             logoutCommand = new Command(Logout);
             updateCommand = new Command(Update);
+            deleteCommand = new Command(Delete);
+
             userService = new UserService();
             _switchValue = new bool();
+
             _user = new UserModel
             {
             _id = APIService.currentUser._id,
@@ -52,9 +56,28 @@ namespace KundePortal.ViewModel
             
         }
 
-        async void Update()
+        async void Delete()
         {
-            //ResponseAPI result = await userService.Update(APIService.currentUser._id, APIService.currentUser);
+            var user = _user.name;
+                var page = await App.Current.MainPage.DisplayAlert("Ønsker du at slette din bruger?", "Hej " + user + " ønsker du virkelig at slette din bruger?", "Nej", "ja");
+                if(page == true)
+                {
+                    return;
+                }
+                else
+                {
+                    ResponseAPI result = await userService.Delete(_user._id);
+                    if (result.success)
+                    {
+                        Alert = result.message;
+                    }
+                    INavigation nav = Application.Current.MainPage.Navigation;
+                    await nav.PopToRootAsync();
+                }
+        }
+
+        async void Update()
+        {            
             ResponseAPI result = await userService.Update(_user._id, _user);
             if (result.success)
             {
