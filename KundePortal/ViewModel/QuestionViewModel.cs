@@ -25,20 +25,11 @@ namespace KundePortal.ViewModel
         {
             openAnswerQuestionCommand = new Command(answerQuestion);
 
-            _question = new QuestionModel();
-            _question.description = "Dette er spørgsmålet";
-            _question.picture = "http://via.placeholder.com/350x150";
-            AnswerList = new ObservableCollection<AnswerModel>();
-            _answerList = new ObservableCollection<AnswerModel>();
-            AnswerModel answer = new AnswerModel
-            {
-                answerDate = null,
-                likeCounter = null,
-                description = "Det virker",
-                userId = "1",
-                userName = "Daniel"
-            };
-            _answerList.Add(answer);
+
+
+            _question = AllQuestionsViewModel._selectedQuestion;
+            _answerList = new ObservableCollection<AnswerModel>(_question.answers);
+
         }
 
         async void answerQuestion()

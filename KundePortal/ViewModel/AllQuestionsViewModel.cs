@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using KundePortal.Model;
 using KundePortal.Services;
+using KundePortal.View;
+using Xamarin.Forms;
 
 namespace KundePortal.ViewModel
 {
     public class AllQuestionsViewModel
     {
+        public static QuestionModel _selectedQuestion;
+
         ObservableCollection<QuestionModel> _questionsList;
-        QuestionModel _selectedQuestion;
 
         QuestionService qService;
 
         public AllQuestionsViewModel()
         {
-            QuestionsList = new ObservableCollection<QuestionModel>();
+            _selectedQuestion = null;
+            _questionsList = new ObservableCollection<QuestionModel>();
+
             qService = new QuestionService();
             getAllQuestions();
         }
@@ -23,7 +28,15 @@ namespace KundePortal.ViewModel
         async void getAllQuestions()
         {
             List<QuestionModel> questions = await qService.GetBySubcategory(CategoryViewModel.parentCategory);
-            _questionsList = new ObservableCollection<QuestionModel>(questions);
+            foreach (var item in questions)
+            {
+                _questionsList.Add(item);
+            }
+        }
+
+        async void navigate(){
+            INavigation nav = Application.Current.MainPage.Navigation;
+            await nav.PushAsync(new QuestionView());
         }
 
         #region Properties
@@ -45,6 +58,9 @@ namespace KundePortal.ViewModel
             } 
             set{
                 _selectedQuestion = value;
+                if(_selectedQuestion != null){
+                    navigate();
+                }
             }
         }
 
