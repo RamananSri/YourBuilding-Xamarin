@@ -9,34 +9,28 @@ using System.ComponentModel;
 
 namespace KundePortal.ViewModel
 {
-    public class CategoryViewModel : INotifyPropertyChanged
+    public class CategoryViewModel
     {
         static string parentCategory;
         string _selectedCategory;
         QuestionService qs;
+        bool isSubCategory;
         ObservableCollection<string> _allCategories;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public CategoryViewModel()
         {
             qs = new QuestionService();
 
-            if (CategoryViewModel.parentCategory != null)
+            if (parentCategory != null)
             {
+                isSubCategory = true;
                 GetSubCategories();
             }
             else {
+                isSubCategory = false;
                 GetMainCategories();
             }
 
-            AccountCommand = new Command(NavigateAccount);
-        }
-
-        public CategoryViewModel(ObservableCollection<string> categories)
-        {
-            qs = new QuestionService();
-            _allCategories = categories;
             AccountCommand = new Command(NavigateAccount);
         }
 
@@ -55,7 +49,13 @@ namespace KundePortal.ViewModel
         async void Navigate()
         {
             INavigation nav = Application.Current.MainPage.Navigation;
+
+            if(isSubCategory){
+                await nav.PushAsync(new QuestionView());
+            }
             await nav.PushAsync(new CategoryView());
+
+
         }
 
         async void NavigateAccount(){
@@ -71,8 +71,12 @@ namespace KundePortal.ViewModel
             }
             set
             {
+                
                 parentCategory = value;
-                //await Navigate();
+
+                if(parentCategory != null){
+                    Navigate();
+                }
             }
         }
 

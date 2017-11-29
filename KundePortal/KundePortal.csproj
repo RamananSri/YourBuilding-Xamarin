@@ -37,7 +37,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\QuestionsView.xaml">
+    <EmbeddedResource Include="View\QuestionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -101,9 +101,8 @@
     </Compile>
     <Compile Include="ViewModel\CreateUserViewModel.cs" />
     <Compile Include="View\QuestionsView.xaml.cs">
-      <DependentUpon>QuestionsView.xaml</DependentUpon>
+      <DependentUpon>QuestionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\QuestionsViewModel.cs" />
     <Compile Include="View\ViewUserView.xaml.cs">
       <DependentUpon>ViewUserView.xaml</DependentUpon>
     </Compile>
