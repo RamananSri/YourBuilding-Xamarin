@@ -27,24 +27,35 @@ namespace KundePortal.ViewModel
             updateCommand = new Command(Update);
             userService = new UserService();
             _switchValue = new bool();
-            _user = new UserModel();
+            _user = new UserModel
+            {
+            _id = APIService.currentUser._id,
+            phone = APIService.currentUser.phone,
+            name = APIService.currentUser.name,
+            address = APIService.currentUser.address,
+            email = APIService.currentUser.email,
+            cvr = APIService.currentUser.cvr
+            };
             API = new APIService();
-            
+
 
             //nedenfor skal slettes senere
-            _user.name = "hej";
-            _user.address = "hej";
-            _user.phone = "hej";
-            _user.email = "hej@hej.dk";
-            _user.password = "7";
-            _user._id = "5a0e9329c0c1151ceaa9f490";
+            //_user.name = "hej";
+            //_user.address = "hej";
+            //_user.phone = "hej";
+            //_user.email = "hej@hej.dk";
+            //_user.password = "7";
+            //_user._id = "5a0e9329c0c1151ceaa9f490";
+
+            //_user = APIService.currentUser;
             APIService.currentUser = _user;
             
         }
 
         async void Update()
         {
-            ResponseAPI result = await userService.Update(APIService.currentUser._id, APIService.currentUser);
+            //ResponseAPI result = await userService.Update(APIService.currentUser._id, APIService.currentUser);
+            ResponseAPI result = await userService.Update(_user._id, _user);
             if (result.success)
             {
                 Alert = result.message;
@@ -75,7 +86,7 @@ namespace KundePortal.ViewModel
         {
             get
             {
-                return _user;
+                return _user;                
             }
             set
             {

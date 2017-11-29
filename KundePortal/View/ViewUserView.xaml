@@ -22,7 +22,6 @@
                         <EntryCell Text="{Binding User.email}" Label="Email:" Placeholder="Indtast email..." Keyboard="Email"></EntryCell>
                         <EntryCell Text="{Binding User.phone}" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
                         <EntryCell Text="{Binding User.address}" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
-                        <EntryCell Text="{Binding User.password}" Label="Kodeord" Placeholder="Nuværende password..."></EntryCell>
                         <SwitchCell On="{Binding SwitchValue}"  Text="Skift password"></SwitchCell>
                     </TableSection>
                 </TableView.Root>
@@ -30,9 +29,9 @@
             <TableView IsVisible="{Binding SwitchValue}">
                 <TableView.Root>
                     <TableSection>
-                        <EntryCell x:Name="passwordEntry" Placeholder="Nuværende password..."></EntryCell>
-                        <EntryCell x:Name="newPasswordEntry" Placeholder="Nyt password..."></EntryCell>
-                        <EntryCell x:Name="newPasswordEntryAgain" Placeholder="Gentag nyt password..."></EntryCell>
+                        <EntryCell Text="{Binding User.password}" Placeholder="Nuværende password..."></EntryCell>
+                        <EntryCell Text="{Binding User.newPassword}" Placeholder="Nyt password..."></EntryCell>
+                        <EntryCell Text="{Binding User.newPassword}" Placeholder="Gentag nyt password..."></EntryCell>
                     </TableSection>
                 </TableView.Root>
             </TableView>
