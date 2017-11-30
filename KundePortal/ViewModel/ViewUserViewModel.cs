@@ -42,24 +42,13 @@ namespace KundePortal.ViewModel
             };
             API = new APIService();
 
-
-            //nedenfor skal slettes senere
-            //_user.name = "hej";
-            //_user.address = "hej";
-            //_user.phone = "hej";
-            //_user.email = "hej@hej.dk";
-            //_user.password = "7";
-            //_user._id = "5a0e9329c0c1151ceaa9f490";
-
-            //_user = APIService.currentUser;
             APIService.currentUser = _user;
             
         }
 
         async void Delete()
         {
-            var user = _user.name;
-                var page = await App.Current.MainPage.DisplayAlert("Ønsker du at slette din bruger?", "Hej " + user + " ønsker du virkelig at slette din bruger?", "Nej", "ja");
+                var page = await App.Current.MainPage.DisplayAlert("Slet bruger", "Ønsker du virkelig at slette din bruger?", "Nej", "ja");
                 if(page == true)
                 {
                     return;
@@ -77,15 +66,17 @@ namespace KundePortal.ViewModel
         }
 
         async void Update()
-        {            
+        {
             ResponseAPI result = await userService.Update(_user._id, _user);
             if (result.success)
             {
-                Alert = result.message;
+                await App.Current.MainPage.DisplayAlert("Opdatering af bruger", result.message, "OK");
+                await Application.Current.MainPage.Navigation.PopAsync();
             }
             else
             {
-                Alert = result.message;
+                await App.Current.MainPage.DisplayAlert("Opdatering af bruger", result.message, "OK");
+                return;
             }
         }
 

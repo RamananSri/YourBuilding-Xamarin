@@ -47,11 +47,11 @@ namespace KundePortal.ViewModel
             ResponseAPI result = await questionService.Create(Question);
             if (result.success)
             {
-                Alert = result.message;
+                await App.Current.MainPage.DisplayAlert("Opretning af spørgsmål", result.message, "OK");
             }
             else
             {
-                Alert = result.message;
+                await App.Current.MainPage.DisplayAlert("Opretning af spørgsmål", result.message, "OK");
             }
         }
 

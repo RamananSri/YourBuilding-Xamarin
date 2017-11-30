@@ -64,7 +64,8 @@ namespace KundePortal.ViewModel
             }
             else
             {
-                Alert = "Prøv igen";
+                await App.Current.MainPage.DisplayAlert("Login", result.message, "OK");
+                return;
             }
         }
 
