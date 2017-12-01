@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using KundePortal.Model;
 using KundePortal.Services;
 using KundePortal.View;
@@ -23,6 +24,13 @@ namespace KundePortal.ViewModel
 
             qService = new QuestionService();
             getAllQuestions();
+
+            CreateQuestionCommand = new Command(Navigate);
+
+        }
+
+        async void Navigate(){
+            await Application.Current.MainPage.Navigation.PushAsync(new CreateQuestionView());
         }
 
         async void getAllQuestions()
@@ -63,6 +71,8 @@ namespace KundePortal.ViewModel
                 }
             }
         }
+
+        public ICommand CreateQuestionCommand { get; private set; }
 
         #endregion
     }

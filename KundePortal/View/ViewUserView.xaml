@@ -10,7 +10,7 @@
 </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding logoutCommand}" Name="Logud" Text="Logud" Icon="logout"></ToolbarItem>
+        <ToolbarItem Command="{Binding logoutCommand}" Name="Logud" Text="Logud" Icon="logout"> </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

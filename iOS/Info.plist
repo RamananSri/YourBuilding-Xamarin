@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>KundePortal</string>
 	<key>CFBundleIdentifier</key>
-	<string>RSaaa.test.KundePortal</string>
+	<string>RSaaa.test</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -42,7 +42,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-		<key>NSLocationAlwaysUsageDescription</key>
+	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This app needs access to Location to track GPS.</string>
 	<key>NSLocationUsageDescription</key>
 	<string>This app needs access to Location to track GPS.</string>

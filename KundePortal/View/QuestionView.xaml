@@ -28,11 +28,11 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Image Margin="5,0,5,0" Source="{Binding Question.picture}" Grid.Row="0" Grid.Column="0"></Image>
-            <Image Margin="5,0,5,0" Source="{Binding Question.picture}" Grid.Row="0" Grid.Column="1"></Image>
-            <Image Margin="5,0,5,0" Source="{Binding Question.picture}" Grid.Row="0" Grid.Column="2"></Image>
+            <Image Margin="5" Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" Grid.Row="0" Grid.Column="0" BackgroundColor="Gray"></Image>
+            <Image Margin="5" Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" Grid.Row="0" Grid.Column="1" BackgroundColor="Gray"></Image>
+            <Image Margin="5" Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" Grid.Row="0" Grid.Column="2" BackgroundColor="Gray"></Image>
             <Label Text="Spørgsmål:" Grid.Row="1" Grid.ColumnSpan="3"></Label>
-            <Label Text="{Binding Question.description}" Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="Yellow"></Label>
+            <Label Text="{Binding Question.description}" Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="White"></Label>
             <Label Text="Svar på spørgsmål:" Grid.Row="3" Grid.ColumnSpan="3"></Label>
             <ListView ItemsSource="{Binding AnswerList}" Grid.Row="4" Grid.ColumnSpan="3" HasUnevenRows="True">
                 <ListView.ItemTemplate>

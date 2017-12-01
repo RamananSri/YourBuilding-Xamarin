@@ -8,6 +8,10 @@
     <ContentPage.BindingContext>
         <viewmodel:AllQuestionsViewModel></viewmodel:AllQuestionsViewModel>
     </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="plus" Command="{Binding CreateQuestionCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
 
