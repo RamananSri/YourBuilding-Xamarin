@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KundePortal.Services;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -9,9 +11,11 @@ namespace KundePortal.ViewModel
     {
         ObservableCollection<SelectWrapper> _allCategories;
         ObservableCollection<string> _selectedCategories;
+        QuestionService _question;
 
         public AllCategoriesViewModel()
         {
+            _question = new QuestionService();
             _allCategories = new ObservableCollection<SelectWrapper>();
             _selectedCategories = new ObservableCollection<string>();
             SaveSelectedCommand = new Command(SaveSelected);
@@ -22,11 +26,11 @@ namespace KundePortal.ViewModel
         void GetAllCategories(){
 
             // Get properties from API 
-
-            _allCategories.Add(new SelectWrapper{IsSelected = true, Item="hej"});
-            _allCategories.Add(new SelectWrapper { IsSelected = true, Item = "hej" });
-            _allCategories.Add(new SelectWrapper { IsSelected = true, Item = "hej" });
-            _allCategories.Add(new SelectWrapper { IsSelected = true, Item = "hej" });
+            List<String> test = _question.GetMainCategories();
+            foreach(var mainCategory in test)
+            {
+                _allCategories.Add(new SelectWrapper { IsSelected = false, Item = mainCategory });
+            }
         }
 
         void SaveSelected(){
