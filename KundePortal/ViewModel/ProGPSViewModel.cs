@@ -26,7 +26,6 @@ namespace KundePortal.ViewModel
 
             longi = position.Longitude.ToString();
             lat = position.Latitude.ToString();
-
         }
     }
 }
