@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace KundePortal.Model
 {
     public class UserModel
@@ -11,5 +13,6 @@ namespace KundePortal.Model
         public string password { get; set; }
         public string newPassword { get; set; }
         public string cvr { get; set; }
+        public List<string> subscriptions { get; set; }
     }
 }
