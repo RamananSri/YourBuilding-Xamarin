@@ -1,4 +1,5 @@
 ﻿using KundePortal.Model;
+using KundePortal.Services;
 using KundePortal.View;
 using System;
 using System.Collections.Generic;
@@ -14,24 +15,34 @@ namespace KundePortal.ViewModel
 {
     public class QuestionViewModel : INotifyPropertyChanged
     {
+        public bool _cvrOrNot;
+
         public static AnswerModel _selectedAnswer;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand openAnswerQuestionCommand { get; private set; }
 
-        QuestionModel _question;
+        public static QuestionModel _question;
 
         ObservableCollection<AnswerModel> _answerList;
 
         public QuestionViewModel()
         {
+            _cvrOrNot = false;
+            cvrCheck();
             openAnswerQuestionCommand = new Command(answerQuestion);
-
-
 
             _question = AllQuestionsViewModel._selectedQuestion;
             _answerList = new ObservableCollection<AnswerModel>(_question.answers);
 
+        }
+
+        void cvrCheck()
+        {
+            if(APIService.currentUser.cvr != null)
+            {
+                _cvrOrNot = true;
+            }
         }
 
         async void answerQuestion()
@@ -93,7 +104,22 @@ namespace KundePortal.ViewModel
                 }
             }
         }
-        
+
+        public bool CvrOrNot
+        {
+
+            get
+            {
+                return _cvrOrNot;
+            }
+
+            set
+            {
+                _cvrOrNot = value;
+                PropertyChangedCheck("CvrOrNot");
+            }
+        }
+
 
 
         #endregion

@@ -12,7 +12,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Question.description}"></Label>
+            <Label Text="{Binding Question.title}"></Label>
             <Editor Text="{Binding Answer.description}" HeightRequest="300"></Editor>
             <Label Text="{Binding Alert}"></Label>
             <Button Command="{Binding answerQuestionCommand}" Text="Svar"></Button>
