@@ -22,9 +22,11 @@ namespace KundePortal.ViewModel
         string _alert;
         QuestionModel _question;
         public static QuestionModel question;
+        string questionId;
 
         public AnswerQuestionViewModel()
-        {   
+        {
+            questionId = QuestionViewModel._question._Id;
             answerQuestionCommand = new Command(answerQuestion);
 
             this._question = question;            
@@ -35,6 +37,10 @@ namespace KundePortal.ViewModel
 
         async void answerQuestion()
         {
+            _answer.qId = question._Id;
+            _answer.likeCounter = "0";
+            _answer.userId = APIService.currentUser._id;
+            _answer.userName = APIService.currentUser.name;
             DateTime now = DateTime.Now.ToLocalTime().AddHours(1);
             _answer.answerDate = Convert.ToString(now);
             ResponseAPI result = await answerService.Create(Answer);

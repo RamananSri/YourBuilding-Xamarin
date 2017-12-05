@@ -5,6 +5,11 @@ namespace KundePortal.Model
 {
     public class QuestionModel
     {
+        public string _Id
+        {
+            get;
+            set;
+        }
         public string title
         {
             get;

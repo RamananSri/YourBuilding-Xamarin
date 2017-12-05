@@ -26,7 +26,8 @@ namespace KundePortal.Services
 
         // Create answer 
         async public Task<ResponseAPI> Create(AnswerModel answer){
-            ResponseAPI res = await API.Post(baseRoute, answer);  
+            string url = baseRoute + answer.qId;
+            ResponseAPI res = await API.Post(url, answer);  
             return res;
         }
 
