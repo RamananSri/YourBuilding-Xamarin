@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using KundePortal.Model;
 using Newtonsoft.Json;
 
-namespace KundePortal.Services
+namespace KundePortal.Utility
 {
     public class APIService
     {
@@ -17,8 +17,8 @@ namespace KundePortal.Services
 
         public APIService()
         {
-            baseAddress = "http://localhost:3000/";
-            //baseAddress = "http://165.227.137.112/";
+            //baseAddress = "http://localhost:3000/";
+            baseAddress = "http://165.227.137.112/";
             client = new HttpClient();
             client.DefaultRequestHeaders.Add("token", token);
             // consume entity/close connection? 
@@ -102,7 +102,7 @@ namespace KundePortal.Services
             }
         }
 
-        // JSON serialize
+        // JSON serialize generic
         StringContent Serialize<T>(T obj)
         {
             var json = JsonConvert.SerializeObject(obj);
@@ -110,12 +110,12 @@ namespace KundePortal.Services
             return stringify;
         }
 
-        // JSON deserialize
+        // JSON deserialize generic
         async Task<T> Deserialize<T>(object res){
             
-            if (res is string){
-                return JsonConvert.DeserializeObject<T>((string)res);
-            }
+            //if (res is string){
+            //    return JsonConvert.DeserializeObject<T>((string)res);
+            //}
 
             HttpResponseMessage mes = (HttpResponseMessage)res;
             var content = await mes.Content.ReadAsStringAsync();

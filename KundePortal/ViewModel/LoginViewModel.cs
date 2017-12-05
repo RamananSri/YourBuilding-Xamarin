@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using KundePortal.Model;
 using KundePortal.Services;
+using KundePortal.Utility;
 using KundePortal.View;
 using Xamarin.Forms;
 

@@ -12,7 +12,6 @@ namespace KundePortal.ViewModel
     public class CategoryViewModel
     {
         public static string parentCategory;
-        string _selectedCategory;
         QuestionService qs;
         bool isSubCategory;
         ObservableCollection<string> _allCategories;
@@ -93,6 +92,18 @@ namespace KundePortal.ViewModel
             set
             {
                 _allCategories = value;
+            }
+        }
+
+        public bool IsSubCategory
+        {
+            get
+            {
+                return isSubCategory;
+            }
+            private set
+            {
+                isSubCategory = value;
             }
         }
 

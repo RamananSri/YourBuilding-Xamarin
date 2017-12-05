@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using KundePortal.Model;
+using KundePortal.Utility;
 
 namespace KundePortal.ViewModel
 {

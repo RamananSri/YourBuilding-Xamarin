@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using KundePortal.Services;
+using KundePortal.Utility;
 using KundePortal.View;
 using Xamarin.Forms;
 

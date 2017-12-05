@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using KundePortal.Utility;
 
 namespace KundePortal.ViewModel
 {
@@ -19,8 +20,7 @@ namespace KundePortal.ViewModel
 
         ObservableCollection<string> _categoryList;
         ObservableCollection<string> _subCategoryList;
-        string baseRoute;
-        APIService API;
+
         QuestionModel _question;
         QuestionService questionService;
 
@@ -32,8 +32,6 @@ namespace KundePortal.ViewModel
         {
             createQuestionCommand = new Command(createQuestion);
 
-            baseRoute = "api/questions/";
-            API = new APIService();
             _categoryList = new ObservableCollection<string>();
             _subCategoryList = new ObservableCollection<string>();
             _question = new QuestionModel();
@@ -47,11 +45,11 @@ namespace KundePortal.ViewModel
             ResponseAPI result = await questionService.Create(Question);
             if (result.success)
             {
-                await App.Current.MainPage.DisplayAlert("Opretning af spørgsmål", result.message, "OK");
+                await Application.Current.MainPage.DisplayAlert("Opretning af spørgsmål", result.message, "OK");
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("Opretning af spørgsmål", result.message, "OK");
+                await Application.Current.MainPage.DisplayAlert("Opretning af spørgsmål", result.message, "OK");
             }
         }
 
