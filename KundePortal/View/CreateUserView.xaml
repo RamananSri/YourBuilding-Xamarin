@@ -37,17 +37,20 @@
                 Text="{Binding User.email}" 
                 Placeholder="Email"
                 PlaceholderColor="#26a1e2"
+                Keyboard="Email"
                 Margin="0,0,0,20"
                 HorizontalTextAlignment="Center"/>
             <Entry 
                 Text="{Binding User.password}" 
                 Placeholder="Kodeord"
+                Keyboard="Email"
                 PlaceholderColor="#26a1e2"
                 Margin="0,0,0,10"
                 HorizontalTextAlignment="Center"/>
             <Entry 
                 Text="{Binding RepeatPass}" 
                 Placeholder="Kodeord igen"
+                Keyboard="Email"
                 PlaceholderColor="#26a1e2"
                 Margin="0,0,0,20"
                 HorizontalTextAlignment="Center"/>

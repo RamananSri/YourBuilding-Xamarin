@@ -29,6 +29,10 @@ namespace KundePortal.Services
             MainCategories.Add("Vand");
             MainCategories.Add("Varme");
             return MainCategories;
+
+            //string url = baseRoute + "maincategories";
+            //List<string> categories = await API.Get<List<string>>(url);
+
         }
 
         public List<string> GetSubCategories(string mainCategory)

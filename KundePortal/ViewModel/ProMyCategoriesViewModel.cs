@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using KundePortal.Services;
 using KundePortal.View;
 using Xamarin.Forms;
 
@@ -8,11 +9,15 @@ namespace KundePortal.ViewModel
 {
     public class ProMyCategoriesViewModel
     {
+
+        UserService service;
         ObservableCollection<string> _myCategories;
         public ICommand DeleteCategoryCommand { get; private set; }
         public ICommand AddCategoryCommand { get; private set; }
 
         public ProMyCategoriesViewModel(){
+            service = new UserService();
+            _myCategories = new ObservableCollection<string>();
             DeleteCategoryCommand = new Command(DeleteCategory);
             AddCategoryCommand = new Command(AddCategory);
 
@@ -21,13 +26,12 @@ namespace KundePortal.ViewModel
 
         void GetCategories(){
 
-            // Get my categories
-
-            // TEST
-            _myCategories = new ObservableCollection<string>();
-            _myCategories.Add("Hej");
-            _myCategories.Add("Hej Hej");
-            // TEST  
+            if(APIService.currentUser.subscriptions != null){
+                foreach (var item in APIService.currentUser.subscriptions)
+                {
+                    _myCategories.Add(item);
+                }
+            }
         }
 
         async void AddCategory(){
