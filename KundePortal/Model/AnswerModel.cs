@@ -32,5 +32,10 @@ namespace KundePortal.Model
             get;
             set;
         }
+        public string qId
+        {
+            get;
+            set;
+        }
     }
 }

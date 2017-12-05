@@ -11,7 +11,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding SelectedAnswer.userName}"/>
+            <Label Text="{Binding SelectedAnswer.userName}" FontSize="24"/>
                 <StackLayout>
                     <Label Text="{Binding SelectedAnswer.description}" FontSize="20"/>
                     <Label Text="Likes" HorizontalTextAlignment="End" FontSize="20"/>
