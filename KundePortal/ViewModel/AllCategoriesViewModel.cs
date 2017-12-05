@@ -30,7 +30,7 @@ namespace KundePortal.ViewModel
         // Get all main categories from API
         async void GetAllCategories()
         {
-            List<String> test = await _question.GetMainCategories();
+            List<String> test = await _question.GetCategories("Main");
 
             // Check if any maincategory is already subscribed to
             foreach(var mainCategory in test)

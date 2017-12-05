@@ -17,8 +17,8 @@ namespace KundePortal.Utility
 
         public APIService()
         {
-            //baseAddress = "http://localhost:3000/";
-            baseAddress = "http://165.227.137.112/";
+            baseAddress = "http://localhost:3000/";
+            //baseAddress = "http://165.227.137.112/";
             client = new HttpClient();
             client.DefaultRequestHeaders.Add("token", token);
             // consume entity/close connection? 

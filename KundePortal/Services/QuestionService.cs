@@ -24,30 +24,12 @@ namespace KundePortal.Services
             return questions;
         }
 
-        async public Task<List<string>> GetMainCategories()
+        // Get categories
+        async public Task<List<string>> GetCategories(string category)
         {
-            string url = baseRoute + "1/categories";
-            List<string> MainCategories = await API.Get<List<string>>(url);
-            return MainCategories;
-        }
-
-        public List<string> GetSubCategories(string mainCategory)
-        {
-            List<string> subCategories = new List<string>();
-            switch (mainCategory)
-            {
-                case "Vand":
-                    subCategories.Add("Koldt");
-                    subCategories.Add("Varmt");
-                    break;
-                case "Varme":
-                    subCategories.Add("Fjernvarme");
-                    subCategories.Add("Pillefyr");
-                    break;
-                default:
-                    break;
-            }
-            return subCategories;
+            string url = baseRoute + category + "/categories";
+            List<string> categories = await API.Get<List<string>>(url);
+            return categories;
         }
 
         // Update question by id

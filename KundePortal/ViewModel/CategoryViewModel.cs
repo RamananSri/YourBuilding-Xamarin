@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using KundePortal.Services;
 using System.Windows.Input;
 using KundePortal.View;
 using Xamarin.Forms;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace KundePortal.ViewModel
 {
@@ -24,46 +22,37 @@ namespace KundePortal.ViewModel
             if (parentCategory != null)
             {
                 isSubCategory = true;
-                GetSubCategories();
+                GetCategories(parentCategory);
             }
             else {
                 isSubCategory = false;
-                GetMainCategories();
+                GetCategories("Main");
             }
 
             AccountCommand = new Command(NavigateAccount);
         }
 
-        async void GetMainCategories()
+        async void GetCategories(string category)
         {
-            List<string> categories = await qs.GetMainCategories();
+            List<string> categories = await qs.GetCategories(category);
             foreach (var item in categories)
             {
                 _allCategories.Add(item);
             }
         }
 
-        void GetSubCategories()
-        {
-            List<string> Categories = qs.GetSubCategories(parentCategory);
-            _allCategories = new ObservableCollection<string>(Categories);
-        }
-
         async void Navigate()
         {
-            INavigation nav = Application.Current.MainPage.Navigation;
-
             if(isSubCategory){
-                await nav.PushAsync(new AllQuestionsView());
+                await Application.Current.MainPage.Navigation.PushAsync(new AllQuestionsView());
             }
             else{
-                await nav.PushAsync(new CategoryView());
+                await Application.Current.MainPage.Navigation.PushAsync(new CategoryView());
             }
         }
 
         async void NavigateAccount(){
-            INavigation nav = Application.Current.MainPage.Navigation;
-            await nav.PushAsync(new ViewUserView());
+            await Application.Current.MainPage.Navigation.PushAsync(new ViewUserView());
         }
 
         public string MainCategory

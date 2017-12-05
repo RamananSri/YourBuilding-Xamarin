@@ -19,24 +19,31 @@
 
 <!--    Content-->
 	<ContentPage.Content>
-        <ListView ItemsSource="{Binding MyCategories}" HasUnevenRows="true">
+        <ListView 
+            ItemsSource="{Binding MyCategories}" 
+            HasUnevenRows="true"
+            SeparatorVisibility="None">>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        
-<!--                        Swipe gesture-->
-                        <ViewCell.ContextActions>
-                                <MenuItem 
-                                    Text="Delete"
-                                    IsDestructive="true"
-                                    Command="{Binding DeleteCategoryCommand}"/>
-                        </ViewCell.ContextActions>
-                        
-<!--                        ViewCell content-->
-                        <StackLayout Padding="20">
-                            <Label Text="{Binding }"></Label>
+                    <ViewCell IsEnabled="false">
+                        <StackLayout 
+                            BackgroundColor="#26a1e2" 
+                            Margin="20,10,20,10" 
+                            Padding="0,0,0,20" 
+                            HorizontalOptions="Fill" 
+                            VerticalOptions="Center">
+
+                            <StackLayout 
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center" 
+                                Padding="10">
+                                
+                                <Label 
+                                    Text="{Binding }" 
+                                    FontSize="25" 
+                                    TextColor="White"></Label>
+                            </StackLayout>
                         </StackLayout>
-        
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
