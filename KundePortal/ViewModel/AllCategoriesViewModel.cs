@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
+using KundePortal.Model;
 
 namespace KundePortal.ViewModel
 {
@@ -12,10 +13,12 @@ namespace KundePortal.ViewModel
         ObservableCollection<SelectWrapper> _allCategories;
         ObservableCollection<string> _selectedCategories;
         QuestionService _question;
+        UserService _userService;
 
         public AllCategoriesViewModel()
         {
             _question = new QuestionService();
+            _userService = new UserService();
             _allCategories = new ObservableCollection<SelectWrapper>();
             _selectedCategories = new ObservableCollection<string>();
             SaveSelectedCommand = new Command(SaveSelected);
@@ -23,26 +26,46 @@ namespace KundePortal.ViewModel
             GetAllCategories();
         }
 
-        void GetAllCategories(){
+        // Get all main categories from API
+        async void GetAllCategories()
+        {
+            List<String> test = await _question.GetMainCategories();
 
-            // Get properties from API 
-            List<String> test = _question.GetMainCategories();
+            // Check if any maincategory is already subscribed to
             foreach(var mainCategory in test)
             {
-                _allCategories.Add(new SelectWrapper { IsSelected = false, Item = mainCategory });
+                if(APIService.currentUser.categories.Contains(mainCategory)){
+                    _allCategories.Add(new SelectWrapper { IsSelected = true, Item = mainCategory });
+                }
+                else{
+                    _allCategories.Add(new SelectWrapper { IsSelected = false, Item = mainCategory });
+                }
             }
         }
 
-        void SaveSelected(){
+        // Save selections
+        async void SaveSelected(){
 
+            List<string> allSubs = new List<string>();
+
+            // Check if new subscription or remove subscription
             foreach (var item in _allCategories)
             {
                 if(item.IsSelected){
-                    SelectedCategories.Add(item.Item);
+                    allSubs.Add(item.Item);
                 }
             }
 
-            // Push list to API 
+            ResponseAPI res = await _userService.PutSub(allSubs);
+
+            if(res.success){
+                APIService.currentUser.categories = allSubs;
+
+                await Application.Current.MainPage.Navigation.PopAsync(true);
+            }
+            else{
+                await Application.Current.MainPage.DisplayAlert("Update", res.message, "OK");
+            }
         }
 
         #region Properties

@@ -59,6 +59,13 @@ namespace KundePortal.Services
             ResponseAPI res = await API.Put(baseRoute + id, user);
             return res;
         }
+
+        // Update subs on user
+        async public Task<ResponseAPI> PutSub(List<string> subs){
+            string url = baseRoute + APIService.currentUser._id + "/subs";
+            ResponseAPI res = await API.Put(url, subs);
+            return res;
+        }
     }
 
     class LoginForm

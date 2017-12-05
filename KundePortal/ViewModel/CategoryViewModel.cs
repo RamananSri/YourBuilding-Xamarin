@@ -20,6 +20,7 @@ namespace KundePortal.ViewModel
         public CategoryViewModel()
         {
             qs = new QuestionService();
+            _allCategories = new ObservableCollection<string>();
 
             if (parentCategory != null)
             {
@@ -34,10 +35,13 @@ namespace KundePortal.ViewModel
             AccountCommand = new Command(NavigateAccount);
         }
 
-        void GetMainCategories()
+        async void GetMainCategories()
         {
-            List<string> Categories = qs.GetMainCategories();
-            _allCategories = new ObservableCollection<string>(Categories);
+            List<string> categories = await qs.GetMainCategories();
+            foreach (var item in categories)
+            {
+                _allCategories.Add(item);
+            }
         }
 
         void GetSubCategories()
