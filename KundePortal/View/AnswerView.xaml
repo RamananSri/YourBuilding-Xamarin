@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="KundePortal.View.AnswerView"
+    xmlns:viewmodel="clr-namespace:KundePortal.ViewModel">
+
+    <ContentPage.BindingContext>
+        <viewmodel:AnswerViewModel></viewmodel:AnswerViewModel>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding SelectedAnswer.userName}"/>
+                <StackLayout>
+                    <Label Text="{Binding SelectedAnswer.description}" FontSize="20"/>
+                    <Label Text="Likes" HorizontalTextAlignment="End" FontSize="20"/>
+                    <Label Text="{Binding SelectedAnswer.likeCounter}" HorizontalTextAlignment="End" FontSize="20"/>
+                </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

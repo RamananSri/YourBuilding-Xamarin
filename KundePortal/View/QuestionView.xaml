@@ -34,7 +34,7 @@
             <Label Text="Spørgsmål:" Grid.Row="1" Grid.ColumnSpan="3"></Label>
             <Label Text="{Binding Question.description}" Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="White"></Label>
             <Label Text="Svar på spørgsmål:" Grid.Row="3" Grid.ColumnSpan="3"></Label>
-            <ListView ItemsSource="{Binding AnswerList}" Grid.Row="4" Grid.ColumnSpan="3" HasUnevenRows="True">
+            <ListView SelectedItem="{Binding SelectedAnswer}" ItemsSource="{Binding AnswerList}" Grid.Row="4" Grid.ColumnSpan="3" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

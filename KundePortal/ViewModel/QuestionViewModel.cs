@@ -14,6 +14,8 @@ namespace KundePortal.ViewModel
 {
     public class QuestionViewModel : INotifyPropertyChanged
     {
+        public static AnswerModel _selectedAnswer;
+
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand openAnswerQuestionCommand { get; private set; }
 
@@ -47,6 +49,12 @@ namespace KundePortal.ViewModel
             }
         }
 
+        async void goToAnswer()
+        {
+            INavigation nav = Application.Current.MainPage.Navigation;
+            await nav.PushAsync(new AnswerView());
+        }
+
         #region properties
 
         public QuestionModel Question
@@ -70,6 +78,21 @@ namespace KundePortal.ViewModel
             }
         }
 
+        public AnswerModel SelectedAnswer
+        {
+            get
+            {
+                return _selectedAnswer;
+            }
+            set
+            {
+                _selectedAnswer = value;
+                if(_selectedAnswer != null)
+                {
+                    goToAnswer();
+                }
+            }
+        }
         
 
 
