@@ -9,13 +9,14 @@ namespace KundePortal.ViewModel
 {
     public class ProMyCategoriesViewModel
     {
-
         UserService service;
         ObservableCollection<string> _myCategories;
         public ICommand DeleteCategoryCommand { get; private set; }
         public ICommand AddCategoryCommand { get; private set; }
 
-        public ProMyCategoriesViewModel(){
+        // Constructor
+        public ProMyCategoriesViewModel()
+        {
             service = new UserService();
             _myCategories = new ObservableCollection<string>();
             DeleteCategoryCommand = new Command(DeleteCategory);
@@ -24,34 +25,39 @@ namespace KundePortal.ViewModel
             GetCategories();
         }
 
-        void GetCategories(){
-
-            if(APIService.currentUser.subscriptions != null){
-                foreach (var item in APIService.currentUser.subscriptions)
+        // Populate list with user subscriptions
+        void GetCategories()
+        {
+            if(APIService.currentUser.categories != null){
+                foreach (var item in APIService.currentUser.categories)
                 {
                     _myCategories.Add(item);
                 }
             }
         }
 
-        async void AddCategory(){
+        // Navigate to AllCategoriesView
+        async void AddCategory()
+        {
             INavigation nav = Application.Current.MainPage.Navigation;
             await nav.PushAsync(new AllCategoriesView());
         }
 
-        void DeleteCategory(){
+        void DeleteCategory()
+        {
             _myCategories.Add("hej"); 
         }
 
         #region Properties
 
-
         public ObservableCollection<String> MyCategories
         { 
-            get{
+            get
+            {
                 return _myCategories;     
             }
-            set{
+            set
+            {
                 _myCategories = value;
             }
         }

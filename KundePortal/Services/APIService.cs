@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using KundePortal.Model;
@@ -16,50 +17,89 @@ namespace KundePortal.Services
 
         public APIService()
         {
-            baseAddress = "http://165.227.137.112/";
+            baseAddress = "http://localhost:3000/";
+            //baseAddress = "http://165.227.137.112/";
             client = new HttpClient();
             client.DefaultRequestHeaders.Add("token", token);
-
             // consume entity/close connection? 
         }
 
         // Post 
         public async Task<ResponseAPI> Post<T>(string url, T obj)
         {
-            var address = baseAddress + url;
-            var data = Serialize(obj);
-            var response = await client.PostAsync(address, data);
-            ResponseAPI result = await Deserialize<ResponseAPI>(response);
-            return result;
+            try
+            {
+                var address = baseAddress + url;
+                var data = Serialize(obj);
+                var response = await client.PostAsync(address, data);
+                ResponseAPI result = await Deserialize<ResponseAPI>(response);
+                return result;
+            }
+            catch (HttpRequestException)
+            {
+                return new ResponseAPI { success = false, message = "Ingen fobindelse" };
+            }
+            catch (JsonException)
+            {
+                return new ResponseAPI { success = false, message = "Data fejl - prøv igen" };
+            }
         }
 
         // Get
         public async Task<T> Get<T>(string url)
         {
-            var address = baseAddress + url;
-            var response = await client.GetAsync(address);
-            T result = await Deserialize<T>(response);
-            return result;
+            try
+            {
+                var address = baseAddress + url;
+                var response = await client.GetAsync(address);
+                T result = await Deserialize<T>(response);
+                return result;
+            }
+            catch (Exception)
+            {
+                return default(T);
+            }
         }
 
         // Put
         public async Task<ResponseAPI> Put<T>(string url, T obj)
         {
-            var address = baseAddress + url;
-            var data = Serialize(obj);
-            var response = await client.PutAsync(address, data);
-            ResponseAPI result = await Deserialize<ResponseAPI>(response);
-            return result;
+            try
+            {
+                var address = baseAddress + url;
+                var data = Serialize(obj);
+                var response = await client.PutAsync(address, data);
+                ResponseAPI result = await Deserialize<ResponseAPI>(response);
+                return result;
+            }
+            catch (HttpRequestException)
+            {
+                return new ResponseAPI { success = false, message = "Ingen fobindelse" };
+            }
+            catch (JsonException)
+            {
+                return new ResponseAPI { success = false, message = "Data fejl - prøv igen" };
+            }
         }
 
         // Delete
         public async Task<ResponseAPI> Delete(string url)
         {
-            var address = baseAddress + url;
-            
-            var response = await client.DeleteAsync(address);
-            ResponseAPI result = await Deserialize<ResponseAPI>(response);
-            return result;
+            try
+            {
+                var address = baseAddress + url;
+                var response = await client.DeleteAsync(address);
+                ResponseAPI result = await Deserialize<ResponseAPI>(address);
+                return result;
+            }
+            catch (HttpRequestException)
+            {
+                return new ResponseAPI { success = false, message = "Ingen fobindelse" };
+            }
+            catch (JsonException)
+            {
+                return new ResponseAPI { success = false, message = "Data fejl - prøv igen" };
+            }
         }
 
         // JSON serialize

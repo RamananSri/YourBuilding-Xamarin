@@ -13,6 +13,6 @@ namespace KundePortal.Model
         public string password { get; set; }
         public string newPassword { get; set; }
         public string cvr { get; set; }
-        public List<string> subscriptions { get; set; }
+        public List<string> categories { get; set; }
     }
 }

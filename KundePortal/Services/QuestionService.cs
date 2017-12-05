@@ -23,16 +23,11 @@ namespace KundePortal.Services
             return questions;
         }
 
-        public List<string> GetMainCategories()
+        async public Task<List<string>> GetMainCategories()
         {
-            List<string> MainCategories = new List<string>();
-            MainCategories.Add("Vand");
-            MainCategories.Add("Varme");
+            string url = baseRoute + "1/categories";
+            List<string> MainCategories = await API.Get<List<string>>(url);
             return MainCategories;
-
-            //string url = baseRoute + "maincategories";
-            //List<string> categories = await API.Get<List<string>>(url);
-
         }
 
         public List<string> GetSubCategories(string mainCategory)
