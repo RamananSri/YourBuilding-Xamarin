@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using KundePortal.Utility;
 
 namespace KundePortal.ViewModel
 {

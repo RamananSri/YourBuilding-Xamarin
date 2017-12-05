@@ -99,7 +99,6 @@ namespace KundePortal.Utility
             catch (JsonException)
             {
                 return new ResponseAPI { success = false, message = "Data fejl - prøv igen" };
-<<<<<<< HEAD:KundePortal/Utility/APIService.cs
             }
         }
 
@@ -124,29 +123,3 @@ namespace KundePortal.Utility
         }
     }
 }
-=======
-            }
-        }
-
-        // JSON serialize
-        StringContent Serialize<T>(T obj)
-        {
-            var json = JsonConvert.SerializeObject(obj);
-            StringContent stringify = new StringContent(json, Encoding.UTF8, "application/json");
-            return stringify;
-        }
-
-        // JSON deserialize
-        async Task<T> Deserialize<T>(object res){
-            
-            if (res is string){
-                return JsonConvert.DeserializeObject<T>((string)res);
-            }
-
-            HttpResponseMessage mes = (HttpResponseMessage)res;
-            var content = await mes.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(content);
-        }
-    }
-}
->>>>>>> 81658ebed819019cf176b9e1432d15dd9cb73722:KundePortal/Services/APIService.cs
