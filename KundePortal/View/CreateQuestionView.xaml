@@ -18,10 +18,9 @@
             <Editor HeightRequest="300" Text="{Binding Question.description}"></Editor>
             <Picker Title="Vælg en kategori" ItemsSource="{Binding CategoryList}" SelectedItem="{Binding CategoryPicker}" >            
         </Picker>
-        
-        <Picker Title="Vælg en underkategori" ItemsSource="{Binding SubCategoryList}" SelectedItem="{Binding SubCategoryPicker}">
-        </Picker>
-            <Label Text="{Binding Alert}" TextColor="Red"></Label>
+
+            <Picker Title="Vælg en underkategori" ItemsSource="{Binding SubCategoryList}" SelectedItem="{Binding SubCategoryPicker}">
+            </Picker>
             <Button Text="Opret" Command="{Binding createQuestionCommand}" />
             
     </StackLayout>

@@ -20,7 +20,6 @@ namespace KundePortal.ViewModel
 
         AnswerModel _answer;
         AnswerService answerService;
-        string _alert;
         QuestionModel _question;
         public static QuestionModel question;
         string questionId;
@@ -47,11 +46,11 @@ namespace KundePortal.ViewModel
             ResponseAPI result = await answerService.Create(Answer);
             if (result.success)
             {
-                Alert = result.message;
+                await App.Current.MainPage.DisplayAlert("Svar på spørgsmål", result.message, "OK");
             }
             else
             {
-                Alert = result.message;
+                await App.Current.MainPage.DisplayAlert("Svar på spørgsmål", result.message, "OK");
             }
         }
 
@@ -82,19 +81,6 @@ namespace KundePortal.ViewModel
             set
             {
                 _question = value;
-            }
-        }
-
-        public string Alert
-        {
-            get
-            {
-                return _alert;
-            }
-            set
-            {
-                _alert = value;
-                PropertyChangedCheck("Alert");
             }
         }
 
