@@ -41,6 +41,14 @@ namespace KundePortal.ViewModel
 
         async void createQuestion()
         {
+            if(string.IsNullOrEmpty(_question.title)&&
+               string.IsNullOrEmpty(_question.description)&&
+               string.IsNullOrEmpty(_categoryPicker)&&
+               string.IsNullOrEmpty(_subCategoryPicker))
+            {
+                await Application.Current.MainPage.DisplayAlert("Opretning af spørgsmål", "udfyld venligst alle felter", "OK");
+                return;
+            }
             ResponseAPI result = await questionService.Create(Question);
             if (result.success)
             {
