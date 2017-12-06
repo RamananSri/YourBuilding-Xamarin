@@ -18,25 +18,17 @@
             <TableView>
                 <TableView.Root>
                     <TableSection>
-                        <EntryCell Text="{Binding User.name}" Label="Navn:" Placeholder="Indtast navn..." Keyboard="Text"></EntryCell>
-                        <EntryCell Text="{Binding User.email}" Label="Email:" Placeholder="Indtast email..." Keyboard="Email"></EntryCell>
-                        <EntryCell Text="{Binding User.phone}" Label="Telefon:" Placeholder="Indtast telefon..." Keyboard="Telephone"></EntryCell>
-                        <EntryCell Text="{Binding User.address}" Label="Adresse:" Placeholder="Indtast adresse..." Keyboard="Text"></EntryCell>
-                        <SwitchCell On="{Binding SwitchValue}"  Text="Skift password"></SwitchCell>
+                        <EntryCell Text="{Binding User.name}" Label="Navn:" Placeholder="Indtast navn" Keyboard="Text"/>
+                        <EntryCell Text="{Binding User.email}" Label="Email:" Placeholder="Indtast email" Keyboard="Email"/>
+                        <EntryCell Text="{Binding User.phone}" Label="Telefon:" Placeholder="Indtast telefon" Keyboard="Telephone"/>
+                        <EntryCell Text="{Binding User.address}" Label="Adresse:" Placeholder="Indtast adresse" Keyboard="Text"/>
+                        <EntryCell Text="{Binding User.password}" Label="Nuværende kodeord:" Placeholder="Indtast Kodeord" Keyboard="Email"/>
+                        <SwitchCell On="{Binding SwitchValue}"  Text="Skift password"/>
+                        <EntryCell IsEnabled="{Binding SwitchValue}" Text="{Binding User.newPassword}" Placeholder="Nyt password" Keyboard="Email"/>
+                        <EntryCell IsEnabled="{Binding SwitchValue}" Text="{Binding PassValidation}" Placeholder="Gentag nyt password" Keyboard="Email"/>
                     </TableSection>
-                </TableView.Root>
+                </TableView.Root>           
             </TableView>
-            <TableView IsVisible="{Binding SwitchValue}">
-                <TableView.Root>
-                    <TableSection>
-                        <EntryCell Text="{Binding User.password}" Placeholder="Nuværende password..."></EntryCell>
-                        <EntryCell Text="{Binding User.newPassword}" Placeholder="Nyt password..."></EntryCell>
-                        <EntryCell Text="{Binding User.newPassword}" Placeholder="Gentag nyt password..."></EntryCell>
-                    </TableSection>
-                </TableView.Root>
-            </TableView>
-            <Label Text="{Binding Alert}" TextColor="Red"></Label>
-            
             <Button Command="{Binding updateCommand}" Text="Opdatér"></Button>
             <Button Command="{Binding deleteCommand}" Text="Slet bruger" BackgroundColor="Red"></Button>
     </StackLayout>
