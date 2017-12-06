@@ -21,12 +21,9 @@ namespace KundePortal.ViewModel
         {
             _selectedQuestion = null;
             _questionsList = new ObservableCollection<QuestionModel>();
-
             qService = new QuestionService();
             getAllQuestions();
-
             CreateQuestionCommand = new Command(Navigate);
-
         }
 
         async void Navigate(){
@@ -51,20 +48,24 @@ namespace KundePortal.ViewModel
 
         public ObservableCollection<QuestionModel> QuestionsList 
         { 
-            get{
+            get
+            {
                 return _questionsList;
             } 
-            set{
+            set
+            {
                 _questionsList = value;
             } 
         }
 
         public QuestionModel SelectedQuestion 
         { 
-            get{
+            get
+            {
                 return _selectedQuestion;
             } 
-            set{
+            set
+            {
                 _selectedQuestion = value;
                 if(_selectedQuestion != null){
                     navigate();

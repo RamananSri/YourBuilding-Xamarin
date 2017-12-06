@@ -12,82 +12,108 @@ namespace KundePortal.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ICommand switchCommand { get; private set; }    
-        public ICommand updateCommand { get; private set; }
-        public ICommand logoutCommand { get; private set; }
-        public ICommand deleteCommand { get; private set; }
-
         APIService API;
         UserService userService;
 
         string _alert;
         UserModel _user;
         bool _switchValue;
+        string _passValidation;
+
+        // Constructor
         public ViewUserViewModel()
+        {         
+            userService = new UserService();
+            API = new APIService();
+            initCommands();
+            loadCurrentUser();
+        }
+
+        // Initialise commands
+        void initCommands()
         {
             logoutCommand = new Command(Logout);
             updateCommand = new Command(Update);
             deleteCommand = new Command(Delete);
-
-            userService = new UserService();
-            _switchValue = new bool();
-
-            _user = new UserModel
-            {
-            _id = APIService.currentUser._id,
-            phone = APIService.currentUser.phone,
-            name = APIService.currentUser.name,
-            address = APIService.currentUser.address,
-            email = APIService.currentUser.email,
-            cvr = APIService.currentUser.cvr
-            };
-            API = new APIService();
-
-            APIService.currentUser = _user;
-            
         }
 
+        // Fill viewmodel user with information from current user 
+        void loadCurrentUser()
+        {
+            _user = new UserModel
+            {
+                _id = APIService.currentUser._id,
+                phone = APIService.currentUser.phone,
+                name = APIService.currentUser.name,
+                address = APIService.currentUser.address,
+                email = APIService.currentUser.email,
+                cvr = APIService.currentUser.cvr
+            };
+        }
+
+        // Delete user (validating action with dialog)
         async void Delete()
         {
-                var page = await App.Current.MainPage.DisplayAlert("Slet bruger", "Ønsker du virkelig at slette din bruger?", "Nej", "ja");
-                if(page == true)
+            var page = await App.Current.MainPage.DisplayAlert("Slet bruger", "Ønsker du at slette din bruger?", "Nej", "ja");
+                
+            if(!page)
+            {
+                ResponseAPI result = await userService.Delete(_user._id);
+                if (!result.success)
                 {
+                    await App.Current.MainPage.DisplayAlert("Fejl", result.message, "OK");
                     return;
+                }
+                await Application.Current.MainPage.Navigation.PopToRootAsync();
+            }
+        }
+
+        // Update user  
+        async void Update()
+        {
+            // Check if entries are empty  
+            if(string.IsNullOrEmpty(_user.name) ||
+               string.IsNullOrEmpty(_user.address) ||
+               string.IsNullOrEmpty(_user.email) ||
+               string.IsNullOrEmpty(User.phone))
+            {
+                await App.Current.MainPage.DisplayAlert("Opdatering af bruger", "Udfyld venligst alle felter", "OK");
+                return;           
+            }
+
+            // Check if new password matches if present
+            if(_switchValue && _user.newPassword != _passValidation){
+                await App.Current.MainPage.DisplayAlert("Opdatering af bruger", "Nye kodeord matcher ikke", "OK");
+                return; 
+            }
+
+            // Call API to update user
+            ResponseAPI result = await userService.Update(_user._id, _user);
+
+                // If successs show dialog, update currentuser and pop page
+                if (result.success)
+                {
+                    await App.Current.MainPage.DisplayAlert("Opdatering af bruger", result.message, "OK");
+                    APIService.currentUser.name = _user.name;
+                    APIService.currentUser.address = _user.address;
+                    APIService.currentUser.email = _user.email;
+                    APIService.currentUser.phone = _user.phone;
+                    await Application.Current.MainPage.Navigation.PopAsync();
                 }
                 else
                 {
-                    ResponseAPI result = await userService.Delete(_user._id);
-                    if (result.success)
-                    {
-                        Alert = result.message;
-                    }
-                    INavigation nav = Application.Current.MainPage.Navigation;
-                    await nav.PopToRootAsync();
-                }
+                    await App.Current.MainPage.DisplayAlert("Opdatering af bruger", result.message, "OK");
+                }           
         }
 
-        async void Update()
-        {
-            ResponseAPI result = await userService.Update(_user._id, _user);
-            if (result.success)
-            {
-                await App.Current.MainPage.DisplayAlert("Opdatering af bruger", result.message, "OK");
-                await Application.Current.MainPage.Navigation.PopAsync();
-            }
-            else
-            {
-                await App.Current.MainPage.DisplayAlert("Opdatering af bruger", result.message, "OK");
-                return;
-            }
-        }
-
+        // Logout
         async void Logout()
         {
             userService.Logout();
-            INavigation nav = Application.Current.MainPage.Navigation;
-            await nav.PopToRootAsync();
+            await Application.Current.MainPage.Navigation.PopToRootAsync();
         }
 
+        // PropertyChanged check
         void PropertyChangedCheck(string prop)
         {
             if (PropertyChanged != null)
@@ -95,14 +121,13 @@ namespace KundePortal.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
         #region Properties
 
         public UserModel User
         {
-            get
-            {
-                return _user;                
-            }
+            get => _user;
+
             set
             {
                 _user = value;
@@ -120,12 +145,20 @@ namespace KundePortal.ViewModel
                 PropertyChangedCheck("SwitchValue");
             }
         }
+
+        public string PassValidation 
+        {
+            get => _passValidation; 
+
+            set
+            {
+                _passValidation = value;
+            } 
+        }
+
         public string Alert
         {
-            get
-            {
-                return _alert;
-            }
+            get => _alert;
             set
             {
                 _alert = value;
@@ -133,82 +166,11 @@ namespace KundePortal.ViewModel
             }
         }
 
+        public ICommand switchCommand { get; private set; }
+        public ICommand updateCommand { get; private set; }
+        public ICommand logoutCommand { get; private set; }
+        public ICommand deleteCommand { get; private set; }
+
         #endregion Properties
     }
 }
-
-//HttpClient client;
-//string url;
-//JsonResponse loggedIn;
-
-
-//public ViewUserPage()
-//{
-//    InitializeComponent();
-
-//    client = new HttpClient();
-//    //url = ConnectionAPI.Instance.url + "api/users/" + LoginPage.loggedIn.user._id;
-
-//    //loggedIn = LoginPage.loggedIn;
-
-//    nameEntry.Text = loggedIn.user.name;
-//    addressEntry.Text = loggedIn.user.address;
-//    phoneEntry.Text = loggedIn.user.phone;
-//    emailEntry.Text = loggedIn.user.email;
-//    tableSectionUser.Title = "Du er logget ind som " + loggedIn.user.name;
-//}
-
-//async void updateUserBtn_clickedAsync(object sender, System.EventArgs e)
-//{
-
-//    var name = nameEntry.Text;
-//    var address = addressEntry.Text;
-//    var phone = phoneEntry.Text;
-//    var email = emailEntry.Text;
-//    var password = passwordEntry.Text;
-//    var newPassword = newPasswordEntryAgain.Text;
-
-//    if (!String.IsNullOrEmpty(name) &&
-//       !String.IsNullOrEmpty(address) &&
-//       !String.IsNullOrEmpty(phone) &&
-//        !String.IsNullOrEmpty(email) &&
-//        !String.IsNullOrEmpty(password))
-
-//    {
-//        User user = new User { _id = loggedIn.user._id, name = name, address = address, phone = phone, email = email, password = password, newPassword = newPassword };
-//        if (userSwitch.On && !String.IsNullOrEmpty(newPasswordEntry.Text) && !String.IsNullOrEmpty(newPasswordEntryAgain.Text))
-//        {
-//            user.newPassword = newPassword;
-//        }
-
-//        var userSerial = JsonConvert.SerializeObject(user);
-//        //client.DefaultRequestHeaders.Add("token", LoginPage.loggedIn.token);
-
-//        var res = await client.PutAsync(url, new StringContent(userSerial, Encoding.UTF8, "application/json"));
-//        var content = await res.Content.ReadAsStringAsync();
-//        JsonResponse response = JsonConvert.DeserializeObject<JsonResponse>(content);
-
-//        //if(response.statusCode == "1"){
-//        //    passwordEntry.LabelColor = Color.Red;
-//        //}
-
-//        if (response.success)
-//        {
-//            //LoginPage.loggedIn = null;
-//            await DisplayAlert("Opdateret", "Din bruger er opdateret", "OK");
-//            await Navigation.PopToRootAsync();
-//        }
-//        else
-//        {
-//            await DisplayAlert("Alert", response.message, "OK");
-//        }
-
-//    }
-//}
-
-//void logOutBtn_clicked(object sender, System.EventArgs e)
-//{
-//    //LoginPage.loggedIn = null;
-//    Navigation.PopToRootAsync();
-
-//}
