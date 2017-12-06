@@ -23,7 +23,7 @@
     <ContentPage.Content>
          
         <ListView 
-            SelectedItem="{Binding MainCategory}" 
+            SelectedItem="{Binding SelectedCategory}" 
             ItemsSource="{Binding AllCategories}" 
             HasUnevenRows="true"
             BackgroundColor="White" 

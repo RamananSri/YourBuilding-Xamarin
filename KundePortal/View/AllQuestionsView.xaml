@@ -19,13 +19,28 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" Padding="10">
-                            <StackLayout>
-                                <Label Text="{Binding title}"></Label>
-                                <Label Text="{Binding userId}" FontSize="Small"></Label>
+                        <StackLayout 
+                            Orientation="Horizontal" 
+                            Padding="10">
+                            <StackLayout 
+                                HorizontalOptions="StartAndExpand">
+                                <Label 
+                                    Text="{Binding title}"/>
+                                <Label 
+                                    Text="{Binding userId}" 
+                                    FontSize="Small"/>
                             </StackLayout>
-                            <StackLayout>
-                                <Label Text="{Binding likeCounter}"></Label>
+                            <StackLayout 
+                                HorizontalOptions="EndAndExpand" 
+                                VerticalOptions="Center"
+                                Orientation="Horizontal">
+                                <Label 
+                                    Text="{Binding likeCounter}"
+                                    FontSize="15"
+                                    VerticalOptions="Center"/>
+                                <Button 
+                                    Image="like.png"
+                                    Command="{Binding AddLike}"/>
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>

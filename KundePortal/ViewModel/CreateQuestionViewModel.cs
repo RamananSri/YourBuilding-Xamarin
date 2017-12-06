@@ -1,72 +1,54 @@
 ﻿using KundePortal.Model;
 using KundePortal.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using KundePortal.Utility;
+using System;
 
 namespace KundePortal.ViewModel
 {
-    public class CreateQuestionViewModel : INotifyPropertyChanged
+    public class CreateQuestionViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public ICommand createQuestionCommand { get; private set; }
-
-        ObservableCollection<string> _categoryList;
-        ObservableCollection<string> _subCategoryList;
-
+        string _mainCategory;
+        string _subCategory;
         QuestionModel _question;
         QuestionService questionService;
-
-        string _categoryPicker;
-        string _subCategoryPicker;
 
         public CreateQuestionViewModel()
         {
             createQuestionCommand = new Command(createQuestion);
-
-            _categoryList = new ObservableCollection<string>();
-            _subCategoryList = new ObservableCollection<string>();
             _question = new QuestionModel();
             questionService = new QuestionService();
-            _categoryList.Add("hej");
-            _subCategoryList.Add("hejhej");
+            _mainCategory = CategoryViewModel._parentCategory;
+            _subCategory = CategoryViewModel._childCategory;
         }
 
         async void createQuestion()
         {
-            if(string.IsNullOrEmpty(_question.title)&&
-               string.IsNullOrEmpty(_question.description)&&
-               string.IsNullOrEmpty(_categoryPicker)&&
-               string.IsNullOrEmpty(_subCategoryPicker))
+            if(string.IsNullOrEmpty(_question.title) || string.IsNullOrEmpty(_question.description))
             {
                 await Application.Current.MainPage.DisplayAlert("Opretning af spørgsmål", "udfyld venligst alle felter", "OK");
                 return;
             }
+
+            _question.category = _mainCategory;
+            _question.subCategory = _subCategory;
+            _question.userId = APIService.currentUser.name;
+            _question.questionDate = DateTime.Now.ToString("dd/MM/yyyy"); 
+
+
+
             ResponseAPI result = await questionService.Create(Question);
             if (result.success)
             {
                 await Application.Current.MainPage.DisplayAlert("Opretning af spørgsmål", result.message, "OK");
+                await Application.Current.MainPage.Navigation.PopAsync();
             }
             else
             {
                 await Application.Current.MainPage.DisplayAlert("Opretning af spørgsmål", result.message, "OK");
-            }
-        }
-
-
-
-        void PropertyChangedCheck(string prop)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
 
@@ -82,47 +64,32 @@ namespace KundePortal.ViewModel
             }
         }
 
-        public ObservableCollection<string> CategoryList
-        {
-            get => _categoryList;
-
-            set
+        public string MainCategory 
+        { 
+            get
             {
-                _categoryList = value;
+                return _mainCategory;
+            }
+            private set
+            {
+                _mainCategory = value;    
+            } 
+        }
+
+        public string SubCategory 
+        { 
+            get
+            {
+                return _subCategory;
+            }
+            private set
+            {
+                _subCategory = value;       
             }
         }
 
-        public ObservableCollection<string> SubCategoryList
-        {
-            get => _subCategoryList;
+        public ICommand createQuestionCommand { get; private set; }
 
-            set
-            {
-                _subCategoryList = value;
-            }
-        }
-
-        public string CategoryPicker
-        {
-            get => _categoryPicker;
-            set
-            {
-                _categoryPicker = value;
-                Question.category = value;
-                PropertyChangedCheck("CategoryPicker");
-            }
-        }
-
-        public string SubCategoryPicker
-        {
-            get => _subCategoryPicker;
-            set
-            {
-                _subCategoryPicker = value;
-                Question.subCategory = value;
-                PropertyChangedCheck("SubCategoryPicker");
-            }
-        }
         #endregion
 
     }

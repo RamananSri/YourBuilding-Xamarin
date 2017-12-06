@@ -9,7 +9,8 @@ namespace KundePortal.ViewModel
 {
     public class CategoryViewModel
     {
-        public static string parentCategory;
+        public static string _childCategory;
+        public static string _parentCategory;
         QuestionService qs;
         bool isSubCategory;
         ObservableCollection<string> _allCategories;
@@ -18,18 +19,23 @@ namespace KundePortal.ViewModel
         {
             qs = new QuestionService();
             _allCategories = new ObservableCollection<string>();
+            AccountCommand = new Command(NavigateAccount);
+            determineCategoryType();
+        }
 
-            if (parentCategory != null)
+        // Show main or sub logic
+        void determineCategoryType(){
+            if (_childCategory != null)
             {
+                _parentCategory = _childCategory;
                 isSubCategory = true;
-                GetCategories(parentCategory);
+                GetCategories(_childCategory);
             }
-            else {
+            else
+            {
                 isSubCategory = false;
                 GetCategories("Main");
             }
-
-            AccountCommand = new Command(NavigateAccount);
         }
 
         async void GetCategories(string category)
@@ -55,19 +61,22 @@ namespace KundePortal.ViewModel
             await Application.Current.MainPage.Navigation.PushAsync(new ViewUserView());
         }
 
-        public string MainCategory
+        #region Properties
+
+        public string SelectedCategory
         {
             get
             {   
-                return parentCategory;
+                return _childCategory;
             }
             set
             {
-                
-                parentCategory = value;
+                _childCategory = value;
 
-                if(parentCategory != null){
+                if (_childCategory != null)
+                {
                     Navigate();
+                    return;
                 }
             }
         }
@@ -97,5 +106,7 @@ namespace KundePortal.ViewModel
         }
 
         public ICommand AccountCommand { get; private set; }
+
+        #endregion
     }
 }

@@ -12,9 +12,7 @@ namespace KundePortal.ViewModel
     public class AllQuestionsViewModel
     {
         public static QuestionModel _selectedQuestion;
-
         ObservableCollection<QuestionModel> _questionsList;
-
         QuestionService qService;
 
         public AllQuestionsViewModel()
@@ -24,6 +22,11 @@ namespace KundePortal.ViewModel
             qService = new QuestionService();
             getAllQuestions();
             CreateQuestionCommand = new Command(Navigate);
+            AddLike = new Command(addLike);
+        }
+
+        void addLike(){
+            
         }
 
         async void Navigate(){
@@ -32,7 +35,7 @@ namespace KundePortal.ViewModel
 
         async void getAllQuestions()
         {
-            List<QuestionModel> questions = await qService.GetBySubcategory(CategoryViewModel.parentCategory);
+            List<QuestionModel> questions = await qService.GetBySubcategory(CategoryViewModel._childCategory);
             foreach (var item in questions)
             {
                 _questionsList.Add(item);
@@ -74,6 +77,7 @@ namespace KundePortal.ViewModel
         }
 
         public ICommand CreateQuestionCommand { get; private set; }
+        public ICommand AddLike { get; private set; }
 
         #endregion
     }

@@ -52,7 +52,7 @@ namespace KundePortal.Services
 
         // Create question
         async public Task<ResponseAPI> Create(QuestionModel question){
-            ResponseAPI response = await API.Put(baseRoute, question);
+            ResponseAPI response = await API.Post(baseRoute, question);
             return response;        
         }
     }
