@@ -24,7 +24,6 @@ namespace KundePortal.ViewModel
         QuestionModel _question;
         QuestionService questionService;
 
-        string _alert;
         string _categoryPicker;
         string _subCategoryPicker;
 
@@ -116,20 +115,6 @@ namespace KundePortal.ViewModel
                 PropertyChangedCheck("SubCategoryPicker");
             }
         }
-
-        public string Alert
-        {
-            get
-            {
-                return _alert;
-            }
-            set
-            {
-                _alert = value;
-                PropertyChangedCheck("Alert");
-            }
-        }
-
         #endregion
 
     }

@@ -12,7 +12,6 @@ namespace KundePortal.ViewModel
     {
         UserService service;
         ObservableCollection<string> _myCategories;
-        public ICommand DeleteCategoryCommand { get; private set; }
         public ICommand AddCategoryCommand { get; private set; }
 
         // Constructor
@@ -20,7 +19,6 @@ namespace KundePortal.ViewModel
         {
             service = new UserService();
             _myCategories = new ObservableCollection<string>();
-            DeleteCategoryCommand = new Command(DeleteCategory);
             AddCategoryCommand = new Command(AddCategory);
 
             GetCategories();
@@ -42,11 +40,6 @@ namespace KundePortal.ViewModel
         {
             INavigation nav = Application.Current.MainPage.Navigation;
             await nav.PushAsync(new AllCategoriesView());
-        }
-
-        void DeleteCategory()
-        {
-            _myCategories.Add("hej"); 
         }
 
         #region Properties

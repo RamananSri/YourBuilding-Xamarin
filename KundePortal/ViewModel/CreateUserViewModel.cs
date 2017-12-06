@@ -23,7 +23,6 @@ namespace KundePortal.ViewModel
             User = new UserModel();
             userService = new UserService();
             CreateUserCommand = new Command(CreateUser);
-            Error = "";
         }
 
         // Create user - API call
@@ -31,7 +30,7 @@ namespace KundePortal.ViewModel
 
             // check if password matches
             if(User.password != RepeatPass){
-                Error = "Kodeord matcher ikke";
+                await App.Current.MainPage.DisplayAlert("Opretning af bruger", "Kodeord matcher ikke", "OK");
                 return;
             }
 
@@ -46,7 +45,7 @@ namespace KundePortal.ViewModel
             }
             // Else print error message from API response
             else{
-                Error = res.message;
+                await App.Current.MainPage.DisplayAlert("Opretning af bruger", res.message, "OK");
             }
         } 
 
@@ -78,17 +77,6 @@ namespace KundePortal.ViewModel
             } 
             set{
                 _repeatPass = value;
-            } 
-        }
-
-        public string Error 
-        {
-            get{
-                return _error;
-            } 
-            set{
-                _error = value;
-                PropertyChangedCheck("Error");
             } 
         }
 

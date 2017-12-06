@@ -22,7 +22,6 @@ namespace KundePortal.ViewModel
 
         string _username;
         string _password;
-        string _alert;
 
         public LoginViewModel()
         {
@@ -43,7 +42,6 @@ namespace KundePortal.ViewModel
         // Login - call API, check if success and determine if pro or not pro
         async void Login()
         {
-            Alert = "";
             ResponseAPI result = await userService.Login(_username, _password);
 
             if (result.success && APIService.token != null)
@@ -101,18 +99,6 @@ namespace KundePortal.ViewModel
             {
                 _username = value;
                 PropertyChangedCheck("Username");   // Raise event om at "Username" er ændret 
-            }
-        }
-        public string Alert
-        {
-            get
-            {
-                return _alert;
-            }
-            set
-            {
-                _alert = value;
-                PropertyChangedCheck("Alert");
             }
         }
 
