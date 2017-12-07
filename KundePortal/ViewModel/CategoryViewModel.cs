@@ -48,7 +48,7 @@ namespace KundePortal.ViewModel
 
         async void Navigate()
         {
-            if(isSubCategory){
+            if(_parentCategory != null){
                 await Application.Current.MainPage.Navigation.PushAsync(new AllQuestionsView());
             }
             else{

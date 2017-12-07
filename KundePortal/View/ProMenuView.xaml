@@ -81,6 +81,19 @@
             </StackLayout>
 
             <StackLayout Grid.Row="1" Grid.Column="1" BackgroundColor="#26a1e2">
+                <Image Source="gps.png" Scale=".8">
+<!--                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding viewUserCommand}"
+                            NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>-->
+                </Image>
+                <Label 
+                    Text="I NÆRHEDEN" 
+                    Margin="0" 
+                    TextColor="White" 
+                    FontAttributes="Bold" 
+                    HorizontalOptions="Center"/>
 
             </StackLayout>
 

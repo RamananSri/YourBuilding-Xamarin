@@ -26,10 +26,10 @@ namespace KundePortal.ViewModel
         public LoginViewModel()
         {
             // Hardcoded user
-            //_username = "test@test.dk";
-            //_password = "test";
-            _username = "testcvr@test.dk";
-            _password = "testcvr";
+            _username = "test@test.dk";
+            _password = "test";
+            //_username = "testcvr@test.dk";
+            //_password = "testcvr";
 
 
             userService = new UserService();

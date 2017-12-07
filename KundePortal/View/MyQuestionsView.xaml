@@ -3,7 +3,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
-    x:Class="KundePortal.View.MyQuestionsView">
+    x:Class="KundePortal.View.MyQuestionsView"
+    BackgroundColor="#26a1e2">
 
     <!--    Viewmodel instance-->
     <ContentPage.BindingContext>
@@ -13,17 +14,40 @@
 	<ContentPage.Content>
         <ListView 
             SelectedItem="{Binding SelectedCategory}" 
-            ItemsSource="{Binding AllCategories}" 
+            ItemsSource="{Binding MyQuestions}" 
             HasUnevenRows="true"
-            BackgroundColor="White" 
-            SeparatorVisibility="None">
+            BackgroundColor="#26a1e2" 
+            SeparatorVisibility="None"
+            Margin="0,5,0,0">
             
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout>
-                            <Label Text="hej"></Label>
-  
+                        <StackLayout 
+                            Orientation="Horizontal" 
+                            Padding="10,10,10,15"
+                            Margin="5,2.5,5,2.5"
+                            BackgroundColor="White">
+                            <StackLayout 
+                                HorizontalOptions="StartAndExpand">
+                                <Label 
+                                    Text="{Binding title}"
+                                    FontSize="Large"/>
+                                <Label 
+                                    Text="{Binding userId}" 
+                                    FontSize="Small"/>
+                            </StackLayout>
+                            <StackLayout 
+                                HorizontalOptions="EndAndExpand" 
+                                VerticalOptions="Center"
+                                Orientation="Horizontal">
+                                <Label 
+                                    Text="{Binding likeCounter}"
+                                    FontSize="15"
+                                    VerticalOptions="Center"/>
+                                <Button 
+                                    Image="like.png"/>
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

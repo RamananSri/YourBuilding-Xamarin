@@ -17,14 +17,10 @@ namespace KundePortal.ViewModel
     public class QuestionViewModel : INotifyPropertyChanged
     {
         public bool _cvrOrNot;
-
         public static AnswerModel _selectedAnswer;
-
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand openAnswerQuestionCommand { get; private set; }
-
         public static QuestionModel _question;
-
         ObservableCollection<AnswerModel> _answerList;
 
         public QuestionViewModel()
@@ -33,7 +29,14 @@ namespace KundePortal.ViewModel
             cvrCheck();
             openAnswerQuestionCommand = new Command(answerQuestion);
 
-            _question = AllQuestionsViewModel._selectedQuestion;
+            if(AllQuestionsViewModel._selectedQuestion != null){
+                _question = AllQuestionsViewModel._selectedQuestion;
+            }
+            else{
+                _question = MyQuestionsViewModel._selectedItem;
+            }
+
+
             _answerList = new ObservableCollection<AnswerModel>(_question.answers);
 
         }
