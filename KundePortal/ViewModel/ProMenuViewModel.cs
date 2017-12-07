@@ -17,7 +17,6 @@ namespace KundePortal.ViewModel
         {
             MessageViewCommand = new Command(NavigateToMessages);
             QuestionsViewCommand = new Command(NavigateToQuestions);
-            GPSViewCommand = new Command(NavigateToGPS);
             CategoriesViewCommand = new Command(NavigateToCategories);
             viewUserCommand = new Command(ViewUser);
         }
@@ -38,12 +37,6 @@ namespace KundePortal.ViewModel
         {
             INavigation nav = Application.Current.MainPage.Navigation;
             await nav.PushAsync(new CategoryView());
-        }
-
-        async void NavigateToGPS()
-        {
-            INavigation nav = Application.Current.MainPage.Navigation;
-            await nav.PushAsync(new ProGPSView());
         }
 
         async void NavigateToCategories()

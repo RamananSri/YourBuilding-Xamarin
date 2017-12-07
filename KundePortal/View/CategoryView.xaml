@@ -3,7 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
-    NavigationPage.HasBackButton="{Binding IsSubCategory}"
+    NavigationPage.HasBackButton="True"
     x:Class="KundePortal.View.CategoryView"
     Title="Kategorier">
 

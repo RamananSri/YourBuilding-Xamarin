@@ -45,7 +45,6 @@ namespace KundePortal.ViewModel
             ResponseAPI result = await questionService.Create(Question);
             if (result.success)
             {
-                await Application.Current.MainPage.DisplayAlert("Opretning af spørgsmål", result.message, "OK");
                 await Application.Current.MainPage.Navigation.PopAsync();
             }
             else
