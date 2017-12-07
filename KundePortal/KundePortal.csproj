@@ -57,14 +57,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ProGPSView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\ProNotificationsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\ProMyCategoriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -86,6 +78,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MyUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ViewMainCategoriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -134,12 +130,6 @@
     <Compile Include="View\CreateQuestionView.xaml.cs">
       <DependentUpon>CreateQuestionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProGPSView.xaml.cs">
-      <DependentUpon>ProGPSView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ProNotificationsView.xaml.cs">
-      <DependentUpon>ProNotificationsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ProMyCategoriesView.xaml.cs">
       <DependentUpon>ProMyCategoriesView.xaml</DependentUpon>
     </Compile>
@@ -149,7 +139,6 @@
     </Compile>
     <Compile Include="ViewModel\AllCategoriesViewModel.cs" />
     <Compile Include="ViewModel\CreateQuestionViewModel.cs" />
-    <Compile Include="ViewModel\ProGPSViewModel.cs" />
     <Compile Include="View\AnswerQuestionView.xaml.cs">
       <DependentUpon>AnswerQuestionView.xaml</DependentUpon>
     </Compile>
@@ -169,6 +158,10 @@
     <Compile Include="View\MyUserView.xaml.cs">
       <DependentUpon>MyUserView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewMainCategoriesView.xaml.cs">
+      <DependentUpon>ViewMainCategoriesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ViewMainCategoriesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

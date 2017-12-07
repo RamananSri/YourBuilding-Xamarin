@@ -58,7 +58,7 @@ namespace KundePortal.ViewModel
                 }
                 else
                 {
-                    await nav.PushAsync(new CategoryView());
+                    await nav.PushAsync(new MyUserView());
                 }
             }
             else

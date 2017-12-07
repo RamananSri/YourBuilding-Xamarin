@@ -29,12 +29,10 @@ namespace KundePortal.ViewModel
             if (_childCategory != null)
             {
                 _parentCategory = _childCategory;
-                isSubCategory = true;
                 GetCategories(_childCategory);
             }
             else
             {
-                isSubCategory = false;
                 GetCategories("Main");
             }
         }
@@ -100,18 +98,6 @@ namespace KundePortal.ViewModel
             set
             {
                 _allCategories = value;
-            }
-        }
-
-        public bool IsSubCategory
-        {
-            get
-            {
-                return isSubCategory;
-            }
-            private set
-            {
-                isSubCategory = value;
             }
         }
 

@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace KundePortal.View
 {
-    public partial class ProGPSView : ContentPage
+    public partial class ViewMainCategoriesView : ContentPage
     {
-        public ProGPSView()
+        public ViewMainCategoriesView()
         {
             InitializeComponent();
         }
