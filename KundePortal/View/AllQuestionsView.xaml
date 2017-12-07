@@ -39,8 +39,9 @@
                                     FontSize="15"
                                     VerticalOptions="Center"/>
                                 <Button 
-                                    Image="like.png"
-                                    Command="{Binding AddLike}"/>
+                                    Image="like.png"                                
+                                    Command="{Binding AddLike}"
+                                    BackgroundColor="Aqua"/>
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>
