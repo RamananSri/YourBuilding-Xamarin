@@ -47,6 +47,7 @@ namespace KundePortal.ViewModel
             if (result.success)
             {
                 await App.Current.MainPage.DisplayAlert("Svar på spørgsmål", result.message, "OK");
+                await Application.Current.MainPage.Navigation.PopAsync();
             }
             else
             {
