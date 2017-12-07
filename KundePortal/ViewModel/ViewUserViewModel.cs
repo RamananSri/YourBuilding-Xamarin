@@ -23,7 +23,7 @@ namespace KundePortal.ViewModel
 
         // Constructor
         public ViewUserViewModel()
-        {         
+        {
             userService = new UserService();
             API = new APIService();
             initCommands();

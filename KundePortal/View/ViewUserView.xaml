@@ -22,6 +22,7 @@
                         <EntryCell Text="{Binding User.email}" Label="Email:" Placeholder="Indtast email" Keyboard="Email"/>
                         <EntryCell Text="{Binding User.phone}" Label="Telefon:" Placeholder="Indtast telefon" Keyboard="Telephone"/>
                         <EntryCell Text="{Binding User.address}" Label="Adresse:" Placeholder="Indtast adresse" Keyboard="Text"/>
+                        <EntryCell IsEnabled="False" Text="{Binding User.cvr}" Label="CVR" Placeholder="Indtast CVR" Keyboard="Telephone"/>
                         <EntryCell Text="{Binding User.password}" Label="Nuværende kodeord:" Placeholder="Indtast Kodeord" Keyboard="Email"/>
                         <SwitchCell On="{Binding SwitchValue}"  Text="Skift password"/>
                         <EntryCell IsEnabled="{Binding SwitchValue}" Text="{Binding User.newPassword}" Placeholder="Nyt password" Keyboard="Email"/>
