@@ -29,8 +29,9 @@
                     </TableSection>
                 </TableView.Root>           
             </TableView>
-            <Button Command="{Binding updateCommand}" Text="Opdatér"></Button>
-            <Button Command="{Binding deleteCommand}" Text="Slet bruger" BackgroundColor="Red"></Button>
+            <Button Command="{Binding myQuestionsCommand}" Text="Mine spørgsmål" Margin="0,0,0,20"/>
+            <Button Command="{Binding updateCommand}" Text="Opdatér"/>
+            <Button Command="{Binding deleteCommand}" Text="Slet bruger" BackgroundColor="Red"/>
     </StackLayout>
 
     </ContentPage.Content>

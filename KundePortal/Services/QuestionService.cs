@@ -24,6 +24,13 @@ namespace KundePortal.Services
             return questions;
         }
 
+        // Get questions by userID
+        async public Task<List<QuestionModel>> GetByUserID(string userID){
+            string url = baseRoute + "user/" + userID;
+            List<QuestionModel> questions = await API.Get<List<QuestionModel>>(url);
+            return questions;
+        }
+
         // Get categories
         async public Task<List<string>> GetCategories(string category)
         {

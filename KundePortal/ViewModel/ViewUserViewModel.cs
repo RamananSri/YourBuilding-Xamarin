@@ -1,10 +1,12 @@
-﻿using KundePortal.Model;
+﻿#region imports
+using KundePortal.Model;
 using KundePortal.Services;
-using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using KundePortal.Utility;
+using KundePortal.View;
+#endregion
 
 namespace KundePortal.ViewModel
 {
@@ -15,7 +17,6 @@ namespace KundePortal.ViewModel
         APIService API;
         UserService userService;
 
-        string _alert;
         UserModel _user;
         bool _switchValue;
         string _passValidation;
@@ -35,6 +36,13 @@ namespace KundePortal.ViewModel
             logoutCommand = new Command(Logout);
             updateCommand = new Command(Update);
             deleteCommand = new Command(Delete);
+            myQuestionsCommand = new Command(MyQuestions);
+        }
+
+        // Navigate to my questions view
+        async void MyQuestions()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new MyQuestionsView());
         }
 
         // Fill viewmodel user with information from current user 
@@ -54,14 +62,14 @@ namespace KundePortal.ViewModel
         // Delete user (validating action with dialog)
         async void Delete()
         {
-            var page = await App.Current.MainPage.DisplayAlert("Slet bruger", "Ønsker du at slette din bruger?", "Nej", "ja");
+            var page = await Application.Current.MainPage.DisplayAlert("Slet bruger", "Ønsker du at slette din bruger?", "Nej", "ja");
                 
             if(!page)
             {
                 ResponseAPI result = await userService.Delete(_user._id);
                 if (!result.success)
                 {
-                    await App.Current.MainPage.DisplayAlert("Fejl", result.message, "OK");
+                    await Application.Current.MainPage.DisplayAlert("Fejl", result.message, "OK");
                     return;
                 }
                 await Application.Current.MainPage.Navigation.PopToRootAsync();
@@ -77,13 +85,13 @@ namespace KundePortal.ViewModel
                string.IsNullOrEmpty(_user.email) ||
                string.IsNullOrEmpty(User.phone))
             {
-                await App.Current.MainPage.DisplayAlert("Opdatering af bruger", "Udfyld venligst alle felter", "OK");
+                await Application.Current.MainPage.DisplayAlert("Opdatering af bruger", "Udfyld venligst alle felter", "OK");
                 return;           
             }
 
             // Check if new password matches if present
             if(_switchValue && _user.newPassword != _passValidation){
-                await App.Current.MainPage.DisplayAlert("Opdatering af bruger", "Nye kodeord matcher ikke", "OK");
+                await Application.Current.MainPage.DisplayAlert("Opdatering af bruger", "Nye kodeord matcher ikke", "OK");
                 return; 
             }
 
@@ -93,7 +101,7 @@ namespace KundePortal.ViewModel
                 // If successs show dialog, update currentuser and pop page
                 if (result.success)
                 {
-                    await App.Current.MainPage.DisplayAlert("Opdatering af bruger", result.message, "OK");
+                    await Application.Current.MainPage.DisplayAlert("Opdatering af bruger", result.message, "OK");
                     APIService.currentUser.name = _user.name;
                     APIService.currentUser.address = _user.address;
                     APIService.currentUser.email = _user.email;
@@ -102,7 +110,7 @@ namespace KundePortal.ViewModel
                 }
                 else
                 {
-                    await App.Current.MainPage.DisplayAlert("Opdatering af bruger", result.message, "OK");
+                    await Application.Current.MainPage.DisplayAlert("Opdatering af bruger", result.message, "OK");
                 }           
         }
 
@@ -156,17 +164,7 @@ namespace KundePortal.ViewModel
             } 
         }
 
-        public string Alert
-        {
-            get => _alert;
-            set
-            {
-                _alert = value;
-                PropertyChangedCheck("Alert");
-            }
-        }
-
-        public ICommand switchCommand { get; private set; }
+        public ICommand myQuestionsCommand { get; private set; }
         public ICommand updateCommand { get; private set; }
         public ICommand logoutCommand { get; private set; }
         public ICommand deleteCommand { get; private set; }
