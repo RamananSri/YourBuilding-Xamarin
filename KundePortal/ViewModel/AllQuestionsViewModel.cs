@@ -39,6 +39,7 @@ namespace KundePortal.ViewModel
             {
                 await App.Current.MainPage.DisplayAlert("Likes", result.message, "OK");
             }
+
         }
 
         async void Navigate(){

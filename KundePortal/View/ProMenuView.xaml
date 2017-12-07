@@ -11,10 +11,6 @@
         <viewmodel:ProMenuViewModel></viewmodel:ProMenuViewModel>
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Konto" Command="{Binding viewUserCommand}"/>
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Content>
         <Grid ColumnSpacing="5">
             

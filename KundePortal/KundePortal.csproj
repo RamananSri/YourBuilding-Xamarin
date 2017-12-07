@@ -85,6 +85,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\MyUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -161,6 +165,10 @@
       <DependentUpon>MyQuestionsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MyQuestionsViewModel.cs" />
+    <Compile Include="ViewModel\MyUserViewModel.cs" />
+    <Compile Include="View\MyUserView.xaml.cs">
+      <DependentUpon>MyUserView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
