@@ -6,18 +6,20 @@ using KundePortal.Model;
 using KundePortal.Services;
 using KundePortal.View;
 using Xamarin.Forms;
+using System.ComponentModel;
 
 namespace KundePortal.ViewModel
 {
-    public class AllQuestionsViewModel
+    public class AllQuestionsViewModel : INotifyPropertyChanged
     {
         public static QuestionModel _selectedQuestion;
         ObservableCollection<QuestionModel> _questionsList;
         QuestionService qService;
+       
 
         public AllQuestionsViewModel()
         {
-            _selectedQuestion = null;
+            _selectedQuestion = new QuestionModel();
             _questionsList = new ObservableCollection<QuestionModel>();
             qService = new QuestionService();
             getAllQuestions();
@@ -25,8 +27,19 @@ namespace KundePortal.ViewModel
             AddLike = new Command(addLike);
         }
 
-        void addLike(){
-            
+        async void addLike(){
+            _selectedQuestion.likeCounter++;
+            ResponseAPI result = await qService.Update(_selectedQuestion._Id, _selectedQuestion);
+            if (result.success)
+            {
+                await App.Current.MainPage.DisplayAlert("Likes", result.message, "OK");
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Likes", result.message, "OK");
+            }
+            //_selectedQuestion.likeCounter = 5;
+            //PropertyChangedCheck("SelectedQuestion");
         }
 
         async void Navigate(){
@@ -45,6 +58,14 @@ namespace KundePortal.ViewModel
         async void navigate(){
             INavigation nav = Application.Current.MainPage.Navigation;
             await nav.PushAsync(new QuestionView());
+        }
+
+        void PropertyChangedCheck(string prop)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
         }
 
         #region Properties
@@ -76,6 +97,7 @@ namespace KundePortal.ViewModel
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
         public ICommand CreateQuestionCommand { get; private set; }
         public ICommand AddLike { get; private set; }
 
