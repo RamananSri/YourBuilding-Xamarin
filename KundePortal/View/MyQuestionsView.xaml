@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
     x:Class="KundePortal.View.MyQuestionsView">
+
+    <!--    Viewmodel instance-->
+    <ContentPage.BindingContext>
+        <viewmodel:MyQuestionsViewModel></viewmodel:MyQuestionsViewModel>
+    </ContentPage.BindingContext>
+    
 	<ContentPage.Content>
         <ListView 
             SelectedItem="{Binding SelectedCategory}" 
@@ -14,23 +21,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout 
-                            BackgroundColor="#26a1e2" 
-                            Margin="20,10,20,10" 
-                            Padding="0,0,0,20" 
-                            HorizontalOptions="Fill" 
-                            VerticalOptions="Center">
-
-                            <StackLayout 
-                                HorizontalOptions="Center" 
-                                VerticalOptions="Center" 
-                                Padding="10">
-                                
-                                <Label 
-                                    Text="{Binding }" 
-                                    FontSize="25" 
-                                    TextColor="White"></Label>
-                            </StackLayout>
+                        <StackLayout>
+                            <Label Text="hej"></Label>
+  
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

@@ -40,7 +40,6 @@ namespace KundePortal.ViewModel
                 await App.Current.MainPage.DisplayAlert("Likes", result.message, "OK");
             }
             _selectedQuestion.likeCounter = 5;
-            PropertyChangedCheck("SelectedQuestion");
         }
 
         async void Navigate(){

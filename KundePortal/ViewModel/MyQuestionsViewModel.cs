@@ -11,6 +11,7 @@ namespace KundePortal.ViewModel
     {
         ObservableCollection<QuestionModel> _myQuestions;
         QuestionService qService;
+        UserService u = new UserService();
 
 
         public MyQuestionsViewModel()
@@ -20,7 +21,10 @@ namespace KundePortal.ViewModel
         }
 
         async void GetMyQuestions(){
-            List<QuestionModel> myQuestions = await qService.GetByUserID(APIService.currentUser._id); 
+            
+            //List<UserModel> myQuestions = await qService.GetByUserID(APIService.currentUser._id); 
+            UserModel myQuestions = await u.GetById(APIService.currentUser._id); 
+
         }
 
         public object MyProperty { get; set; }

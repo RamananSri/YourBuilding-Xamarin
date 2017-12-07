@@ -4,6 +4,7 @@ using System.Windows.Input;
 using KundePortal.View;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using KundePortal.Utility;
 
 namespace KundePortal.ViewModel
 {
@@ -57,8 +58,17 @@ namespace KundePortal.ViewModel
             }
         }
 
-        async void NavigateAccount(){
-            await Application.Current.MainPage.Navigation.PushAsync(new ViewUserView());
+        async void NavigateAccount()
+        {
+            if (APIService.currentUser.cvr != null)
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new ProMenuView());
+            }
+            else
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new MyUserView());
+
+            }
         }
 
         #region Properties
