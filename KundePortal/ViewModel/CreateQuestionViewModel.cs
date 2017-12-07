@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using KundePortal.Utility;
 using System;
+using System.Collections.Generic;
 
 namespace KundePortal.ViewModel
 {
@@ -36,7 +37,8 @@ namespace KundePortal.ViewModel
             _question.category = _mainCategory;
             _question.subCategory = _subCategory;
             _question.userId = APIService.currentUser.name;
-            _question.questionDate = DateTime.Now.ToString("dd/MM/yyyy"); 
+            _question.questionDate = DateTime.Now.ToString("dd/MM/yyyy");
+            _question.answers = new List<AnswerModel>();
 
 
 
