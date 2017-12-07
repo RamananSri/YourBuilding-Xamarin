@@ -1,18 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="KundePortal.View.ProMenuView"
-    NavigationPage.HasBackButton="False"
-    xmlns:viewmodel="clr-namespace:KundePortal.ViewModel">
 
-<!--    Viewmodel instance-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="KundePortal.View.ProMenuView"
+             xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
+             NavigationPage.HasBackButton="false">
+
+    <!--    Viewmodel instance-->
     <ContentPage.BindingContext>
         <viewmodel:ProMenuViewModel></viewmodel:ProMenuViewModel>
     </ContentPage.BindingContext>
 
+    <!--    Toolbaritem create new account-->
+    <ContentPage.ToolbarItems>
+            <ToolbarItem 
+                Text="Log ud"
+                Command = "{Binding LogOutCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+
     <ContentPage.Content>
-        <Grid ColumnSpacing="5">
+        <Grid Margin="20,40,20,40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+<!--            First row-->
+            <StackLayout BackgroundColor="#26a1e2">
+                <Image Source="plusminusW" Scale="0.8">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding CategoriesViewCommand}" 
+                            NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label 
+                    Text="KATEGORIER" 
+                    TextColor="White" 
+                    FontAttributes="Bold" 
+                    HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" BackgroundColor="#26a1e2">
+                <Image Source="searchW.png" Scale="0.8">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding QuestionsViewCommand}"
+                            NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label 
+                    Text="SPØRGSMÅL" 
+                    TextColor="White" 
+                    FontAttributes="Bold" 
+                    HorizontalOptions="Center"/>
+            </StackLayout>
+
+<!--            Second row-->
+            <StackLayout Grid.Row="1" BackgroundColor="#26a1e2">
+                <Image Source="settings.png" Scale=".8">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding viewUserCommand}"
+                            NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label 
+                    Text="KONTO" 
+                    Margin="0" 
+                    TextColor="White" 
+                    FontAttributes="Bold" 
+                    HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" Grid.Column="1" BackgroundColor="#26a1e2">
+
+            </StackLayout>
+
+<!--            Third row-->
+            <StackLayout Grid.Row="2" BackgroundColor="#26a1e2">
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" Grid.Column="1" BackgroundColor="#26a1e2">
+            </StackLayout>
+        </Grid>
+        
+	</ContentPage.Content>
+</ContentPage>
+
+<!--<Grid ColumnSpacing="5">
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -47,7 +130,7 @@
                 <Label x:Name="img1" Text="Beskeder" HorizontalOptions="Center"></Label>
             </StackLayout>
 
-            <!--<StackLayout Grid.Row="1" Grid.Column="0" Margin="40">
+          <StackLayout Grid.Row="1" Grid.Column="0" Margin="40">
                 <Image Source="globe.png" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer 
@@ -58,25 +141,3 @@
                 </Image>
                 <Label x:Name="img3" Text="I nærheden" HorizontalOptions="Center"></Label>
             </StackLayout>-->
-
-            <StackLayout Grid.Row="1" Grid.Column="1" Margin="40">
-                <Image Source="plusminus.png" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
-                <Image.GestureRecognizers>
-                        <TapGestureRecognizer 
-                            Command="{Binding CategoriesViewCommand}" 
-                            CommandParameter="{Binding Source={x:Reference img4}, Path=Text}"
-                            NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Label x:Name="img4" Text="Kategorier" HorizontalOptions="Center"></Label>
-            </StackLayout>
-            
-
-
-        
-
-                    
-          
-        </Grid>
-	</ContentPage.Content>
-</ContentPage>

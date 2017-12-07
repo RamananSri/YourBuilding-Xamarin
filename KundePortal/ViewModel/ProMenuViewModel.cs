@@ -7,7 +7,6 @@ namespace KundePortal.ViewModel
 {
     public class ProMenuViewModel
     {
-        public ICommand MessageViewCommand { get; set; }
         public ICommand QuestionsViewCommand { get; set; }
         public ICommand GPSViewCommand { get; set; }
         public ICommand CategoriesViewCommand { get; set; }
@@ -15,7 +14,6 @@ namespace KundePortal.ViewModel
 
         public ProMenuViewModel()
         {
-            MessageViewCommand = new Command(NavigateToMessages);
             QuestionsViewCommand = new Command(NavigateToQuestions);
             CategoriesViewCommand = new Command(NavigateToCategories);
             viewUserCommand = new Command(ViewUser);
@@ -25,12 +23,6 @@ namespace KundePortal.ViewModel
         {
                 INavigation nav = Application.Current.MainPage.Navigation;
                 await nav.PushAsync(new ViewUserView());
-        }
-
-        async void NavigateToMessages()
-        {
-            INavigation nav = Application.Current.MainPage.Navigation;
-            await nav.PushAsync(new ProNotificationsView());
         }
 
         async void NavigateToQuestions()
