@@ -17,6 +17,7 @@
                     <Label Text="Likes" HorizontalTextAlignment="End" FontSize="20"/>
                     <Label Text="{Binding SelectedAnswer.likeCounter}" HorizontalTextAlignment="End" FontSize="20"/>
                 </StackLayout>
+            <Button Command="{Binding deleteCommand}" Text="Slet svar" BackgroundColor="Red"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
