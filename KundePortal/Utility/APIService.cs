@@ -89,7 +89,7 @@ namespace KundePortal.Utility
             {
                 var address = baseAddress + url;
                 var response = await client.DeleteAsync(address);
-                ResponseAPI result = await Deserialize<ResponseAPI>(address);
+                ResponseAPI result = await Deserialize<ResponseAPI>(response);
                 return result;
             }
             catch (HttpRequestException)
