@@ -1,5 +1,6 @@
 ﻿using KundePortal.Model;
 using KundePortal.Services;
+using KundePortal.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace KundePortal.ViewModel
         AnswerModel selectedAnswer;
         QuestionService questionService;
         AnswerService answerService;
+        bool _showDeleteButton = false;
 
         public AnswerViewModel()
         {
@@ -25,6 +27,14 @@ namespace KundePortal.ViewModel
             deleteCommand = new Command(Delete);
             answerService = new AnswerService();
 
+        }
+
+        public void checkUser()
+        {
+            if (selectedAnswer.userId.Equals(APIService.currentUser._id))
+            {
+                _showDeleteButton = true;
+            }
         }
 
         async void Delete()
@@ -54,6 +64,18 @@ namespace KundePortal.ViewModel
             set
             {
                 selectedAnswer = value;
+            }
+        }
+
+        public bool ShowDeleteButton
+        {
+            get
+            {
+                return _showDeleteButton;
+            }
+            set
+            {
+                _showDeleteButton = value;
             }
         }
 
