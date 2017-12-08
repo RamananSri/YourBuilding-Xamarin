@@ -16,5 +16,6 @@
             <Editor Text="{Binding Answer.description}" HeightRequest="300"></Editor>
             <Button Command="{Binding answerQuestionCommand}" Text="Svar"></Button>
         </StackLayout>
+        <Button Command="{Binding deleteCommand}" Text="Slet svar" BackgroundColor="Red"/>
     </ContentPage.Content>
 </ContentPage>
