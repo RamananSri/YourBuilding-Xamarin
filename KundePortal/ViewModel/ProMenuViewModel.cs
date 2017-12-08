@@ -16,7 +16,7 @@ namespace KundePortal.ViewModel
 
         public ProMenuViewModel()
         {
-            _username = APIService.currentUser.name;
+            _username = "Brugernavn: " + APIService.currentUser.name;
             SubsViewCommand = new Command(NavigateToSubs);
             CategoryViewCommand = new Command(NavigateToCategories);
             AccountViewCommand = new Command(NavigateToAccount);

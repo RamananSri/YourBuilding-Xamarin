@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="KundePortal.View.ProMenuView"
     NavigationPage.HasBackButton="False"
+    BackgroundColor="White"
     Title="{Binding Username}"
     xmlns:viewmodel="clr-namespace:KundePortal.ViewModel">
 
@@ -13,57 +14,59 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <Grid ColumnSpacing="5" BackgroundColor="#26a1e2">
+        <Grid Margin="10">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="2"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="2"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <StackLayout Grid.Row="0" Grid.Column="0" Margin="40">
-                <Image Source="questionsW.png" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+            <StackLayout Grid.Column="0" BackgroundColor="#26a1e2">
+                <Image Source="questionsW.png" VerticalOptions="FillAndExpand">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer 
                             Command="{Binding SubsViewCommand}"
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Mine kategorier" TextColor="#FFFFFF" HorizontalOptions="Center"></Label>
+                <Label Text="SUBSCRIPTIONS" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"></Label>
             </StackLayout>
 
-            <StackLayout Margin="40" Grid.Row="0" Grid.Column="2">
-                <Image Source="searchW.png" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+            <StackLayout Grid.Column="1" BackgroundColor="#26a1e2">
+                <Image Source="searchW.png" VerticalOptions="FillAndExpand">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer 
                             Command="{Binding CategoryViewCommand}"
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Alle kategorier" TextColor="#FFFFFF" VerticalOptions="FillAndExpand" HorizontalOptions="Center"></Label>
+                <Label Text="KATEGORIER" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"></Label>
             </StackLayout>
 
-            <StackLayout Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="#FFFFFF">
-            </StackLayout>
-
-            <StackLayout Grid.Column="1" Grid.RowSpan="3" BackgroundColor="#FFFFFF">
-            </StackLayout>
-
-            <StackLayout Grid.Row="2" Grid.Column="0" Margin="40">
-                <Image Source="settings.png" HorizontalOptions="Center">
+            <StackLayout Grid.Row="1" BackgroundColor="#26a1e2">
+                <Image Source="settings.png" VerticalOptions="FillAndExpand">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer 
                             Command="{Binding AccountViewCommand}"
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Rediger konto" TextColor="#FFFFFF" HorizontalOptions="Center"></Label>
+                <Label Text="KONTO" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"></Label>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" Grid.Column="1" BackgroundColor="#26a1e2">
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" BackgroundColor="#26a1e2">
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" Grid.Column="1" BackgroundColor="#26a1e2">
             </StackLayout>
         </Grid>
     </ContentPage.Content>

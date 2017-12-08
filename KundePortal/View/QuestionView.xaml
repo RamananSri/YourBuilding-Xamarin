@@ -29,9 +29,25 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Image Margin="5" Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" Grid.Row="0" Grid.Column="0" BackgroundColor="Gray"></Image>
-            <Image Margin="5" Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" Grid.Row="0" Grid.Column="1" BackgroundColor="Gray"></Image>
-            <Image Margin="5" Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" Grid.Row="0" Grid.Column="2" BackgroundColor="Gray"></Image>
+            <Image 
+                Margin="5" 
+                Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" 
+                Grid.Row="0" 
+                Grid.Column="0"
+                BackgroundColor="White"/>
+            <Image 
+                Margin="5" 
+                Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" 
+                Grid.Row="0" 
+                Grid.Column="1"
+                BackgroundColor="White"/>
+            <Image 
+                Margin="5" 
+                Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" 
+                Grid.Row="0"
+                Grid.Column="2"
+                BackgroundColor="White"/>
+            
             <Label Text="Spørgsmål:" Grid.Row="1" Grid.ColumnSpan="3"></Label>
             <Label Text="{Binding Question.description}" Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="White"></Label>
             <Button Command="{Binding openAnswerQuestionCommand}" IsVisible="{Binding CvrOrNot}" Text="Svar" Grid.Row="3" Grid.Column="2"></Button>
