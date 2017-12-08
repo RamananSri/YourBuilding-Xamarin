@@ -15,7 +15,7 @@ namespace KundePortal.ViewModel
         public static QuestionModel _selectedQuestion;
         ObservableCollection<QuestionModel> _questionsList;
         QuestionService qService;
-       
+
 
         public AllQuestionsViewModel()
         {
@@ -28,7 +28,8 @@ namespace KundePortal.ViewModel
 
         }
 
-        async void addLike(){
+        async void addLike()
+        {
             _selectedQuestion.likeCounter++;
             ResponseAPI result = await qService.Update(_selectedQuestion._Id, _selectedQuestion);
             if (result.success)
@@ -42,20 +43,22 @@ namespace KundePortal.ViewModel
 
         }
 
-        async void Navigate(){
+        async void Navigate()
+        {
             await Application.Current.MainPage.Navigation.PushAsync(new CreateQuestionView());
         }
 
         async void getAllQuestions()
         {
-            List<QuestionModel> questions = await qService.GetBySubcategory(CategoryViewModel._childCategory);
+            List<QuestionModel> questions = await qService.GetByCategory(CategoryViewModel._childCategory);
             foreach (var item in questions)
             {
                 _questionsList.Add(item);
             }
         }
 
-        async void navigate(){
+        async void navigate()
+        {
             INavigation nav = Application.Current.MainPage.Navigation;
             await nav.PushAsync(new QuestionView());
         }
@@ -70,28 +73,29 @@ namespace KundePortal.ViewModel
 
         #region Properties
 
-        public ObservableCollection<QuestionModel> QuestionsList 
-        { 
+        public ObservableCollection<QuestionModel> QuestionsList
+        {
             get
             {
                 return _questionsList;
-            } 
+            }
             set
             {
                 _questionsList = value;
-            } 
+            }
         }
 
-        public QuestionModel SelectedQuestion 
-        { 
+        public QuestionModel SelectedQuestion
+        {
             get
             {
                 return _selectedQuestion;
-            } 
+            }
             set
             {
                 _selectedQuestion = value;
-                if(_selectedQuestion != null){
+                if (_selectedQuestion != null)
+                {
                     navigate();
                 }
             }
