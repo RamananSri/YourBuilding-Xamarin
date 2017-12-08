@@ -1,11 +1,7 @@
 ﻿using KundePortal.Model;
 using KundePortal.Services;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using KundePortal.Utility;
@@ -16,6 +12,7 @@ namespace KundePortal.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand answerQuestionCommand { get; private set; }
+        public ICommand deleteQuestionCommand { get; private set; }
 
 
         AnswerModel _answer;
@@ -28,7 +25,6 @@ namespace KundePortal.ViewModel
         {
             questionId = QuestionViewModel._question._Id;
             answerQuestionCommand = new Command(answerQuestion);
-
             this._question = question;            
             _answer = new AnswerModel();
             //_answer.description = "answer virker";

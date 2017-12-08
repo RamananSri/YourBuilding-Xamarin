@@ -24,8 +24,11 @@ namespace KundePortal.ViewModel
             questionService = new QuestionService();
             qsView = new QuestionViewModel();
             selectedAnswer = qsView.SelectedAnswer;
+            //qsView.SelectedAnswer = null;
             deleteCommand = new Command(Delete);
             answerService = new AnswerService();
+
+            checkUser();
 
         }
 
@@ -49,6 +52,8 @@ namespace KundePortal.ViewModel
                     await Application.Current.MainPage.DisplayAlert("Fejl", result.message, "OK");
                     return;
                 }
+
+
                 await Application.Current.MainPage.Navigation.PopAsync();
             }
         }
