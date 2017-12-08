@@ -1,156 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="KundePortal.View.ProMenuView"
-             xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
-             NavigationPage.HasBackButton="false">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="KundePortal.View.ProMenuView"
+    NavigationPage.HasBackButton="False"
+    Title="{Binding Username}"
+    xmlns:viewmodel="clr-namespace:KundePortal.ViewModel">
 
     <!--    Viewmodel instance-->
     <ContentPage.BindingContext>
         <viewmodel:ProMenuViewModel></viewmodel:ProMenuViewModel>
     </ContentPage.BindingContext>
 
-    <!--    Toolbaritem create new account-->
-    <ContentPage.ToolbarItems>
-            <ToolbarItem 
-                Text="Log ud"
-                Command = "{Binding LogOutCommand}"/>
-    </ContentPage.ToolbarItems>
-    
-
     <ContentPage.Content>
-        <Grid Margin="20,40,20,40">
+        <Grid ColumnSpacing="5" BackgroundColor="#26a1e2">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-<!--            First row-->
-            <StackLayout BackgroundColor="#26a1e2">
-                <Image Source="plusminusW" Scale="0.8">
+            <StackLayout Grid.Row="0" Grid.Column="0" Margin="40">
+                <Image Source="questionsW.png" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer 
-                            Command="{Binding CategoriesViewCommand}" 
+                            Command="{Binding SubsViewCommand}"
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label 
-                    Text="KATEGORIER" 
-                    TextColor="White" 
-                    FontAttributes="Bold" 
-                    HorizontalOptions="Center"/>
+                <Label Text="Mine kategorier" TextColor="#FFFFFF" HorizontalOptions="Center"></Label>
             </StackLayout>
 
-            <StackLayout Grid.Column="1" BackgroundColor="#26a1e2">
-                <Image Source="searchW.png" Scale="0.8">
+            <StackLayout Margin="40" Grid.Row="0" Grid.Column="2">
+                <Image Source="searchW.png" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer 
-                            Command="{Binding QuestionsViewCommand}"
+                            Command="{Binding CategoryViewCommand}"
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label 
-                    Text="SPØRGSMÅL" 
-                    TextColor="White" 
-                    FontAttributes="Bold" 
-                    HorizontalOptions="Center"/>
+                <Label Text="Alle kategorier" TextColor="#FFFFFF" VerticalOptions="FillAndExpand" HorizontalOptions="Center"></Label>
             </StackLayout>
 
-<!--            Second row-->
-            <StackLayout Grid.Row="1" BackgroundColor="#26a1e2">
-                <Image Source="settings.png" Scale=".8">
+            <StackLayout Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="#FFFFFF">
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Grid.RowSpan="3" BackgroundColor="#FFFFFF">
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" Grid.Column="0" Margin="40">
+                <Image Source="settings.png" HorizontalOptions="Center">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer 
-                            Command="{Binding viewUserCommand}"
+                            Command="{Binding AccountViewCommand}"
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label 
-                    Text="KONTO" 
-                    Margin="0" 
-                    TextColor="White" 
-                    FontAttributes="Bold" 
-                    HorizontalOptions="Center"/>
-            </StackLayout>
-
-            <StackLayout Grid.Row="1" Grid.Column="1" BackgroundColor="#26a1e2">
-                <Image Source="gps.png" Scale=".8">
-<!--                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer 
-                            Command="{Binding viewUserCommand}"
-                            NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>-->
-                </Image>
-                <Label 
-                    Text="I NÆRHEDEN" 
-                    Margin="0" 
-                    TextColor="White" 
-                    FontAttributes="Bold" 
-                    HorizontalOptions="Center"/>
-
-            </StackLayout>
-
-<!--            Third row-->
-            <StackLayout Grid.Row="2" BackgroundColor="#26a1e2">
-            </StackLayout>
-
-            <StackLayout Grid.Row="2" Grid.Column="1" BackgroundColor="#26a1e2">
+                <Label Text="Rediger konto" TextColor="#FFFFFF" HorizontalOptions="Center"></Label>
             </StackLayout>
         </Grid>
-        
-	</ContentPage.Content>
+    </ContentPage.Content>
 </ContentPage>
-
-<!--<Grid ColumnSpacing="5">
-            
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <StackLayout Grid.Row="1" Grid.Column="0" Margin="40">
-                <Image Source="questions.png" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer 
-                            Command="{Binding QuestionsViewCommand}"
-                            NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Label Text="Alle spørgsmål" HorizontalOptions="Center"></Label>
-            </StackLayout>
-
-            <StackLayout Margin="40" Grid.Row="0" Grid.Column="0">
-                <Image Source="message.png" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer 
-                            Command="{Binding MessageViewCommand}"
-                            CommandParameter="{Binding Source={x:Reference img1}, Path=Text}"
-                            NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Label x:Name="img1" Text="Beskeder" HorizontalOptions="Center"></Label>
-            </StackLayout>
-
-          <StackLayout Grid.Row="1" Grid.Column="0" Margin="40">
-                <Image Source="globe.png" VerticalOptions="FillAndExpand" HorizontalOptions="Center">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer 
-                            Command="{Binding GPSViewCommand}"
-                            CommandParameter="{Binding Source={x:Reference img3}, Path=Text}"
-                            NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Label x:Name="img3" Text="I nærheden" HorizontalOptions="Center"></Label>
-            </StackLayout>-->
