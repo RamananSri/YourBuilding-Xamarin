@@ -18,14 +18,16 @@ namespace KundePortal.Services
         }
 
         // Get questions by subcategory
-        async public Task<List<QuestionModel>> GetBySubcategory(string subCat){
-            string url = baseRoute + subCat;
+        async public Task<List<QuestionModel>> GetByCategory(string category)
+        {
+            string url = baseRoute + category;
             List<QuestionModel> questions = await API.Get<List<QuestionModel>>(url);
             return questions;
         }
 
         // Get questions by userID
-        async public Task<List<QuestionModel>> GetByUserID(string userID){
+        async public Task<List<QuestionModel>> GetByUserID(string userID)
+        {
             string url = baseRoute + "user/" + userID;
             List<QuestionModel> questions = await API.Get<List<QuestionModel>>(url);
             return questions;
@@ -40,27 +42,31 @@ namespace KundePortal.Services
         }
 
         // Update question by id
-        async public Task<ResponseAPI> Update(string id, QuestionModel question){
+        async public Task<ResponseAPI> Update(string id, QuestionModel question)
+        {
             ResponseAPI response = await API.Put(baseRoute + id, question);
-            return response;        
+            return response;
         }
 
         // Get questions by user ID
-        async public Task<List<QuestionModel>> GetByUserId(string id){
+        async public Task<List<QuestionModel>> GetByUserId(string id)
+        {
             List<QuestionModel> questions = await API.Get<List<QuestionModel>>(baseRoute + id);
-            return questions;       
+            return questions;
         }
 
         // Delete question by ID
-        async public Task<ResponseAPI> Delete(string id){
+        async public Task<ResponseAPI> Delete(string id)
+        {
             ResponseAPI response = await API.Delete(baseRoute + id);
-            return response;           
+            return response;
         }
 
         // Create question
-        async public Task<ResponseAPI> Create(QuestionModel question){
+        async public Task<ResponseAPI> Create(QuestionModel question)
+        {
             ResponseAPI response = await API.Post(baseRoute, question);
-            return response;        
+            return response;
         }
     }
 }

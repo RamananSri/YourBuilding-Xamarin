@@ -1,33 +1,33 @@
 ﻿using KundePortal.Model;
-using KundePortal.Services;
 using KundePortal.View;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using KundePortal.Utility;
+using KundePortal.Services;
 
 namespace KundePortal.ViewModel
 {
     public class QuestionViewModel : INotifyPropertyChanged
     {
+        QuestionService qService;
         public bool _cvrOrNot;
+        public bool _canDelete;
         public static AnswerModel _selectedAnswer;
         public event PropertyChangedEventHandler PropertyChanged;
-        public ICommand openAnswerQuestionCommand { get; private set; }
+
         public static QuestionModel _question;
         ObservableCollection<AnswerModel> _answerList;
 
         public QuestionViewModel()
         {
+            qService = new QuestionService();
             _cvrOrNot = false;
             cvrCheck();
             openAnswerQuestionCommand = new Command(answerQuestion);
+            DeleteQuestionCommand = new Command(deleteQuestion);
+
 
             if(AllQuestionsViewModel._selectedQuestion != null){
                 _question = AllQuestionsViewModel._selectedQuestion;
@@ -35,10 +35,18 @@ namespace KundePortal.ViewModel
             else{
                 _question = MyQuestionsViewModel._selectedItem;
             }
-
-
             _answerList = new ObservableCollection<AnswerModel>(_question.answers);
+        }
 
+        async void deleteQuestion()
+        {
+            ResponseAPI res = await qService.Delete(_question._Id); 
+            if(res.success){
+                await Application.Current.MainPage.Navigation.PopAsync();
+            }
+            else{
+                await Application.Current.MainPage.DisplayAlert("Delete question", res.message, "Ok");
+            }
         }
 
         void cvrCheck()
@@ -66,6 +74,7 @@ namespace KundePortal.ViewModel
 
         async void goToAnswer()
         {
+
             INavigation nav = Application.Current.MainPage.Navigation;
             await nav.PushAsync(new AnswerView());
         }
@@ -124,6 +133,20 @@ namespace KundePortal.ViewModel
             }
         }
 
+        public bool CanDelete 
+        { 
+            get
+            {
+                return _canDelete;
+            }
+            set
+            {
+                _canDelete = value;
+            } 
+        }
+
+        public ICommand openAnswerQuestionCommand { get; private set; }
+        public ICommand DeleteQuestionCommand { get; private set; }
 
 
         #endregion

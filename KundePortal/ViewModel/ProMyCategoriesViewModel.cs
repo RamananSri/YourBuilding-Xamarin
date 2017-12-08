@@ -10,6 +10,7 @@ namespace KundePortal.ViewModel
 {
     public class ProMyCategoriesViewModel
     {
+        public static string _selectedCategory;
         UserService service;
         ObservableCollection<string> _myCategories;
         public ICommand AddCategoryCommand { get; private set; }
@@ -24,10 +25,17 @@ namespace KundePortal.ViewModel
             GetCategories();
         }
 
+        async void NavigateToQuestions()
+        {
+            INavigation nav = Application.Current.MainPage.Navigation;
+            await nav.PushAsync(new ViewMainCategoriesView());
+        }
+
         // Populate list with user subscriptions
         void GetCategories()
         {
-            if(APIService.currentUser.categories != null){
+            if (APIService.currentUser.categories != null)
+            {
                 foreach (var item in APIService.currentUser.categories)
                 {
                     _myCategories.Add(item);
@@ -45,14 +53,30 @@ namespace KundePortal.ViewModel
         #region Properties
 
         public ObservableCollection<String> MyCategories
-        { 
+        {
             get
             {
-                return _myCategories;     
+                return _myCategories;
             }
             set
             {
                 _myCategories = value;
+            }
+        }
+
+        public string SelectedCategory
+        {
+            get
+            {
+                return _selectedCategory;
+            }
+            set
+            {
+                _selectedCategory = value;
+                if (_selectedCategory != null)
+                {
+                    NavigateToQuestions();
+                }
             }
         }
 

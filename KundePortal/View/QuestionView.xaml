@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
              x:Class="KundePortal.View.QuestionView"
-             Title="Spørgsmåls info"
              BackgroundColor="#26a1e2">
 
     <ContentPage.BindingContext>
@@ -29,13 +28,48 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Image Margin="5" Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" Grid.Row="0" Grid.Column="0" BackgroundColor="Gray"></Image>
-            <Image Margin="5" Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" Grid.Row="0" Grid.Column="1" BackgroundColor="Gray"></Image>
-            <Image Margin="5" Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" Grid.Row="0" Grid.Column="2" BackgroundColor="Gray"></Image>
-            <Label Text="Spørgsmål:" Grid.Row="1" Grid.ColumnSpan="3"></Label>
-            <Label Text="{Binding Question.description}" Grid.Row="2" Grid.ColumnSpan="3" BackgroundColor="White"></Label>
-            <Button Command="{Binding openAnswerQuestionCommand}" IsVisible="{Binding CvrOrNot}" Text="Svar" Grid.Row="3" Grid.Column="2"></Button>
-            <Label Text="Svar på spørgsmål:" Grid.Row="4" Grid.ColumnSpan="3"></Label>
+            <Image 
+                Margin="5" 
+                Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" 
+                Grid.Row="0" 
+                Grid.Column="0"
+                BackgroundColor="White"/>
+            <Image 
+                Margin="5" 
+                Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" 
+                Grid.Row="0" 
+                Grid.Column="1"
+                BackgroundColor="White"/>
+            <Image 
+                Margin="5" 
+                Source="https://www.bolius.dk/fileadmin/_processed_/1/9/csm_facader-med-overflade-af-mursten-4_af76f10a3d.jpg" 
+                Grid.Row="0"
+                Grid.Column="2"
+                BackgroundColor="White"/>
+            
+            <Label 
+                Text="Spørgsmål" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="3"/>
+            <Label 
+                Text="{Binding Question.description}" 
+                Grid.Row="2" 
+                Grid.ColumnSpan="3" 
+                BackgroundColor="White"/>
+            <StackLayout Grid.Row="3" Grid.Column="2">
+                <Button 
+                    Command="{Binding openAnswerQuestionCommand}" 
+                    IsVisible="{Binding CvrOrNot}" 
+                    Text="Svar"/>
+                <Button
+                    Command="{Binding DeleteQuestionCommand}"
+                    IsVisible="{Binding canDelete}"
+                    Text="Slet"/> 
+            </StackLayout>
+
+
+                
+            <Label Text="Svar" Grid.Row="4" Grid.ColumnSpan="3"></Label>
 
             <ListView SelectedItem="{Binding SelectedAnswer}" ItemsSource="{Binding AnswerList}" Grid.Row="5" Grid.ColumnSpan="3" HasUnevenRows="True">
                 <ListView.ItemTemplate>
