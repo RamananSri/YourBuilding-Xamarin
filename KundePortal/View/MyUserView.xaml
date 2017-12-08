@@ -4,15 +4,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KundePortal.View.MyUserView"
              xmlns:viewmodel="clr-namespace:KundePortal.ViewModel"
-             BackgroundColor="White"
+             BackgroundColor="White"   
              NavigationPage.HasBackButton="false">
-<!--             NavigationPage.HasNavigationBar="False">--> 
 
-    <!--    Viewmodel instance-->
     <ContentPage.BindingContext>
         <viewmodel:MyUserViewModel></viewmodel:MyUserViewModel>
     </ContentPage.BindingContext>
-
+    
     <!--    Toolbaritem create new account-->
     <ContentPage.ToolbarItems>
             <ToolbarItem 
